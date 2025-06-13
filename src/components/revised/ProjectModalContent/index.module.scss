@@ -68,9 +68,9 @@
       box-shadow: 0 0 1rem 0.25rem white;
       overflow: hidden;
 
-      > video {
+      > video, iframe {
         width: 100%;
-        height: 100%;
+        aspect-ratio: 16/9;
       }
     }
   }

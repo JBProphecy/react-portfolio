@@ -45,14 +45,14 @@ export function AboutMeContent({
 
   // Visibility
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  useEffect(() => { setTimeout(() => setIsVisible(true), 300) }, [])
+  useEffect(() => { setTimeout(() => setIsVisible(true), 0) }, [])
 
   // Return Content
   return (
-    <div className={styles.component} style={style}>
+    <div className={joinClasses(styles.component, isVisible ? styles.visible : "")} style={style}>
       <section ref={heroRef} className={styles.hero}>
         <div className={joinClasses(styles.layer, styles.background)}>
-          <video className={isVisible ? styles.visible : ""} autoPlay loop muted>
+          <video autoPlay loop muted>
             <source src="smoke-saber.mp4" type="video/mp4" />
           </video>
         </div>

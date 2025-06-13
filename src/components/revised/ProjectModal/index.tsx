@@ -34,7 +34,7 @@ export function ProjectModal({ toggleProjectModalOverlay, projectKey }: ProjectM
           <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
       </div>
-      { projectKey !== null ? <ProjectModalContent {...toProjectModalContentProps(projectKey)} /> : <></> }
+      { projectKey !== null ? <ProjectModalContent projectKey={projectKey} /> : <></> }
     </div>
   )
 }

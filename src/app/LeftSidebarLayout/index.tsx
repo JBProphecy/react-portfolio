@@ -5,7 +5,7 @@ import styles from "./index.module.scss";
 import { useRef, useState } from "react";
 import { Dimensions } from "@/types/Dimensions";
 import { useDimensions } from "@/hooks/useDimensions";
-import { processComponentDimensions } from "@/utils/processComponentDimensions";
+// import { processComponentDimensions } from "@/utils/processComponentDimensions";
 import { joinClasses } from "@/utils/joinClasses";
 import { CustomProperties } from "@/types/css/CustomProperties";
 import { AboutMeContent } from "@/app/AboutMeContent";
@@ -46,7 +46,7 @@ export function LeftSidebarLayout({
 
   // Custom Properties
   const style: CustomProperties = {
-    ...processComponentDimensions(componentDimensions),
+    // ...processComponentDimensions(componentDimensions), I'm using 100dvw and 100dvh now.
     "--transitionDuration": toStringMS(transitionDurationValueMS),
     "--transitionFunction": transitionFunction,
     "--headerHeight": toStringPX(headerHeightValuePX)

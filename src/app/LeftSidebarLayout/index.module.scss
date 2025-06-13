@@ -5,8 +5,8 @@ div.component {
   height: 100%;
   position: relative;
 
-  --componentWidth: unset; // from code
-  --componentHeight: unset; // from code
+  --componentWidth: 100dvw; // from code
+  --componentHeight: 100dvh; // from code
   --headerHeight: unset; // from code
   --mainHeight: calc(var(--componentHeight) - var(--headerHeight));
   --transitionDuration: unset; // from code

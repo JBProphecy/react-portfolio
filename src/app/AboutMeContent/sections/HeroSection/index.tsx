@@ -34,7 +34,7 @@ export function HeroSection({ fontSizeKey = 1 }: HeroSectionProps): JSX.Element 
 
   // Return Content
   return (
-    <div className={joinClasses(styles.component, isVisible ? styles.visible : "")} style={style}>
+    <div className={styles.component} style={style}>
       <div className={styles.grid}>
         <section className={styles.introduction}>
           <div className={styles.titleRow}>

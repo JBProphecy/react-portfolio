@@ -9,9 +9,6 @@
   display: flex;
   font-family: "Oleo Script", serif;
   padding: 5dvw;
-  opacity: 0;
-  transition: opacity 300ms ease-out;
-  &.visible { opacity: 1; }
 }
 
 .grid {

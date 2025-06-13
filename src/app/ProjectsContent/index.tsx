@@ -36,7 +36,7 @@ export function ProjectsContent({
 
   // Visibility
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  useEffect(() => { setTimeout(() => setIsVisible(true), 150) }, [])
+  useEffect(() => { setTimeout(() => setIsVisible(true), 0) }, [])
 
   const ALL_PROJECTS_LINE_PROJECT_KEYS: ProjectKeys[] = [
     ProjectKeys.MovieWebsite,

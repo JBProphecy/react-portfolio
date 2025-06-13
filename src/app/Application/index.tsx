@@ -25,7 +25,7 @@ export function Application(): JSX.Element {
 
   // Visibility
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  useEffect(() => { setTimeout(() => setIsVisible(true), 300) }, [])
+  useEffect(() => { setTimeout(() => setIsVisible(true), 0) }, [])
 
   // Project Modal Overlay Stuff
   const projectModalOverlayTransitionDurationValueMS: number = 300;
