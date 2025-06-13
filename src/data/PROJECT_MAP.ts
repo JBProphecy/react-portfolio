@@ -5,10 +5,10 @@ import { buildYouTubeEmbeddedLink } from "@/utils/buildYouTubeEmbeddedLink";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export enum ProjectKeys {
-  MovieWebsite = "Movie Webiste",
-  MusicVisualizer = "Music Visualizer",
-  UserAuthentication = "User Authentication"
+export enum ProjectKey {
+  MovieWebsite = "movie-website",
+  MusicVisualizer = "music-visualizer",
+  UserAuthentication = "user-authentication"
 }
 
 export type ProjectData = {
@@ -60,8 +60,8 @@ const buildVideoPath = (file: string) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const PROJECT_MAP: Record<ProjectKeys, ProjectData> = {
-  [ProjectKeys.MovieWebsite]: {
+export const PROJECT_MAP: Record<ProjectKey, ProjectData> = {
+  [ProjectKey.MovieWebsite]: {
     title: "Movie Website",
     imageSrc: buildImagePath("movie-review-website-thumbnail.png"),
     imageAlt: "thumbnail for movie website project",
@@ -73,7 +73,7 @@ export const PROJECT_MAP: Record<ProjectKeys, ProjectData> = {
     repositoryLinkHref: "https://github.com/JBProphecy/movie-review",
     iconLabelKeys: MOVIE_WEBSITE_ICON_LABEL_KEYS
   },
-  [ProjectKeys.MusicVisualizer]: {
+  [ProjectKey.MusicVisualizer]: {
     title: "Music Visualizer",
     imageSrc: buildImagePath("music-visualizer-thumbnail.png"),
     imageAlt: "thumbnail for music visualizer project",
@@ -85,7 +85,7 @@ export const PROJECT_MAP: Record<ProjectKeys, ProjectData> = {
     repositoryLinkHref: "https://github.com/JBProphecy/hot-box",
     iconLabelKeys: MUSIC_VISUALIZER_ICON_LABEL_KEYS
   },
-  [ProjectKeys.UserAuthentication]: {
+  [ProjectKey.UserAuthentication]: {
     title: "User Authentication",
     imageSrc: buildImagePath("user-authentication-thumbnail.png"),
     imageAlt: "thumbnail for user authentication project",

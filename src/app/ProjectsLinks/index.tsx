@@ -2,40 +2,40 @@
 
 import styles from "./index.module.scss";
 
-import { ProjectKeys } from "@/data/PROJECT_MAP";
+import { useContext } from "react";
+
+import { AppContext, AppContextType } from "@/context/AppContext";
+
+import { ProjectKey } from "@/data/PROJECT_MAP";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-export type ProjectsLinksProps = {
-  toggleProjectModalOverlay: () => void;
-  setProjectKey: React.Dispatch<React.SetStateAction<ProjectKeys | null>>;
-}
 
 /**
  * @param props - Component Props
  * @see {@link ProjectsLinksProps}
  * @returns JSX
  */
-export function ProjectsLinks({
-    toggleProjectModalOverlay,
-    setProjectKey
-}: ProjectsLinksProps): JSX.Element {
+export function ProjectsLinks(): JSX.Element {
 
-  const handleClickHeaderLink = (projectKey: ProjectKeys) => {
-    setProjectKey(projectKey);
-    toggleProjectModalOverlay();
+  // App Context
+  const appContext: AppContextType | undefined = useContext(AppContext);
+  if (typeof appContext === "undefined") { throw new Error("Missing App Context Provider"); }
+
+  const handleClickProjectLink = (projectKey: ProjectKey) => {
+    appContext.setCurrentProjectKey(projectKey);
+    appContext.toggleProjectModal();
   }
 
   // Return Content
   return (
     <nav className={styles.list}>
-      <a className={styles.item} onClick={() => { handleClickHeaderLink(ProjectKeys.MovieWebsite) }}>
+      <a className={styles.item} onClick={() => { handleClickProjectLink(ProjectKey.MovieWebsite) }}>
         <span className={styles.label}>Movie Website</span>
       </a>
-      <a className={styles.item} onClick={() => { handleClickHeaderLink(ProjectKeys.MusicVisualizer) }}>
+      <a className={styles.item} onClick={() => { handleClickProjectLink(ProjectKey.MusicVisualizer) }}>
         <span className={styles.label}>Music Visualizer</span>
       </a>
-      <a className={styles.item} onClick={() => { handleClickHeaderLink(ProjectKeys.UserAuthentication) }}>
+      <a className={styles.item} onClick={() => { handleClickProjectLink(ProjectKey.UserAuthentication) }}>
         <span className={styles.label}>User Authentication</span>
       </a>
     </nav>

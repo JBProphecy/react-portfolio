@@ -2,21 +2,23 @@
 
 import styles from "./index.module.scss";
 
-import { joinClasses } from "@/utils/joinClasses";
-import { ProjectKeys } from "@/data/PROJECT_MAP";
+import { useContext } from "react";
+
 import { ProjectModal } from "@/components/revised/ProjectModal";
+
+import { AppContext, AppContextType } from "@/context/AppContext";
+
 import { type CustomProperties } from "@/types/css/CustomProperties";
 import { type TransitionDuration } from "@/types/css/TransitionDuration";
 import { type TransitionTimingFunction } from "@/types/css/TransitionTimingFunction";
 
+import { joinClasses } from "@/utils/joinClasses";
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export type ProjectModalOverlayComponentProps = {
-  isOverlayActive: boolean;
   transitionDuration: TransitionDuration;
   transitionFunction: TransitionTimingFunction;
-  toggleProjectModalOverlay: () => void;
-  projectKey: ProjectKeys | null;
 }
 
 /**
@@ -25,12 +27,12 @@ export type ProjectModalOverlayComponentProps = {
  * @returns JSX
  */
 export function ProjectModalOverlayComponent({
-  isOverlayActive,
   transitionDuration,
   transitionFunction,
-  toggleProjectModalOverlay,
-  projectKey
 }: ProjectModalOverlayComponentProps): JSX.Element {
+
+  const appContext: AppContextType | undefined = useContext(AppContext);
+  if (typeof appContext === "undefined") { throw new Error("Missing App Context Provider"); }
 
   const style: CustomProperties = {
     "--transitionDuration": transitionDuration,
@@ -38,13 +40,11 @@ export function ProjectModalOverlayComponent({
   }
 
   return (
-    <div className={joinClasses(styles.component, isOverlayActive ? styles.visible : styles.hidden)} style={style}>
+    <div className={joinClasses(styles.component, appContext.isProjectModalOpen ? styles.visible : styles.hidden)} style={style}>
       <div className={joinClasses(styles.layer, styles.background)}></div>
       <div className={joinClasses(styles.layer, styles.content)}>
         <div className={styles.wrapper}>
-          <ProjectModal
-            toggleProjectModalOverlay={toggleProjectModalOverlay}
-            projectKey={projectKey} />
+          <ProjectModal />
         </div>
       </div>
     </div>

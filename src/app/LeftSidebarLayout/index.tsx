@@ -2,38 +2,36 @@
 
 import styles from "./index.module.scss";
 
-import { useRef, useState } from "react";
-import { Dimensions } from "@/types/Dimensions";
+import { useContext, useRef, useState } from "react";
+
+import { AppContext, AppContextType } from "@/context/AppContext";
+
+import { SECTION_MAP, SectionKey } from "@/data/SECTION_MAP";
+
 import { useDimensions } from "@/hooks/useDimensions";
-// import { processComponentDimensions } from "@/utils/processComponentDimensions";
+import { type OverlayHook, useOverlay } from "@/hooks/useOverlay";
+
+import { type CustomProperties } from "@/types/css/CustomProperties";
+import { type Dimensions } from "@/types/Dimensions";
+import { type TransitionTimingFunction } from "@/types/css/TransitionTimingFunction";
+
 import { joinClasses } from "@/utils/joinClasses";
-import { CustomProperties } from "@/types/css/CustomProperties";
-import { AboutMeContent } from "@/app/AboutMeContent";
-import { AboutMeLinks } from "@/app/AboutMeLinks";
+// import { processComponentDimensions } from "@/utils/processComponentDimensions";
 import { toStringMS } from "@/utils/strings/toStringMS";
 import { toStringPX } from "@/utils/strings/toStringPX";
-import { ProjectsContent } from "@/app/ProjectsContent";
-import { TransitionTimingFunction } from "@/types/css/TransitionTimingFunction";
-import { OverlayHook, useOverlay } from "@/hooks/useOverlay";
-import { ProjectsLinks } from "../ProjectsLinks";
-import { ProjectKeys } from "@/data/PROJECT_MAP";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-type LeftSidebarLayoutProps = {
-  toggleProjectModalOverlay: () => void;
-  setProjectKey: React.Dispatch<React.SetStateAction<ProjectKeys | null>>;
-}
 
 /**
  * @param props - Component Props
  * @see {@link LeftSidebarLayoutProps}
  * @returns JSX
  */
-export function LeftSidebarLayout({
-  toggleProjectModalOverlay,
-  setProjectKey
-}: LeftSidebarLayoutProps): JSX.Element {
+export function LeftSidebarLayout(): JSX.Element {
+
+  // App Context
+  const appContext: AppContextType | undefined = useContext(AppContext);
+  if (typeof appContext === "undefined") { throw new Error("Missing App Context Provider"); }
 
   // Component Dimensions
   const componentRef = useRef<HTMLDivElement>(null);
@@ -64,7 +62,7 @@ export function LeftSidebarLayout({
     mainOverlayHook.toggle();
   }
 
-  const handleClickSidebarLink = (ref: React.RefObject<HTMLElement>) => {
+  const handleClickAboutMeLink = (ref: React.RefObject<HTMLElement>) => {
     toggleOpenClosed();
     setTimeout(() => {
       ref.current?.scrollIntoView({ behavior: "smooth" });
@@ -77,57 +75,10 @@ export function LeftSidebarLayout({
   const businessLinksRef = useRef<HTMLElement>(null);
   const skillCardsRef = useRef<HTMLElement>(null);
 
-  // Header Stuff
-  enum Headers { AboutMe, Projects }
-
-  // Header State
-  const defaultHeader = useRef<Headers>(Headers.AboutMe);
-  const [activeHeaderKey, setActiveHeaderKey] = useState<Headers>(defaultHeader.current);
-
   // Header Functions
-  const handleClickHeaderLink = (activeHeaderKey: Headers) => {
-    setActiveHeaderKey(activeHeaderKey);
+  const handleClickHeaderLink = (sectionKey: SectionKey) => {
+    appContext.setActiveSectionKey(sectionKey);
     if (scrollRef.current) { scrollRef.current.scrollTop = 0; }
-  }
-
-  // Header Associations
-  type LayoutData = {
-    headerLabel: string
-    linksComponent: JSX.Element
-    contentComponent: JSX.Element
-  }
-
-  const layoutData: Record<Headers, LayoutData> = {
-    [Headers.AboutMe]: {
-      headerLabel: "About Me",
-      linksComponent: <AboutMeLinks
-        handleClick={handleClickSidebarLink}
-        heroRef={heroRef}
-        myStoryRef={myStoryRef}
-        businessLinksRef={businessLinksRef}
-        skillCardsRef={skillCardsRef}
-      />,
-      contentComponent: <AboutMeContent
-        headerHeight={headerHeightValuePX}
-        heroHeight={componentDimensions.height - 2 * headerHeightValuePX}
-        heroRef={heroRef}
-        myStoryRef={myStoryRef}
-        businessLinksRef={businessLinksRef}
-        skillCardsRef={skillCardsRef}
-      />
-    },
-    [Headers.Projects]: {
-      headerLabel: "Projects",
-      linksComponent: <ProjectsLinks
-        toggleProjectModalOverlay={toggleProjectModalOverlay}
-        setProjectKey={setProjectKey}
-      />,
-      contentComponent: <ProjectsContent
-        headerHeight={headerHeightValuePX}
-        toggleProjectModalOverlay={toggleProjectModalOverlay}
-        setProjectKey={setProjectKey}
-      />
-    }
   }
 
   // Scroll Container
@@ -152,11 +103,11 @@ export function LeftSidebarLayout({
           </div>
           <div className={styles.middleContainer}>
             <nav className={styles.links}>
-              {Object.entries(layoutData).map(([key, { headerLabel }]) => (
+              {Object.entries(SECTION_MAP).map(([key, { headerLabel }]) => (
                 <a
                   key={key}
-                  className={joinClasses(styles.link, Number(key) === activeHeaderKey ? styles.active : "")}
-                  onClick={() => handleClickHeaderLink(Number(key))}
+                  className={joinClasses(styles.link, key === appContext.activeSectionKey ? styles.active : "")}
+                  onClick={() => handleClickHeaderLink(key as SectionKey)}
                 >
                   {headerLabel}
                 </a>
@@ -171,13 +122,42 @@ export function LeftSidebarLayout({
             <div className={joinClasses(styles.layer, styles.content)}>
               <aside className={joinClasses(styles.sidebar, isSidebarOpen ? styles.open : styles.closed)}>
                 <div className={styles.inner}>
-                  {layoutData[activeHeaderKey].linksComponent}
+                  {(() => {
+                    switch (appContext.activeSectionKey) {
+                      case SectionKey.AboutMe:
+                        return SECTION_MAP[SectionKey.AboutMe].sideContent({
+                          businessLinksRef: businessLinksRef,
+                          heroRef: heroRef,
+                          myStoryRef: myStoryRef,
+                          skillCardsRef: skillCardsRef,
+                          handleClick: handleClickAboutMeLink,
+                        });
+                      case SectionKey.Projects:
+                        return SECTION_MAP[SectionKey.Projects].sideContent({});
+                    }
+                  })()}
                 </div>
               </aside>
             </div>
           </div>
           <div ref={scrollRef} className={joinClasses(styles.layer, styles.content, isSidebarOpen ? styles.open : styles.closed)}>
-            {layoutData[activeHeaderKey].contentComponent}
+            {(() => {
+              switch (appContext.activeSectionKey) {
+                case SectionKey.AboutMe:
+                  return SECTION_MAP[SectionKey.AboutMe].mainContent({
+                    headerHeight: headerHeightValuePX,
+                    heroHeight: componentDimensions.height - 2 * headerHeightValuePX,
+                    businessLinksRef: businessLinksRef,
+                    heroRef: heroRef,
+                    myStoryRef: myStoryRef,
+                    skillCardsRef: skillCardsRef,
+                  });
+                case SectionKey.Projects:
+                  return SECTION_MAP[SectionKey.Projects].mainContent({
+                    headerHeight: headerHeightValuePX
+                  })
+              }
+            })()}
           </div>
         </main>
       </div>

@@ -1,8 +1,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { InputProvider } from "./context/InputProvider"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { Application } from "./app/Application"
+import { InputProvider } from "./context/InputProvider"
+import { AppProvider } from "./context/AppProvider";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -14,11 +16,22 @@ import { Application } from "./app/Application"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const primaryRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Application />
+  }
+]);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 export default function App() {
 
   return (
     <InputProvider>
-      <Application />
+      <AppProvider>
+        <RouterProvider router={primaryRouter} />
+      </AppProvider>
     </InputProvider>
   )
 }

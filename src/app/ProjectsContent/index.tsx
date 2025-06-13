@@ -2,20 +2,24 @@
 
 import styles from "./index.module.scss";
 
-import { CustomProperties } from "@/types/css/CustomProperties";
-import { ProjectsLine } from "../../components/revised/ProjectsLine";
-import { toStringPX } from "@/utils/strings/toStringPX";
+import { useContext, useEffect, useState } from "react";
+
+import { ProjectsLine } from "@/components/revised/ProjectsLine";
 import { SpaceBarPX } from "@/components/functional/SpaceBarPX";
-import { ProjectKeys } from "@/data/PROJECT_MAP";
-import { useEffect, useState } from "react";
+
+import { AppContext, AppContextType } from "@/context/AppContext";
+
+import { ProjectKey } from "@/data/PROJECT_MAP";
+
+import { CustomProperties } from "@/types/css/CustomProperties";
+
 import { joinClasses } from "@/utils/joinClasses";
+import { toStringPX } from "@/utils/strings/toStringPX";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export type ProjectsContentProps = {
   headerHeight: number;
-  toggleProjectModalOverlay: () => void;
-  setProjectKey: React.Dispatch<React.SetStateAction<ProjectKeys | null>>;
 }
 
 /**
@@ -24,10 +28,12 @@ export type ProjectsContentProps = {
  * @returns JSX
  */
 export function ProjectsContent({
-  headerHeight,
-  toggleProjectModalOverlay,
-  setProjectKey
+  headerHeight
 }: ProjectsContentProps): JSX.Element {
+
+  // App Context
+  const appContext: AppContextType | undefined = useContext(AppContext);
+  if (typeof appContext === "undefined") { throw new Error("Missing App Context Provider"); }
 
   // Custom Properties
   const style: CustomProperties = {
@@ -38,10 +44,10 @@ export function ProjectsContent({
   const [isVisible, setIsVisible] = useState<boolean>(false);
   useEffect(() => { setTimeout(() => setIsVisible(true), 0) }, [])
 
-  const ALL_PROJECTS_LINE_PROJECT_KEYS: ProjectKeys[] = [
-    ProjectKeys.MovieWebsite,
-    ProjectKeys.MusicVisualizer,
-    ProjectKeys.UserAuthentication
+  const ALL_PROJECTS_LINE_PROJECT_KEYS: ProjectKey[] = [
+    ProjectKey.MovieWebsite,
+    ProjectKey.MusicVisualizer,
+    ProjectKey.UserAuthentication
   ]
 
   // Return Content
@@ -52,8 +58,6 @@ export function ProjectsContent({
         <ProjectsLine
           padding={headerHeight}
           projectKeys={ALL_PROJECTS_LINE_PROJECT_KEYS}
-          toggleProjectModalOverlay={toggleProjectModalOverlay}
-          setProjectKey={setProjectKey}
         />
       </section>
       <SpaceBarPX height={headerHeight} />

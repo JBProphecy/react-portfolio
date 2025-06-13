@@ -2,17 +2,22 @@
 
 import styles from "./index.module.scss";
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+import { useContext, useEffect, useState } from "react";
+
 import { LeftSidebarLayout } from "@/app/LeftSidebarLayout";
-import { toStringMS } from "@/utils/strings/toStringMS";
-import { type TransitionTimingFunction } from "@/types/css/TransitionTimingFunction";
 
 import { Overlay } from "@/components/revised/Overlay";
-import { type OverlayHook, useOverlay } from "@/hooks/useOverlay";
-
 import { ProjectModalOverlayComponent } from "@/components/revised/ProjectModalOverlayComponent";
-import { type ProjectKeyHook, useProjectKey } from "@/hooks/useProjectKey";
-import { useEffect, useState } from "react";
+
+import { AppContext, AppContextType } from "@/context/AppContext";
+
+import { isProjectKey } from "@/utils/isProjectKey";
 import { joinClasses } from "@/utils/joinClasses";
+import { toStringMS } from "@/utils/strings/toStringMS";
+
+import { type TransitionTimingFunction } from "@/types/css/TransitionTimingFunction";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -23,34 +28,69 @@ import { joinClasses } from "@/utils/joinClasses";
  */
 export function Application(): JSX.Element {
 
-  // Visibility
+  // Application Visibility
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  useEffect(() => { setTimeout(() => setIsVisible(true), 0) }, [])
+  useEffect(() => { setTimeout(() => setIsVisible(true), 0) }, []);
+
+  // App Context
+  const appContext: AppContextType | undefined = useContext(AppContext);
+  if (typeof appContext === "undefined") { throw new Error("Missing App Context Provider"); }
 
   // Project Modal Overlay Stuff
   const projectModalOverlayTransitionDurationValueMS: number = 300;
   const projectModalOverlaytransitionFunction: TransitionTimingFunction = "ease-out";
-  const projectModalOverlayHook: OverlayHook = useOverlay();
-  const projectKeyHook: ProjectKeyHook = useProjectKey(projectModalOverlayHook, projectModalOverlayTransitionDurationValueMS);
+
+  // APPLICATION EFFECTS
+
+  useEffect(() => {
+    const searchParams: URLSearchParams = new URLSearchParams(window.location.search);
+    const projectKey: string | null = searchParams.get("projectKey");
+    if (projectKey && isProjectKey(projectKey)) {
+      appContext.setCurrentProjectKey(projectKey);
+      appContext.toggleProjectModal();
+    }
+  }, []);
+
+  useEffect(() => {
+    const url: URL = new URL(window.location.href);
+    const queryParameterName: string = "sectionKey";
+    const queryParameterValue: string | null = url.searchParams.get(queryParameterName);
+    if (appContext.activeSectionKey === queryParameterValue) { return }
+    else {
+      url.searchParams.set(queryParameterName, appContext.activeSectionKey);
+      window.history.pushState({}, "", url.toString());
+    }
+  }, [appContext.activeSectionKey]);
+
+  useEffect(() => {
+    const url: URL = new URL(window.location.href);
+    const queryParameterName: string = "projectKey";
+    const queryParameterValue: string | null = url.searchParams.get(queryParameterName);
+    if (appContext.currentProjectKey === queryParameterValue) { return }
+    else if (appContext.currentProjectKey === null) {
+      url.searchParams.delete(queryParameterName);
+    }
+    else {
+      url.searchParams.set(queryParameterName, appContext.currentProjectKey);
+    }
+    window.history.replaceState({}, "", url.toString());
+  }, [appContext.currentProjectKey]);
 
   // Return Content
   return (
     <div className={joinClasses(styles.component, isVisible ? styles.visible : "")}>
       <div className={styles.layer} />
       <div className={styles.layer}>
-        <LeftSidebarLayout toggleProjectModalOverlay={projectModalOverlayHook.toggle} setProjectKey={projectKeyHook.setProjectKey} />
+        <LeftSidebarLayout />
       </div>
       <Overlay
-        isActive={projectModalOverlayHook.isActive}
+        isActive={appContext.isProjectModalOpen}
         transitionDuration={toStringMS(projectModalOverlayTransitionDurationValueMS)}
         transitionFunction={projectModalOverlaytransitionFunction}
       >
         <ProjectModalOverlayComponent
-          isOverlayActive={projectModalOverlayHook.isActive}
-          toggleProjectModalOverlay={projectModalOverlayHook.toggle}
           transitionDuration={toStringMS(projectModalOverlayTransitionDurationValueMS)}
           transitionFunction={projectModalOverlaytransitionFunction}
-          projectKey={projectKeyHook.projectKey}
         />
       </Overlay>
     </div>

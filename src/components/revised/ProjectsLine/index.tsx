@@ -2,18 +2,19 @@
 
 import styles from "./index.module.scss";
 
-import { toStringPX } from "@/utils/strings/toStringPX";
-import { CustomProperties } from "@/types/css/CustomProperties";
 import { ProjectCard } from "@/components/revised/ProjectCard";
-import { ProjectKeys } from "@/data/PROJECT_MAP";
+
+import { ProjectKey } from "@/data/PROJECT_MAP";
+
+import { CustomProperties } from "@/types/css/CustomProperties";
+
+import { toStringPX } from "@/utils/strings/toStringPX";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export type ProjectsLineProps = {
   padding: number;
-  projectKeys: ProjectKeys[];
-  toggleProjectModalOverlay: () => void;
-  setProjectKey: React.Dispatch<React.SetStateAction<ProjectKeys | null>>;
+  projectKeys: ProjectKey[];
 }
 
 /**
@@ -24,8 +25,6 @@ export type ProjectsLineProps = {
 export function ProjectsLine({
   padding,
   projectKeys,
-  toggleProjectModalOverlay,
-  setProjectKey
 }: ProjectsLineProps): JSX.Element {
 
   // Custom Properties
@@ -41,8 +40,6 @@ export function ProjectsLine({
           <ProjectCard
             key={key}
             projectKey={key}
-            toggleProjectModalOverlay={toggleProjectModalOverlay}
-            setProjectKey={setProjectKey}
           />
         ))}
       </div>

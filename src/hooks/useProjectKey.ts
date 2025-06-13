@@ -2,19 +2,25 @@
 
 import { useEffect, useState } from "react";
 import { OverlayHook } from "./useOverlay";
-import { ProjectKeys } from "@/data/PROJECT_MAP";
+import { ProjectKey } from "@/data/PROJECT_MAP";
+import { isProjectKey } from "@/utils/isProjectKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export type ProjectKeyHook = {
-  projectKey: ProjectKeys | null;
-  setProjectKey: React.Dispatch<React.SetStateAction<ProjectKeys | null>>;
+  projectKey: ProjectKey | null;
+  setProjectKey: React.Dispatch<React.SetStateAction<ProjectKey | null>>;
 }
 
 export function useProjectKey(overlayHook: OverlayHook, transitionDurationValueMS: number): ProjectKeyHook {
 
   // Overlay State
-  const [projectKey, setProjectKey] = useState<ProjectKeys | null>(null);
+  const [projectKey, setProjectKey] = useState<ProjectKey | null>(() => {
+    const searchParams: URLSearchParams = new URLSearchParams(window.location.search);
+    const projectKey: string | null = searchParams.get("projectKey");
+    if (projectKey && isProjectKey(projectKey)) { return projectKey; }
+    else { return null; }
+  });
 
   // Overlay Effects
   useEffect(() => {

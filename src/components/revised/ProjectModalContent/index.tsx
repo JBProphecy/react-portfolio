@@ -2,22 +2,22 @@
 
 import styles from "./index.module.scss";
 
-import { joinClasses } from "@/utils/joinClasses";
+import { useEffect, useState } from "react";
 
+import { IconLabelTags } from "@/components/revised/IconLabelTags";
 import { LinkButton } from "@/components/functional/LinkButton";
 import { SpaceBarPX } from "@/components/functional/SpaceBarPX";
 
-import { IconLabelTags } from "@/components/revised/IconLabelTags";
-import { useEffect, useState } from "react";
-import { ProjectKeys } from "@/data/PROJECT_MAP";
+import { ProjectKey } from "@/data/PROJECT_MAP";
+
+import { joinClasses } from "@/utils/joinClasses";
 import { toProjectData } from "@/utils/maps/fromProjectKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export type ProjectModalContentProps = {
-  projectKey: ProjectKeys
+  projectKey: ProjectKey;
 }
-
 /**
  * @param props - Component Props
  * @see {@link ProjectModalContentProps}
@@ -27,7 +27,7 @@ export function ProjectModalContent({ projectKey }: ProjectModalContentProps): J
 
   // Visibility
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  useEffect(() => { setTimeout(() => setIsVisible(true), 150) }, [])
+  useEffect(() => { setTimeout(() => setIsVisible(true), 150) }, []);
 
   // Project Data
   const projectData = toProjectData(projectKey);

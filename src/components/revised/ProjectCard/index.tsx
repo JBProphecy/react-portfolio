@@ -2,22 +2,18 @@
 
 import styles from "./index.module.scss";
 
-import { ProjectKeys } from "@/data/PROJECT_MAP";
-import { toProjectCardData } from "@/utils/maps/fromProjectKey";
+import { useContext } from "react";
+
+import { AppContext, AppContextType } from "@/context/AppContext";
+
+import { ProjectData, ProjectKey } from "@/data/PROJECT_MAP";
+
+import { toProjectData } from "@/utils/maps/fromProjectKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export type ProjectCardProps = {
-  projectKey: ProjectKeys;
-  toggleProjectModalOverlay: () => void;
-  setProjectKey: React.Dispatch<React.SetStateAction<ProjectKeys | null>>;
-}
-
-export type ProjectCardData = {
-  title: string;
-  summary: string;
-  imageSrc: string;
-  imageAlt: string;
+  projectKey: ProjectKey;
 }
 
 /**
@@ -25,31 +21,29 @@ export type ProjectCardData = {
  * @see {@link ProjectCardProps}
  * @returns JSX
  */
-export function ProjectCard({
-  projectKey,
-  toggleProjectModalOverlay,
-  setProjectKey
-}: ProjectCardProps): JSX.Element {
+export function ProjectCard({ projectKey }: ProjectCardProps): JSX.Element {
 
-  const projectCardData: ProjectCardData = toProjectCardData(projectKey)
-  const { imageSrc, imageAlt, title, summary} = projectCardData
+  // App Context
+  const appContext: AppContextType | undefined = useContext(AppContext);
+  if (typeof appContext === "undefined") { throw new Error("Missing App Context Provider"); }
 
-  const handleClickProjectCard = () => {
-    setProjectKey(projectKey);
-    toggleProjectModalOverlay();
-  }
+  // Get Data
+  const projectData: ProjectData = toProjectData(projectKey);
 
   // Return Content
   return (
     <div className={styles.component}>
-      <div className={styles.card} onClick={handleClickProjectCard}>
+      <div className={styles.card} onClick={() => {
+        appContext.setCurrentProjectKey(projectKey);
+        appContext.toggleProjectModal();
+      }}>
         <div className={styles.content}>
-          <img className={styles.image} src={imageSrc} alt={imageAlt} loading="lazy" />
+          <img className={styles.image} src={projectData.imageSrc} alt={projectData.imageAlt} loading="lazy" />
           <div className={styles.details}>
             <div className={styles.titleContainer}>
-              <span className={styles.title}>{title}</span>
+              <span className={styles.title}>{projectData.title}</span>
             </div>
-            <p className={styles.summary}>{summary}</p>
+            <p className={styles.summary}>{projectData.summary}</p>
           </div>
         </div>
       </div>
