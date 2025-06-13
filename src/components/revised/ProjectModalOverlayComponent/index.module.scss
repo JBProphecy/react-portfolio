@@ -80,7 +80,7 @@
     &.content {
       display: flex;
       justify-content: center;
-      padding: 4rem;
+      padding: min(5%, 4rem);
 
       > .wrapper {
         width: 100%;

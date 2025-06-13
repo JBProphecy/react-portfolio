@@ -15,7 +15,7 @@
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-columns: repeat(24, 1fr);
+  grid-template-columns: repeat(25, 1fr);
   grid-template-rows: repeat(24, 1fr);
   position: relative;
 }
@@ -27,6 +27,9 @@
   display: flex;
   flex-direction: column;
   gap: calc(var(--fontSizeKey) * 1.5rem);
+  @media (max-width: 1000px) {
+    grid-column: 1/26;
+  }
 }
 
 .titleRow {
@@ -35,7 +38,7 @@
   display: flex;
 
   .title {
-    font-size: calc(var(--fontSizeKey) * 5rem);
+    font-size: min(18dvw, calc(var(--fontSizeKey) * 5rem));
     line-height: 1;
     font-weight: bold;
     user-select: none;
@@ -45,7 +48,7 @@
 }
 
 .description, .tip {
-  font-size: calc(var(--fontSizeKey) * 2rem);
+  font-size: min(8dvw, calc(var(--fontSizeKey) * 2rem));
   line-height: 1.5;
   user-select: none;
   overflow: hidden;
@@ -54,17 +57,22 @@
 }
 
 .imageContainer {
-  grid-column: 17 / 25;
+  grid-column: 14 / 26;
   grid-row: 1 / 25;
-  border-radius: calc(var(--fontSizeKey) * 2rem);
-  overflow: hidden;
-  box-shadow: 0px 0px calc(var(--fontSizeKey) * 4rem) calc(var(--fontSizeKey) * 2rem) black;
+  display: flex;
+  justify-content: flex-end;
+  @media (max-width: 1000px) {
+    display: none;
+  }
 }
 
 .image {
   width: 100%;
+  max-width: 500px;
   height: 100%;
   object-fit: cover;
+  border-radius: calc(var(--fontSizeKey) * 2rem);
+  box-shadow: 0px 0px calc(var(--fontSizeKey) * 4rem) calc(var(--fontSizeKey) * 2rem) black;
 }
 
 /**********************************************************************************************************************/
