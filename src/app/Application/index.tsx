@@ -18,6 +18,7 @@ import { joinClasses } from "@/utils/joinClasses";
 import { toStringMS } from "@/utils/strings/toStringMS";
 
 import { type TransitionTimingFunction } from "@/types/css/TransitionTimingFunction";
+import { isSectionKey } from "@/data/SECTION_MAP";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -49,6 +50,28 @@ export function Application(): JSX.Element {
       appContext.setCurrentProjectKey(projectKey);
       appContext.toggleProjectModal();
     }
+
+    const handlePopState = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const querySectionKey = searchParams.get("sectionKey");
+      const queryProjectKey = searchParams.get("projectKey");
+      if (querySectionKey && isSectionKey(querySectionKey)) {
+        appContext.setActiveSectionKey(querySectionKey);
+      }
+      if (queryProjectKey && isProjectKey(queryProjectKey)) {
+        appContext.setCurrentProjectKey(queryProjectKey);
+        appContext.openProjectModal();
+      } else {
+        appContext.setCurrentProjectKey(null);
+        appContext.closeProjectModal();
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    }
   }, []);
 
   useEffect(() => {
@@ -73,7 +96,7 @@ export function Application(): JSX.Element {
     else {
       url.searchParams.set(queryParameterName, appContext.currentProjectKey);
     }
-    window.history.replaceState({}, "", url.toString());
+    window.history.pushState({}, "", url.toString());
   }, [appContext.currentProjectKey]);
 
   // Return Content
