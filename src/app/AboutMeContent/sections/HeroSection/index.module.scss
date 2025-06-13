@@ -23,7 +23,6 @@
 .introduction {
   grid-column: 1 / 13;
   grid-row:  2/ 24;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: calc(var(--fontSizeKey) * 1.5rem);
@@ -38,22 +37,23 @@
   display: flex;
 
   .title {
-    font-size: min(18dvw, calc(var(--fontSizeKey) * 5rem));
+    --fontSize: min(18dvw, calc(var(--fontSizeKey) * 5rem));
+    font-size: var(--fontSize);
     line-height: 1;
     font-weight: bold;
     user-select: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+    text-shadow: 0 0 calc(2/5 * var(--fontSize)) white;
   }
 }
 
 .description, .tip {
-  font-size: min(8dvw, calc(var(--fontSizeKey) * 2rem));
+  --fontSize:  min(8dvw, calc(var(--fontSizeKey) * 2rem));
+  font-size: var(--fontSize);
   line-height: 1.5;
   user-select: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
   color: rgb(160, 160, 160);
+  text-shadow: 0 0 calc(2/5 * var(--fontSize)) gray;
 }
 
 .imageContainer {
