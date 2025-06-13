@@ -5,7 +5,6 @@ import styles from "./index.module.scss";
 import { ProjectKeys } from "@/data/PROJECT_MAP";
 
 import { ProjectModalContent } from "@/components/revised/ProjectModalContent";
-import { toProjectModalContentProps } from "@/utils/maps/fromProjectKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -4,8 +4,6 @@ import styles from "./index.module.scss";
 
 import { CustomProperties } from "@/types/css/CustomProperties";
 import { SpaceBarPX } from "@/components/functional/SpaceBarPX";
-import { useEffect, useState } from "react";
-import { joinClasses } from "@/utils/joinClasses";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,10 +25,6 @@ export function HeroSection({ fontSizeKey = 1 }: HeroSectionProps): JSX.Element 
   const style: CustomProperties = {
     "--fontSizeKey": fontSizeKey
   }
-
-  // Visibility
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  useEffect(() => { setTimeout(() => setIsVisible(true), 300) }, [])
 
   // Return Content
   return (
