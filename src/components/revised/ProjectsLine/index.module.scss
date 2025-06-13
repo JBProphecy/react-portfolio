@@ -1,0 +1,22 @@
+/**********************************************************************************************************************/
+
+div.component {
+  --padding: unset;
+
+  width: 100%;
+  height: max-content;
+  padding: 0 var(--padding);
+  overflow: hidden;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar { display: none; }
+
+  > div.wrapper {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    gap: 0rem;
+  }
+}
+
+/**********************************************************************************************************************/

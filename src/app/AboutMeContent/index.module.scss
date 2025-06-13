@@ -1,0 +1,56 @@
+/**********************************************************************************************************************/
+
+.component {
+  --headerHeight: unset;
+  --heroHeight: unset;
+}
+
+.component {
+  width: 100%;
+  height: max-content;
+
+  > .hero {
+    width: 100%;
+    height: var(--heroHeight);
+    position: relative;
+
+    > .layer {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+
+      &.background {
+        z-index: 0;
+
+        > video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0.8;
+          filter: blur(0.5rem);
+          opacity: 0;
+          transition: opacity 300ms ease-out;
+          &.visible { opacity: 1; }
+        }
+      }
+
+      &.content {
+        z-index: 1;
+      }
+    }
+  }
+
+  > .section {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+
+    > .wrapper {
+      width: 85%;
+      height: max-content;
+    }
+  }
+}
+
+/**********************************************************************************************************************/

@@ -1,0 +1,146 @@
+/**********************************************************************************************************************/
+
+@property --gradientColor1 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --gradientColor2 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --gradientColor3 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+/**********************************************************************************************************************/
+
+div.component {
+  /* Set Values */
+  --fontSize: 2rem;
+  --lineHeight: 1.25;
+
+  /* Computed Values */
+  --horizontalPadding: calc((1/2 * var(--fontSize)) + (1/2 * (var(--lineHeight) - 1)) * var(--fontSize));
+  --verticalPadding: calc(1/2 * var(--fontSize));
+  --borderWidth: calc(var(--fontSize) / 8); // no reason for 8, looks good
+  --borderRadius: calc(1/3 * (var(--fontSize) + var(--borderWidth))); // equals 1/6 total height, just simplified
+  --borderColor: var(--fontColor);
+
+  /* Default Opacity Values */
+  --defaultColorOpacity: 0.7;
+  --colorOpacity: var(--defaultColorOpacity);
+
+  --defaultBackgroundOpacity: 0.75;
+  --specialBackgroundOpacity: 0.8;
+  --backgroundOpacity: var(--defaultBackgroundOpacity);
+
+  /* Default Gradient Values */
+  --gradientDirection: 315deg;
+  --normalColor1: hsl(0, 0%, 40%);
+  --normalColor2: hsl(0, 0%, 60%);
+  --normalColor3: hsl(0, 0%, 60%);
+  --activeColor1: hsl(0, 0%, 60%);
+  --activeColor2: hsl(0, 0%, 80%);
+  --activeColor3: hsl(0, 0%, 80%);
+  --gradientColor1: var(--normalColor1);
+  --gradientColor2: var(--normalColor2);
+  --gradientColor3: var(--normalColor3);
+
+  width: max-content;
+  height: max-content;
+  position: relative;
+  border-radius: var(--borderRadius);
+  display: flex;
+
+  &.hovered, &:focus, &.pressed {
+    --gradientColor1: var(--activeColor1);
+    --gradientColor2: var(--activeColor2);
+    --gradientColor3: var(--activeColor3);
+    --backgroundOpacity: var(--specialBackgroundOpacity);
+  }
+
+  &.hovered, &:focus {
+    --colorOpacity: 1;
+  }
+
+  &.hovered {
+    cursor: pointer;
+  }
+
+  &.pressed {
+    --colorOpacity: 0.4;
+  }
+
+  &:disabled {
+    cursor: default;
+    --gradientColor1: var(--normalColor1);
+    --gradientColor2: var(--normalColor2);
+    --gradientColor3: var(--normalColor3);
+    --backgroundOpacity: var(--defaultBackgroundOpacity);
+    --colorOpacity: 0.2;
+  }
+
+  > div.layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+
+    &.border {
+      background: linear-gradient(var(--gradientDirection), var(--gradientColor1), var(--gradientColor2), var(--gradientColor3));
+      opacity: var(--colorOpacity);
+      transition:
+        --gradientColor1 100ms ease-in-out,
+        --gradientColor2 300ms ease-in-out,
+        --gradientColor3 500ms ease-in-out,
+        opacity 200ms ease-in-out;
+    }
+
+    &.background {
+      border: var(--borderWidth) solid transparent;
+      background-color: black;
+      background-clip: padding-box;
+      opacity: var(--backgroundOpacity);
+      transition: opacity 200ms ease-in-out;
+    }
+
+    &.content {
+      position: relative; // overrides the position from div.layer
+      width: max-content; // overrides the position from div.layer
+      height: max-content; // overrides the position from div.layer
+      border: var(--borderWidth) solid transparent;
+      padding: var(--verticalPadding) var(--horizontalPadding);
+      display: flex;
+
+      > span.text {
+        font-size: var(--fontSize);
+        line-height: var(--lineHeight);
+        font-weight: bold;
+
+        background: linear-gradient(var(--gradientDirection), var(--gradientColor1), var(--gradientColor2), var(--gradientColor3));
+        background-clip: text;
+        color: transparent;
+
+        text-align: center;
+        white-space: nowrap; // most likely can change
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        opacity: var(--colorOpacity);
+        transition:
+          --gradientColor1 100ms ease-in-out,
+          --gradientColor2 300ms ease-in-out,
+          --gradientColor3 500ms ease-in-out,
+          opacity 200ms ease-in-out;
+      }
+    }
+  }
+}
+
+/**********************************************************************************************************************/

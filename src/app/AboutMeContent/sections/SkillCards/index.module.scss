@@ -1,0 +1,37 @@
+/**********************************************************************************************************************/
+
+.component {
+  --contentFontSize: 1.5rem;
+  --contentLineHeight: 1.5;
+  --contentFontColor: rgb(144, 144, 144);
+
+  --titleFontSize: calc(2 * var(--contentFontSize));
+  --titleLineHeight: 1.25;
+  --titleFontColor: rgb(192, 192, 192);
+
+  --componentGap: calc(1/2 * var(--contentFontSize) + var(--contentFontSize));
+
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .titleContainer {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+
+    .title {
+      font-size: var(--titleFontSize);
+      line-height: var(--titleLineHeight);
+      font-weight: bold;
+      text-align: center;
+      user-select: none;
+      color: var(--titleFontColor);
+    }
+  }
+}
+
+/**********************************************************************************************************************/

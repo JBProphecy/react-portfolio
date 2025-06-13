@@ -1,0 +1,37 @@
+/**********************************************************************************************************************/
+
+nav.list {
+  width: 100%;
+  height: max-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  > a.item {
+    width: 100%;
+    height: max-content;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    opacity: 0.7;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    &:active {
+      opacity: 0.4;
+    }
+
+    > .label {
+      font-size: 1.5rem;
+      line-height: 1;
+      font-weight: bold;
+      white-space: nowrap;
+      user-select: none;
+    }
+  }
+}
+
+/**********************************************************************************************************************/

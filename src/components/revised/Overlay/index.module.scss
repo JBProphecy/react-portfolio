@@ -1,0 +1,18 @@
+/**********************************************************************************************************************/
+
+.overlay {
+  --transitionDuration: unset;
+  --transitionFunction: unset;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: z-index var(--transitionDuration) var(--transitionFunction);
+
+  &.back { z-index: -1; }
+  &.front { z-index: 999; }
+}
+
+/**********************************************************************************************************************/

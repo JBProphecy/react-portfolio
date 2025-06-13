@@ -1,0 +1,44 @@
+/**********************************************************************************************************************/
+
+.component {
+  --contentFontSize: 1.5rem;
+  --contentLineHeight: 1.5;
+  --contentFontColor: rgb(144, 144, 144);
+
+  --titleFontSize: calc(2 * var(--contentFontSize));
+  --titleLineHeight: 1.25;
+  --titleFontColor: rgb(192, 192, 192);
+
+  --componentGap: calc(1/2 * var(--contentFontSize) + var(--contentFontSize));
+
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: var(--componentGap);
+
+  .titleContainer {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: flex-start;
+
+    .title {
+      font-size: var(--titleFontSize);
+      line-height: var(--titleLineHeight);
+      user-select: none;
+      font-weight: bold;
+      color: var(--titleFontColor);
+    }
+  }
+
+  .paragraph {
+    font-size: var(--contentFontSize);
+    line-height: var(--contentLineHeight);
+    user-select: none;
+    font-weight: bold;
+    color: rgb(144, 144, 144);
+  }
+}
+
+/**********************************************************************************************************************/

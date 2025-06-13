@@ -1,0 +1,94 @@
+/**********************************************************************************************************************/
+
+.component {
+  --transitionDuration: unset;
+  --transitionFunction: unset;
+
+  --backgroundOpacityHidden: 0;
+  --backgroundOpacityVisible: 0.9;
+
+  --contentWrapperOpacityHidden: 0;
+  --contentWrapperOpacityVisible: 1;
+
+  --contentWrapperTransformHidden: translateY(-3rem);
+  --contentWrapperTransformVisible: translateY(0);
+
+  &.hidden {
+
+    > .layer.background {
+      --backgroundOpacity: var(--backgroundOpacityHidden);
+    }
+
+    > .layer.content {
+      --contentWrapperOpacity: var(--contentWrapperOpacityHidden);
+      --contentWrapperTransform: var(--contentWrapperTransformHidden);
+    }
+  }
+
+  &.visible {
+
+    > .layer.background {
+      --backgroundOpacity: var(--backgroundOpacityVisible);
+    }
+
+    > .layer.content {
+      --contentWrapperOpacity: var(--contentWrapperOpacityVisible);
+      --contentWrapperTransform: var(--contentWrapperTransformVisible);
+    }
+  }
+}
+
+/**********************************************************************************************************************/
+
+// Transitions
+
+.component {
+
+  > .layer.background {
+    opacity: var(--backgroundOpacity);
+    transition: opacity var(--transitionDuration) var(--transitionFunction);
+  }
+
+  > .layer.content > .wrapper {
+    opacity: var(--contentWrapperOpacity);
+    transform: var(--contentWrapperTransform);
+    transition:
+      opacity var(--transitionDuration) var(--transitionFunction),
+      transform var(--transitionDuration) var(--transitionFunction)
+    ;
+  }
+}
+
+/**********************************************************************************************************************/
+
+// Styles
+
+.component {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  > .layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    &.background {
+      background-color: black;
+    }
+
+    &.content {
+      display: flex;
+      justify-content: center;
+      padding: 4rem;
+
+      > .wrapper {
+        width: 100%;
+        max-width: 50rem;
+        height: 100%;
+      }
+    }
+  }
+}
+
+/**********************************************************************************************************************/

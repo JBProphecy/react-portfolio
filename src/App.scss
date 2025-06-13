@@ -1,0 +1,29 @@
+/**********************************************************************************************************************/
+
+:root {
+  --fontSize: 16px;
+  --fontFamily: calibri, sans-serif;
+  --backgroundColor: rgb(12, 12, 12);
+  --fontColor: rgb(192, 192, 192);
+}
+
+html {
+  font-size: var(--fontSize);
+  font-family: var(--fontFamily);
+}
+
+body {
+	background-color: var(--backgroundColor);
+	color: var(--fontColor);
+
+	&[data-input-mode="keyboard"] { cursor: none; }
+	&[data-input-mode="keyboard"] #root { pointer-events: none; }
+}
+
+#root {
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden; // prevents temporary scrollbar when resizing window
+}
+
+/**********************************************************************************************************************/

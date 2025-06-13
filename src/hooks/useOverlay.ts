@@ -1,0 +1,27 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+import { useState } from "react";
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export type OverlayHook = {
+  isActive: boolean;
+  toggle: () => void;
+  activate: () => void;
+  deactivate: () => void;
+}
+
+export function useOverlay(): OverlayHook {
+
+  // Overlay State
+  const [isActive, setIsActive] = useState<boolean>(false);
+
+  // Overlay Functions
+  const toggle = () => { setIsActive(isActive ? false : true); }
+  const activate = () => { setIsActive(true); }
+  const deactivate = () => { setIsActive(false); }
+
+  return { isActive, toggle, activate, deactivate }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
