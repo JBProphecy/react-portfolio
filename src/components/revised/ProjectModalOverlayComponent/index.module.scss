@@ -81,6 +81,9 @@
       display: flex;
       justify-content: center;
       padding: min(5%, 4rem);
+      @media screen and (max-width: 767px) {
+        padding: 0px;
+      }
 
       > .wrapper {
         width: 100%;

@@ -18,8 +18,8 @@ div.component {
   --descriptionLineHeightUnit: 5px;
 
   // Conversion Multipliers
-  --multiplierNormal: 4;
-  --multiplierHovered: 4.4;
+  // --multiplierNormal: 4;
+  // --multiplierHovered: 4.4;
   --cardOuterBorderRadiusMultiplier: 4;
 
   // More Stuff
@@ -95,6 +95,23 @@ div.component {
   // Transiton Variables
   --transitionDuration: 150ms;
   --transitionFunction: ease-out;
+
+  @media screen and (min-width: 0px) {
+    --multiplierNormal: 1;
+    --multiplierHovered: 1.1;
+  }
+  @media screen and (min-width: 384px) {
+    --multiplierNormal: 2;
+    --multiplierHovered: 2.2;
+  }
+  @media screen and (min-width: 768px) {
+    --multiplierNormal: 3;
+    --multiplierHovered: 3.3;
+  }
+  @media screen and (min-width: 1024px) {
+    --multiplierNormal: 4;
+    --multiplierHovered: 4.4;
+  }
 
   > div.card {
     --cardSpace: var(--cardSpaceNormal);

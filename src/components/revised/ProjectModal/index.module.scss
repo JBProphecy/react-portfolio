@@ -21,11 +21,13 @@
 
 .component {
   --borderColor: rgb(192, 192, 192);
-  --borderWidth: 4px;
-  --borderRadius: 16px;
-  --padding: calc(var(--borderRadius) - var(--borderWidth));
+  --borderWidth: 0.25rem;
+  --borderRadius: 0.75rem;
+  --padding: 0.5rem;
 
-	--innerBorderRadius: calc(var(--borderRadius) - var(--borderWidth));
+	@media screen and (max-width: 767px) {
+		--borderRadius: 0px;
+	}
 }
 
 .component {
@@ -38,12 +40,12 @@
   background-color: black;
   overflow: hidden;
   overflow-y: auto;
-  // &::-webkit-scrollbar { display: none; }
-	&::-webkit-scrollbar { background: transparent; border-radius: 50%; }
-	&::-webkit-scrollbar-track { background-color: black; border-radius: 50%; }
-	&::-webkit-scrollbar-thumb { background: linear-gradient(black, rgb(72, 72, 72), black); border-radius: 50%; }
-	&::-webkit-scrollbar-thumb:hover { cursor: grab; }
-	&::-webkit-scrollbar-thumb:active { cursor: grabbing; }
+  &::-webkit-scrollbar { display: none; }
+	// &::-webkit-scrollbar { background: transparent; border-radius: 50%; }
+	// &::-webkit-scrollbar-track { background-color: black; border-radius: 50%; }
+	// &::-webkit-scrollbar-thumb { background: linear-gradient(black, rgb(72, 72, 72), black); border-radius: 50%; }
+	// &::-webkit-scrollbar-thumb:hover { cursor: grab; }
+	// &::-webkit-scrollbar-thumb:active { cursor: grabbing; }
 }
 
 .exitContainer {
@@ -52,8 +54,8 @@
 	position: fixed;
 	width: var(--size);
 	height: var(--size);
-	top: calc(var(--offset) + 5px);
-	right: calc(var(--offset) + 15px);
+	top: var(--offset);
+	right: var(--offset);
 
 	> .icon {
 		width: 100%;
