@@ -1,0 +1,227 @@
+/**********************************************************************************************************************/
+
+.component {
+  --transitionDuration: 250ms;
+  --transitionFunction: ease-out;
+
+  --componentWidth: 100dvw;
+  --componentHeight: 100dvh;
+
+  --headerWidth: var(--componentWidth);
+  --headerHeight: calc(4 * var(--unitHeight));
+
+  --mainWidth: var(--componentWidth);
+  --mainHeight: calc(var(--componentHeight) - var(--headerHeight));
+
+  > .header {
+    --leftWidth: var(--headerHeight);
+    --leftHeight: var(--headerHeight);
+
+    --rightWidth: var(--headerHeight);
+    --rightHeight: var(--headerHeight);
+
+    --middleWidth: calc(var(--headerWidth) - var(--leftWidth) - var(--rightWidth));
+    --middleHeight: var(--headerHeight);
+
+    > .left {
+      --iconWidth: calc(1/2 * var(--leftWidth));
+      --iconHeight: calc(1/2 * var(--leftHeight));
+    }
+
+    > .middle {
+      --middleHorizontalPadding: calc(1/8 * var(--middleHeight));
+
+      > nav.headers {
+        --headersHeight: var(--middleHeight);
+        --headersGap: calc(3/8 * var(--middleHeight));
+
+        > a.header {
+          --headerFontSize: calc(2/5 * var(--headerHeight));
+        }
+      }
+    }
+  }
+
+  > .main {
+
+    > .sideContainer {
+      --sideContainerWidth: 384px;
+      --sideContainerHeight: var(--mainHeight);
+      --sideContainerLeftPositionOpen: 0px;
+      --sideContainerLeftPositionClosed: calc(-1 * var(--sideContainerWidth));
+      --sideContainerPadding: 1rem;
+      @media screen and (max-width: 767px) {
+        --sideContainerWidth: var(--mainWidth);
+        --sideContainerPadding: 0px;
+      }
+
+      > .sidebar {
+        --sidebarInnerWidth: calc(var(--sideContainerWidth) - 2 * var(--sideContainerPadding));
+        --sidebarInnerHeight: calc(var(--sideContainerHeight) - 2 * var(--sideContainerPadding));
+        --sidebarBorderWidth: 0.25rem;
+        --sidebarBorderColor: gray;
+        --sidebarBorderRadius: 0.75rem;
+        --sidebarPadding: calc(var(--sidebarBorderRadius) - var(--sidebarBorderWidth));
+        @media screen and (max-width: 767px) {
+          --sidebarBorderWidth: 0px;
+          --sidebarBorderRadius: 0px;
+        }
+      }
+    }
+
+    > .mainContainer {
+      --mainContainerWidth: var(--mainWidth);
+      --mainContainerHeight: var(--mainHeight);
+    }
+  }
+}
+
+/**********************************************************************************************************************/
+
+.component {
+  width: var(--componentWidth);
+  height: var(--componentHeight);
+
+  > .header {
+    width: var(--headerWidth);
+    height: var(--headerHeight);
+    background: linear-gradient(rgb(8, 8, 8), rgb(24, 24, 24));
+    display: flex;
+
+    > .left {
+      width: var(--leftWidth);
+      height: var(--leftHeight);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      > .icon {
+        width: var(--iconWidth);
+        height: var(--iconHeight);
+        border-radius: 50%;
+        user-select: none;
+        transition: transform var(--transitionDuration) var(--transitionFunction);
+        &:hover { cursor: pointer; }
+        &.normal { transform: rotate(0deg); &:hover { transform: rotate(-15deg); } }
+        &.active { transform: rotate(-135deg); &:hover { transform: rotate(-120deg); } }
+      }
+    }
+
+    > .middle {
+      width: var(--middleWidth);
+      height: var(--middleHeight);
+      padding: 0 var(--middleHorizontalPadding);
+      overflow: hidden;
+      overflow-x: auto;
+      &::-webkit-scrollbar { display: none; }
+
+      > nav.headers {
+        width: max-content;
+        height: var(--headersHeight);
+        display: flex;
+        align-items: center;
+        gap: var(--headersGap);
+
+        > a.header {
+          width: max-content;
+          height: max-content;
+          color: var(--fontColor);
+          font-size: var(--headerFontSize);
+          line-height: 1;
+          font-weight: bold;
+          white-space: nowrap;
+          user-select: none;
+          opacity: 0.7;
+          text-shadow: 0 0 calc(2/5 * var(--headerFontSize)) var(--fontColor);
+          transition: opacity 100ms ease-out;
+          &:hover { cursor: pointer; opacity: 1; }
+          &:active { opacity: 0.4; }
+          &.active { cursor: default; opacity: 0.4; }
+        }
+      }
+    }
+
+    > .right {
+      width: var(--rightWidth);
+      height: var(--rightHeight);
+    }
+  }
+
+  > .main {
+    width: var(--mainWidth);
+    height: var(--mainHeight);
+    position: relative;
+
+    > .sideContainer {
+      width: var(--sideContainerWidth);
+      height: var(--sideContainerHeight);
+      padding: var(--sideContainerPadding);
+      position: absolute;
+      z-index: 1;
+      transition: left var(--transitionDuration) var(--transitionFunction);
+
+      &.closed {
+        left: var(--sideContainerLeftPositionClosed);
+      }
+
+      &.open {
+        left: var(--sideContainerLeftPositionOpen);
+      }
+
+      > .sidebar {
+        width: var(--sidebarInnerWidth);
+        height: var(--sidebarInnerHeight);
+        border: var(--sidebarBorderWidth) solid var(--sidebarBorderColor);
+        border-radius: var(--sidebarBorderRadius);
+        background: linear-gradient(135deg, rgb(8, 8, 8), rgb(24, 24, 24));
+        padding: var(--sidebarPadding);
+        overflow: hidden;
+        overflow-y: auto;
+        &::-webkit-scrollbar { display: none; }
+      }
+    }
+
+    > .mainContainer {
+      width: var(--mainContainerWidth);
+      height: var(--mainContainerHeight);
+      position: absolute;
+      z-index: 0;
+
+      > .layer {
+        width: inherit;
+        height: inherit;
+        position: absolute;
+
+        &.overlay {
+          background-color: black;
+          transition:
+            z-index var(--transitionDuration) var(--transitionFunction),
+            opacity var(--transitionDuration) var(--transitionFunction)
+          ;
+
+          &.back {
+            z-index: -1;
+            opacity: 0;
+          }
+
+          &.front {
+            z-index: 999;
+            opacity: 0.9;
+          }
+        }
+
+        &.content {
+          overflow-x: hidden;
+          overflow-y: auto;
+          &::-webkit-scrollbar { background: transparent; }
+          &::-webkit-scrollbar-track { background: linear-gradient(rgb(24, 24, 24), rgb(8, 8, 8)); }
+          &::-webkit-scrollbar-thumb { background: linear-gradient(rgb(24, 24, 24), gray, rgb(8, 8, 8)); }
+          &::-webkit-scrollbar-thumb:hover { cursor: grab; }
+          &::-webkit-scrollbar-thumb:active { cursor: grabbing; }
+        }
+      }
+    }
+  }
+}
+
+/**********************************************************************************************************************/

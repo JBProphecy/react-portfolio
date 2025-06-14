@@ -27,3 +27,18 @@ body {
 }
 
 /**********************************************************************************************************************/
+
+:root {
+  --unitHeight: unset;
+  @media screen and (min-height: 0px) { --unitHeight: 0px; }
+  @media screen and (min-height: 128px) { --unitHeight: 2px; }
+  @media screen and (min-height: 256px) { --unitHeight: 4px; }
+  @media screen and (min-height: 384px) { --unitHeight: 6px; }
+  @media screen and (min-height: 512px) { --unitHeight: 8px; }
+  @media screen and (min-height: 640px) { --unitHeight: 10px; }
+  @media screen and (min-height: 768px) { --unitHeight: 12px; }
+  @media screen and (min-height: 896px) { --unitHeight: 14px; }
+  @media screen and (min-height: 1024px) { --unitHeight: 16px; }
+}
+
+/**********************************************************************************************************************/

@@ -19,6 +19,7 @@ import { toStringMS } from "@/utils/strings/toStringMS";
 
 import { type TransitionTimingFunction } from "@/types/css/TransitionTimingFunction";
 import { isSectionKey } from "@/data/SECTION_MAP";
+import { MainLayout } from "../layouts/MainLayout";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -104,7 +105,7 @@ export function Application(): JSX.Element {
     <div className={joinClasses(styles.component, isVisible ? styles.visible : "")}>
       <div className={styles.layer} />
       <div className={styles.layer}>
-        <LeftSidebarLayout />
+        <MainLayout />
       </div>
       <Overlay
         isActive={appContext.isProjectModalOpen}
