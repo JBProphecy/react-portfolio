@@ -1,7 +1,7 @@
 /**********************************************************************************************************************/
 
 .component {
-  --transitionDuration: 250ms;
+  --transitionDuration: unset;
   --transitionFunction: ease-out;
 
   --componentWidth: 100dvw;
@@ -61,9 +61,8 @@
         --sidebarBorderWidth: 0.25rem;
         --sidebarBorderColor: gray;
         --sidebarBorderRadius: 0.75rem;
-        --sidebarPadding: calc(var(--sidebarBorderRadius) - var(--sidebarBorderWidth));
+        --sidebarPadding: 0.5rem;
         @media screen and (max-width: 767px) {
-          --sidebarBorderWidth: 0px;
           --sidebarBorderRadius: 0px;
         }
       }

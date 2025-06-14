@@ -2,7 +2,7 @@
 
 import { AboutMeContent, AboutMeContentProps } from "@/app/AboutMeContent";
 import { AboutMeLinks, AboutMeLinksProps } from "@/app/AboutMeLinks";
-import { ProjectsContent, ProjectsContentProps } from "@/app/ProjectsContent";
+import { ProjectsContent } from "@/app/ProjectsContent";
 import { ProjectsLinks } from "@/app/ProjectsLinks";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +24,7 @@ type SectionData<SideContentProps, MainContentProps> = {
 
 type SectionMap = {
   [SectionKey.AboutMe]: SectionData<AboutMeLinksProps, AboutMeContentProps>,
-  [SectionKey.Projects]: SectionData<{}, ProjectsContentProps>
+  [SectionKey.Projects]: SectionData<{}, {}>
 }
 
 export const SECTION_MAP: SectionMap = {
@@ -36,7 +36,7 @@ export const SECTION_MAP: SectionMap = {
   [SectionKey.Projects]: {
     headerLabel: "Projects",
     sideContent: (props: {}) => <ProjectsLinks {...props} />,
-    mainContent: (props: ProjectsContentProps) => <ProjectsContent {...props} />
+    mainContent: (props: {}) => <ProjectsContent {...props} />
   }
 }
 

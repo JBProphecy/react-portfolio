@@ -6,8 +6,6 @@ import styles from "./index.module.scss";
 
 import { useContext, useEffect, useState } from "react";
 
-import { LeftSidebarLayout } from "@/app/LeftSidebarLayout";
-
 import { Overlay } from "@/components/revised/Overlay";
 import { ProjectModalOverlayComponent } from "@/components/revised/ProjectModalOverlayComponent";
 

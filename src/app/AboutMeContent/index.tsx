@@ -2,21 +2,18 @@
 
 import styles from "./index.module.scss";
 
+import { useEffect, useState } from "react";
+
 import { joinClasses } from "@/utils/joinClasses";
-import { CustomProperties } from "@/types/css/CustomProperties";
-import { SpaceBarPX } from "@/components/functional/SpaceBarPX";
+
 import { HeroSection } from "@/app/AboutMeContent/sections/HeroSection";
-import { toStringPX } from "@/utils/strings/toStringPX";
 import { MyStory } from "@/app/AboutMeContent/sections/MyStory";
 import { BusinessLinks } from "./sections/BusinessLinks";
 import { SkillCards } from "./sections/SkillCards";
-import { useEffect, useState } from "react";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export type AboutMeContentProps = {
-  headerHeight: number
-  heroHeight: number
   heroRef: React.RefObject<HTMLElement>,
   myStoryRef: React.RefObject<HTMLElement>,
   businessLinksRef: React.RefObject<HTMLElement>,
@@ -29,19 +26,11 @@ export type AboutMeContentProps = {
  * @returns JSX
  */
 export function AboutMeContent({
-  headerHeight,
-  heroHeight,
   heroRef,
   myStoryRef,
   businessLinksRef,
   skillCardsRef
 }: AboutMeContentProps): JSX.Element {
-
-  // Custom Properties
-  const style: CustomProperties = {
-    "--headerHeight": toStringPX(headerHeight),
-    "--heroHeight": toStringPX(heroHeight)
-  }
 
   // Visibility
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -49,7 +38,7 @@ export function AboutMeContent({
 
   // Return Content
   return (
-    <div className={joinClasses(styles.component, isVisible ? styles.visible : "")} style={style}>
+    <div className={joinClasses(styles.component, isVisible ? styles.visible : "")}>
       <section ref={heroRef} className={styles.hero}>
         <div className={joinClasses(styles.layer, styles.background)}>
           <video autoPlay loop muted>
@@ -60,25 +49,25 @@ export function AboutMeContent({
           <HeroSection />
         </div>
       </section>
-      <SpaceBarPX height={2 * headerHeight} />
+      <div className={styles.space} />
       <section ref={myStoryRef} className={styles.section}>
         <div className={styles.wrapper}>
           <MyStory />
         </div>
       </section>
-      <SpaceBarPX height={2 * headerHeight} />
+      <div className={styles.space} />
       <section ref={businessLinksRef} className={styles.section}>
         <div className={styles.wrapper}>
           <BusinessLinks />
         </div>
       </section>
-      <SpaceBarPX height={2 * headerHeight} />
+      <div className={styles.space} />
       <section ref={skillCardsRef} className={styles.section}>
         <div className={styles.wrapper}>
           <SkillCards />
         </div>
       </section>
-      <SpaceBarPX height={2 * headerHeight} />
+      <div className={styles.space} />
     </div>
   )
 }

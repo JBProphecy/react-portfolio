@@ -1,8 +1,7 @@
 /**********************************************************************************************************************/
 
 .component {
-  --headerHeight: unset;
-  --heroHeight: unset;
+  --heroHeight: calc(var(--mainHeight) - var(--headerHeight));
 }
 
 .component {
@@ -11,6 +10,11 @@
 	opacity: 0;
 	transition: opacity 300ms ease-out;
 	&.visible { opacity: 1; }
+
+  > .space {
+    width: 100%;
+    height: var(--headerHeight);
+  }
 
   > .hero {
     width: 100%;

@@ -1,11 +1,9 @@
 /**********************************************************************************************************************/
 
 div.component {
-  --padding: unset;
-
   width: 100%;
   height: max-content;
-  padding: 0 var(--padding);
+  padding: 0 var(--headerHeight);
   overflow: hidden;
   overflow-x: auto;
 

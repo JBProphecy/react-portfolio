@@ -3,17 +3,11 @@
 import styles from "./index.module.scss";
 
 import { ProjectCard } from "@/components/revised/ProjectCard";
-
 import { ProjectKey } from "@/data/PROJECT_MAP";
-
-import { CustomProperties } from "@/types/css/CustomProperties";
-
-import { toStringPX } from "@/utils/strings/toStringPX";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export type ProjectsLineProps = {
-  padding: number;
   projectKeys: ProjectKey[];
 }
 
@@ -23,18 +17,12 @@ export type ProjectsLineProps = {
  * @returns JSX
  */
 export function ProjectsLine({
-  padding,
-  projectKeys,
+  projectKeys
 }: ProjectsLineProps): JSX.Element {
-
-  // Custom Properties
-  const style: CustomProperties = {
-    "--padding": toStringPX(padding)
-  }
 
   // Return Content
   return (
-    <div className={styles.component} style={style}>
+    <div className={styles.component}>
       <div className={styles.wrapper}>
         {projectKeys.map((key) => (
           <ProjectCard
