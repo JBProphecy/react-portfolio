@@ -38,7 +38,7 @@ export function AboutMeContent({
 
   // Return Content
   return (
-    <div className={joinClasses(styles.component, isVisible ? styles.visible : "")}>
+    <div className={joinClasses(styles.wrapper, isVisible ? styles.visible : "")}>
       <section ref={heroRef} className={styles.hero}>
         <div className={joinClasses(styles.layer, styles.background)}>
           <video autoPlay loop muted>
@@ -49,6 +49,7 @@ export function AboutMeContent({
           <HeroSection />
         </div>
       </section>
+      <div className={styles.headerSpace} />
       <div className={styles.space} />
       <section ref={myStoryRef} className={styles.section}>
         <MyStory />
@@ -62,6 +63,7 @@ export function AboutMeContent({
         <SkillCards />
       </section>
       <div className={styles.space} />
+      <div className={styles.headerSpace} />
     </div>
   )
 }

@@ -1,21 +1,23 @@
 /**********************************************************************************************************************/
 
 nav.list {
-  --font-size: calc(1.5 * var(--app-unit-height));
-  --padding: calc(0.75 * var(--app-unit-height));
+  --component-width: var(--sidebar-content-width);
+
+  --font-size: calc(0.1 * var(--component-width));
+  --padding: calc(0.5 * var(--font-size));
 }
 
 /**********************************************************************************************************************/
 
 nav.list {
-  width: 100%;
+  width: var(--component-width);
   height: max-content;
   position: relative;
   display: flex;
   flex-direction: column;
 
   > a.item {
-    width: 100%;
+    width: inherit;
     height: max-content;
     padding: var(--padding);
     display: flex;
@@ -33,9 +35,9 @@ nav.list {
 
     > .label {
       font-size: var(--font-size);
-      line-height: 1;
+      line-height: 1.25;
       font-weight: bold;
-      white-space: nowrap;
+      text-align: center;
       user-select: none;
     }
   }

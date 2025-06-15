@@ -19,6 +19,10 @@
     --containerTransformHidden: scale(0.7);
     --containerTransformVisible: scale(1);
   }
+  @media screen and (aspect-ratio > 2) {
+    --containerTransformHidden: scale(0.7);
+    --containerTransformVisible: scale(1);
+  }
 
   &.hidden {
 
@@ -83,6 +87,10 @@
 
   @media screen and (aspect-ratio < 1) {
     --component-padding: 0px;
+  }
+  @media screen and (aspect-ratio > 2) {
+    --component-padding: 0px;
+    --container-width: var(--content-width);
   }
 }
 

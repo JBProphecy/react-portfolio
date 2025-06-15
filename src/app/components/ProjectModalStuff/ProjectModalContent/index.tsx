@@ -2,7 +2,7 @@
 
 import styles from "./index.module.scss";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { IconLabelTags } from "@/app/components/IconLabelTagStuff/IconLabelTags";
 import { LinkButton } from "@/components/LinkButton";
@@ -11,6 +11,7 @@ import { ProjectKey } from "@/data/PROJECT_MAP";
 
 import { joinClasses } from "@/utils/joinClasses";
 import { toProjectData } from "@/utils/maps/fromProjectKey";
+import { AppContext, AppContextType } from "@/context/AppContext";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -28,12 +29,28 @@ export function ProjectModalContent({ projectKey }: ProjectModalContentProps): J
   const [isVisible, setIsVisible] = useState<boolean>(false);
   useEffect(() => { setTimeout(() => setIsVisible(true), 150) }, []);
 
+  // App Context
+  const appContext: AppContextType | undefined = useContext(AppContext);
+  if (typeof appContext === "undefined") { throw new Error("Missing App Context Provider"); }
+
   // Project Data
   const projectData = toProjectData(projectKey);
 
   // Return Content
   return (
     <div className={joinClasses(styles.component, isVisible ? styles.visible : "")}>
+      <header className={styles.header}>
+        <div className={styles.exitContainer}>
+          <svg
+            className={styles.icon}
+            onClick={appContext.toggleProjectModal}
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </div>
+      </header>
       <div className={styles.primaryHeaderContainer}>
         <span className={styles.primaryHeader}>{projectData.title}</span>
       </div>
@@ -72,7 +89,7 @@ export function ProjectModalContent({ projectKey }: ProjectModalContentProps): J
       <div className={styles.tagsSection}>
         <IconLabelTags iconLabelKeys={projectData.iconLabelKeys} />
       </div>
-      <div className={styles.spacebar07} />
+      <div className={styles.headerSpace} />
     </div>
   )
 }

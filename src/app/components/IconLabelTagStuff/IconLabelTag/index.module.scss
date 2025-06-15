@@ -20,6 +20,7 @@ div.tag {
   > div.iconContainer {
     width: var(--icon-size);
     height: var(--icon-size);
+    display: flex;
     overflow: hidden;
 
     > img.icon {

@@ -1,18 +1,22 @@
 /**********************************************************************************************************************/
 
-.component {
+.wrapper {
   --component-width: var(--main-container-width);
-  --component-height: var(--main-container-height);
 
   --hero-height: calc(var(--main-container-height) - var(--header-height));
 }
 
-.component {
+.wrapper {
   width: var(--component-width);
-  height: var(--main-container-height);
+  height: max-content;
 	opacity: 0;
 	transition: opacity 300ms ease-out;
 	&.visible { opacity: 1; }
+
+  > .headerSpace {
+    width: inherit;
+    height: var(--header-height);
+  }
 
   > .space {
     width: inherit;

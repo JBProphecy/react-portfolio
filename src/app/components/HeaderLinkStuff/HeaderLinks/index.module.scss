@@ -1,11 +1,8 @@
 /**********************************************************************************************************************/
 
-// DEPENDS ON PARENT CONTAINER
 div.component {
   --component-width: var(--middle-width);
   --component-height: var(--middle-height);
-  --link-font-size: calc(2/5 * var(--header-height));
-  --link-font-color: rgb(192, 192, 192);
 }
 
 /**********************************************************************************************************************/
@@ -24,23 +21,6 @@ div.component {
     display: flex;
     align-items: center;
     gap: calc(3/8 * var(--component-height));
-
-    > a.link {
-      width: max-content;
-      height: max-content;
-      color: var(--link-font-color);
-      font-size: var(--link-font-size);
-      line-height: 1;
-      font-weight: bold;
-      white-space: nowrap;
-      user-select: none;
-      opacity: 0.7;
-      text-shadow: 0 0 calc(2/5 * var(--link-font-size)) var(--link-font-color);
-      transition: opacity 100ms ease-out;
-      &:hover { cursor: pointer; opacity: 1; }
-      &:active { opacity: 0.4; }
-      &.active { cursor: default; opacity: 0.4; }
-    }
   }
 }
 
