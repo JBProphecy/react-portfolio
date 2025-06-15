@@ -1,0 +1,24 @@
+/**********************************************************************************************************************/
+
+div.component {
+  width: 100%;
+  height: max-content;
+  padding: 0 var(--app-header-height);
+  overflow: hidden;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar { display: none; }
+
+  > ul.list {
+    width: max-content;
+    height: max-content;
+    display: flex;
+
+    > li.item {
+      width: max-content;
+      height: max-content;
+    }
+  }
+}
+
+/**********************************************************************************************************************/

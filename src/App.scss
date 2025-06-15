@@ -1,44 +1,48 @@
 /**********************************************************************************************************************/
 
 :root {
-  --fontSize: 16px;
-  --fontFamily: calibri, sans-serif;
-  --backgroundColor: rgb(12, 12, 12);
-  --fontColor: rgb(192, 192, 192);
+  --app-font-size: 16px;
+  --app-font-family: calibri, sans-serif;
+  --app-background-color: rgb(12, 12, 12);
+  --app-font-color: rgb(192, 192, 192);
 }
 
 html {
-  font-size: var(--fontSize);
-  font-family: var(--fontFamily);
+  font-size: var(--app-fon-size);
+  font-family: var(--app-font-family);
 }
 
 body {
-	background-color: var(--backgroundColor);
-	color: var(--fontColor);
+	background-color: var(--app-background-color);
+	color: var(--app-font-color);
 
 	&[data-input-mode="keyboard"] { cursor: none; }
 	&[data-input-mode="keyboard"] #root { pointer-events: none; }
 }
 
-#root {
-  width: 100dvw;
-  height: 100dvh;
-  overflow: hidden; // prevents temporary scrollbar when resizing window
-}
-
 /**********************************************************************************************************************/
 
-:root {
-  --unitHeight: unset;
-  @media screen and (min-height: 0px) { --unitHeight: 0px; }
-  @media screen and (min-height: 128px) { --unitHeight: 2px; }
-  @media screen and (min-height: 256px) { --unitHeight: 4px; }
-  @media screen and (min-height: 384px) { --unitHeight: 6px; }
-  @media screen and (min-height: 512px) { --unitHeight: 8px; }
-  @media screen and (min-height: 640px) { --unitHeight: 10px; }
-  @media screen and (min-height: 768px) { --unitHeight: 12px; }
-  @media screen and (min-height: 896px) { --unitHeight: 14px; }
-  @media screen and (min-height: 1024px) { --unitHeight: 16px; }
+#root {
+  --app-width: 100dvw;
+  --app-height: 100dvh;
+  --app-unit-height: unset;
+  --app-header-height: calc(4 * var(--app-unit-height));
+
+  @media screen and (min-height: 0px) { --app-unit-height: 0px; }
+  @media screen and (min-height: 128px) { --app-unit-height: 2px; }
+  @media screen and (min-height: 256px) { --app-unit-height: 4px; }
+  @media screen and (min-height: 384px) { --app-unit-height: 6px; }
+  @media screen and (min-height: 512px) { --app-unit-height: 8px; }
+  @media screen and (min-height: 640px) { --app-unit-height: 10px; }
+  @media screen and (min-height: 768px) { --app-unit-height: 12px; }
+  @media screen and (min-height: 896px) { --app-unit-height: 14px; }
+  @media screen and (min-height: 1024px) { --app-unit-height: 16px; }
+}
+
+#root {
+  width: var(--app-width);
+  height: var(--app-height);
+  overflow: hidden; // prevents temporary scrollbar when resizing window
 }
 
 /**********************************************************************************************************************/

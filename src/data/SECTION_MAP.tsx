@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { AboutMeContent, AboutMeContentProps } from "@/app/AboutMeContent";
-import { AboutMeLinks, AboutMeLinksProps } from "@/app/AboutMeLinks";
-import { ProjectsContent } from "@/app/ProjectsContent";
-import { ProjectsLinks } from "@/app/ProjectsLinks";
+import { AboutMeContent, AboutMeContentProps } from "@/app/sections/AboutMe/AboutMeContent";
+import { AboutMeLinks, AboutMeLinksProps } from "@/app/sections/AboutMe/AboutMeLinks";
+import { ProjectsContent } from "@/app/sections/Projects/ProjectsContent";
+import { ProjectsLinks } from "@/app/sections/Projects/ProjectsLinks";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

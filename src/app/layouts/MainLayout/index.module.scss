@@ -4,11 +4,11 @@
   --transitionDuration: unset;
   --transitionFunction: ease-out;
 
-  --componentWidth: 100dvw;
-  --componentHeight: 100dvh;
+  --componentWidth: var(--app-width);
+  --componentHeight: var(--app-height);
 
   --headerWidth: var(--componentWidth);
-  --headerHeight: calc(4 * var(--unitHeight));
+  --headerHeight: var(--app-header-height);
 
   --mainWidth: var(--componentWidth);
   --mainHeight: calc(var(--componentHeight) - var(--headerHeight));

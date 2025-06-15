@@ -6,8 +6,8 @@ import styles from "./index.module.scss";
 
 import { useContext, useEffect, useState } from "react";
 
-import { Overlay } from "@/components/revised/Overlay";
-import { ProjectModalOverlayComponent } from "@/components/revised/ProjectModalOverlayComponent";
+import { Overlay } from "@/components/Overlay";
+import { ProjectModalOverlayComponent } from "@/app/components/ProjectModalStuff/ProjectModalOverlayComponent";
 
 import { AppContext, AppContextType } from "@/context/AppContext";
 
