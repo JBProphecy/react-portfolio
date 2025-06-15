@@ -49,8 +49,9 @@
 	// &::-webkit-scrollbar-thumb:active { cursor: grabbing; }
 
 	> .header {
+		--headerHeight: max(var(--app-header-height), 2rem);
 		width: 100%;
-		height: var(--app-header-height);
+		height: var(--headerHeight);
 		display: flex;
 		justify-content: flex-end;
 		position: sticky;
@@ -61,7 +62,7 @@
 }
 
 .exitContainer {
-	--size: calc(var(--app-header-height) - 2 * var(--padding));
+	--size: calc(var(--headerHeight) - 2 * var(--padding));
 	width: var(--size);
 	height: var(--size);
 	display: flex;
