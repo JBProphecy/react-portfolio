@@ -49,7 +49,7 @@
       --sideContainerHeight: var(--mainHeight);
       --sideContainerLeftPositionOpen: 0px;
       --sideContainerLeftPositionClosed: calc(-1 * var(--sideContainerWidth));
-      --sideContainerPadding: 1rem;
+      --sideContainerPadding: calc(3 * var(--app-unit-border-width));
       @media screen and (max-aspect-ratio: 1) {
         --sideContainerWidth: var(--mainWidth);
         --sideContainerPadding: 0px;
@@ -58,10 +58,10 @@
       > .sidebar {
         --sidebarInnerWidth: calc(var(--sideContainerWidth) - 2 * var(--sideContainerPadding));
         --sidebarInnerHeight: calc(var(--sideContainerHeight) - 2 * var(--sideContainerPadding));
-        --sidebarBorderWidth: var(--app-unit-border-width);
         --sidebarBorderColor: gray;
-        --sidebarBorderRadius: calc(1.5 * var(--app-unit-border-width));
-        --sidebarPadding: 0.5rem;
+        --sidebarBorderWidth: calc(1 * var(--app-unit-border-width));
+        --sidebarBorderRadius: calc(2 * var(--app-unit-border-width));
+        --sidebarPadding: calc(1.5 * var(--app-unit-border-width));
         @media screen and (max-aspect-ratio: 1) {
           --sidebarBorderRadius: 0px;
         }
