@@ -4,20 +4,21 @@ import styles from "./index.module.scss";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-type NewComponentProps = {}
+export type TestPageProps = {}
 
 /**
  * @param props
- * @see {@link NewComponentProps}
+ * @see {@link TestPageProps}
  * @returns JSX
  */
-export function NewComponent({}: NewComponentProps): JSX.Element {
+export function TestPage({}: TestPageProps): JSX.Element {
 
   // Return Content
   return (
-    <div className={styles.component}>
+    <div className={styles.display}>
+      <div className={styles.box}></div>
     </div>
-  );
+  )
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

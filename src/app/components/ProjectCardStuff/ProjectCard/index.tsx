@@ -17,7 +17,7 @@ export type ProjectCardProps = {
 }
 
 /**
- * @param props - Component Props
+ * @param props
  * @see {@link ProjectCardProps}
  * @returns JSX
  */

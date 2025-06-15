@@ -12,7 +12,7 @@ export type ProjectCardLineProps = {
 }
 
 /**
- * @param props - Component Props
+ * @param props
  * @see {@link ProjectCardLineProps}
  * @returns JSX
  */
@@ -24,14 +24,14 @@ export function ProjectCardLine({
   return (
     <div className={styles.component}>
       <ul className={styles.list}>
-        {projectKeyArray.map((key, index) => (
-          <li className={styles.item} key={index}>
-            <ProjectCard projectKey={key} />
+        {projectKeyArray.map((projectKey) => (
+          <li className={styles.item} key={projectKey}>
+            <ProjectCard projectKey={projectKey} />
           </li>
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

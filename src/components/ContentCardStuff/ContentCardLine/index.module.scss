@@ -6,7 +6,6 @@ div.component {
   padding: 0 var(--app-header-height);
   overflow: hidden;
   overflow-x: auto;
-
   &::-webkit-scrollbar { display: none; }
 
   > ul.list {

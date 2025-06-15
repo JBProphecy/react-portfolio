@@ -1,44 +1,32 @@
 /**********************************************************************************************************************/
 
 .component {
-  --transitionDuration: unset;
-  --transitionFunction: ease-out;
+  --component-transition-duration: unset;
+  --component-transition-function: ease-out;
 
-  --componentWidth: var(--app-width);
-  --componentHeight: var(--app-height);
+  --component-width: var(--app-width);
+  --component-height: var(--app-height);
 
-  --headerWidth: var(--componentWidth);
-  --headerHeight: max(calc(4 * var(--app-unit-height)), 2rem);
+  --header-width: var(--component-width);
+  --header-height: max(calc(4 * var(--app-unit-height)), 2rem);
 
-  --mainWidth: var(--componentWidth);
-  --mainHeight: calc(var(--componentHeight) - var(--headerHeight));
+  --main-width: var(--component-width);
+  --main-height: calc(var(--component-height) - var(--header-height));
 
   > .header {
-    --leftWidth: var(--headerHeight);
-    --leftHeight: var(--headerHeight);
+    --left-width: var(--header-height);
+    --left-height: var(--header-height);
 
-    --rightWidth: var(--headerHeight);
-    --rightHeight: var(--headerHeight);
+    --right-width: var(--header-height);
+    --right-height: var(--header-height);
 
-    --middleWidth: calc(var(--headerWidth) - var(--leftWidth) - var(--rightWidth));
-    --middleHeight: var(--headerHeight);
+    --middle-width: calc(var(--header-width) - var(--left-width) - var(--right-width));
+    --middle-height: var(--header-height);
 
     > .left {
-      --iconWidth: calc(1/2 * var(--leftWidth));
-      --iconHeight: calc(1/2 * var(--leftHeight));
-    }
-
-    > .middle {
-      --middleHorizontalPadding: calc(1/8 * var(--middleHeight));
-
-      > nav.headers {
-        --headersHeight: var(--middleHeight);
-        --headersGap: calc(3/8 * var(--middleHeight));
-
-        > a.header {
-          --headerFontSize: calc(2/5 * var(--headerHeight));
-        }
-      }
+      --icon-scale: 1/2;
+      --icon-width: calc(var(--icon-scale) * var(--left-width));
+      --icon-height: calc(var(--icon-scale) * var(--left-height));
     }
   }
 
@@ -46,12 +34,12 @@
 
     > .sideContainer {
       --sideContainerWidth: calc(24 * var(--app-unit-height));
-      --sideContainerHeight: var(--mainHeight);
+      --sideContainerHeight: var(--main-height);
       --sideContainerLeftPositionOpen: 0px;
       --sideContainerLeftPositionClosed: calc(-1 * var(--sideContainerWidth));
       --sideContainerPadding: calc(3 * var(--app-unit-border-width));
       @media screen and (max-aspect-ratio: 1) {
-        --sideContainerWidth: var(--mainWidth);
+        --sideContainerWidth: var(--main-width);
         --sideContainerPadding: 0px;
       }
 
@@ -69,8 +57,8 @@
     }
 
     > .mainContainer {
-      --mainContainerWidth: var(--mainWidth);
-      --mainContainerHeight: var(--mainHeight);
+      --main-container-width: var(--main-width);
+      --main-container-height: var(--main-height);
     }
   }
 }
@@ -78,28 +66,28 @@
 /**********************************************************************************************************************/
 
 .component {
-  width: var(--componentWidth);
-  height: var(--componentHeight);
+  width: var(--component-width);
+  height: var(--component-height);
 
   > .header {
-    width: var(--headerWidth);
-    height: var(--headerHeight);
+    width: var(--header-width);
+    height: var(--header-height);
     background: linear-gradient(rgb(8, 8, 8), rgb(24, 24, 24));
     display: flex;
 
     > .left {
-      width: var(--leftWidth);
-      height: var(--leftHeight);
+      width: var(--left-width);
+      height: var(--left-height);
       display: flex;
       justify-content: center;
       align-items: center;
 
       > .icon {
-        width: var(--iconWidth);
-        height: var(--iconHeight);
+        width: var(--icon-width);
+        height: var(--icon-height);
         border-radius: 50%;
         user-select: none;
-        transition: transform var(--transitionDuration) var(--transitionFunction);
+        transition: transform var(--component-transition-duration) var(--component-transition-function);
         &:hover { cursor: pointer; }
         &.normal { transform: rotate(0deg); &:hover { transform: rotate(-15deg); } }
         &.active { transform: rotate(-135deg); &:hover { transform: rotate(-120deg); } }
@@ -107,48 +95,19 @@
     }
 
     > .middle {
-      width: var(--middleWidth);
-      height: var(--middleHeight);
-      padding: 0 var(--middleHorizontalPadding);
-      overflow: hidden;
-      overflow-x: auto;
-      &::-webkit-scrollbar { display: none; }
-
-      > nav.headers {
-        width: max-content;
-        height: var(--headersHeight);
-        display: flex;
-        align-items: center;
-        gap: var(--headersGap);
-
-        > a.header {
-          width: max-content;
-          height: max-content;
-          color: var(--fontColor);
-          font-size: var(--headerFontSize);
-          line-height: 1;
-          font-weight: bold;
-          white-space: nowrap;
-          user-select: none;
-          opacity: 0.7;
-          text-shadow: 0 0 calc(2/5 * var(--headerFontSize)) var(--fontColor);
-          transition: opacity 100ms ease-out;
-          &:hover { cursor: pointer; opacity: 1; }
-          &:active { opacity: 0.4; }
-          &.active { cursor: default; opacity: 0.4; }
-        }
-      }
+      width: var(--middle-width);
+      height: var(--middle-height);
     }
 
     > .right {
-      width: var(--rightWidth);
-      height: var(--rightHeight);
+      width: var(--right-width);
+      height: var(--right-height);
     }
   }
 
   > .main {
-    width: var(--mainWidth);
-    height: var(--mainHeight);
+    width: var(--main-width);
+    height: var(--main-height);
     position: relative;
 
     > .sideContainer {
@@ -157,7 +116,7 @@
       padding: var(--sideContainerPadding);
       position: absolute;
       z-index: 1;
-      transition: left var(--transitionDuration) var(--transitionFunction);
+      transition: left var(--component-transition-duration) var(--component-transition-function);
 
       &.closed {
         left: var(--sideContainerLeftPositionClosed);
@@ -181,8 +140,8 @@
     }
 
     > .mainContainer {
-      width: var(--mainContainerWidth);
-      height: var(--mainContainerHeight);
+      width: var(--main-container-width);
+      height: var(--main-container-height);
       position: absolute;
       z-index: 0;
 
@@ -194,8 +153,8 @@
         &.overlay {
           background-color: black;
           transition:
-            z-index var(--transitionDuration) var(--transitionFunction),
-            opacity var(--transitionDuration) var(--transitionFunction)
+            z-index var(--component-transition-duration) var(--component-transition-function),
+            opacity var(--component-transition-duration) var(--component-transition-function)
           ;
 
           &.back {

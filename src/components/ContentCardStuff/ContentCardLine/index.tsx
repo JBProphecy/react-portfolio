@@ -15,7 +15,7 @@ export type ContentCardLineProps = {
 }
 
 /**
- * @param props - Component Props
+ * @param props
  * @see {@link ContentCardLineProps}
  * @returns JSX
  */
@@ -40,7 +40,7 @@ export function ContentCardLine({
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

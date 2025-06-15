@@ -1,5 +1,7 @@
 /**********************************************************************************************************************/
 
+// Transitions
+
 .component {
   --transitionDuration: unset;
   --transitionFunction: unset;
@@ -7,15 +9,15 @@
   --backgroundOpacityHidden: 0;
   --backgroundOpacityVisible: 0.9;
 
-  --contentWrapperOpacityHidden: 0;
-  --contentWrapperOpacityVisible: 1;
+  --containerOpacityHidden: 0;
+  --containerOpacityVisible: 1;
 
-  --contentWrapperTransformHidden: translateY(-3rem);
-  --contentWrapperTransformVisible: translateY(0);
+  --containerTransformHidden: translateY(-3rem);
+  --containerTransformVisible: translateY(0);
 
-  @media screen and (max-width: 767px) {
-    --contentWrapperTransformHidden: scale(0.7);
-    --contentWrapperTransformVisible: scale(1);
+  @media screen and (aspect-ratio < 1) {
+    --containerTransformHidden: scale(0.7);
+    --containerTransformVisible: scale(1);
   }
 
   &.hidden {
@@ -25,8 +27,8 @@
     }
 
     > .layer.content {
-      --contentWrapperOpacity: var(--contentWrapperOpacityHidden);
-      --contentWrapperTransform: var(--contentWrapperTransformHidden);
+      --containerOpacity: var(--containerOpacityHidden);
+      --containerTransform: var(--containerTransformHidden);
     }
   }
 
@@ -37,8 +39,8 @@
     }
 
     > .layer.content {
-      --contentWrapperOpacity: var(--contentWrapperOpacityVisible);
-      --contentWrapperTransform: var(--contentWrapperTransformVisible);
+      --containerOpacity: var(--containerOpacityVisible);
+      --containerTransform: var(--containerTransformVisible);
     }
   }
 }
@@ -54,9 +56,9 @@
     transition: opacity var(--transitionDuration) var(--transitionFunction);
   }
 
-  > .layer.content > .wrapper {
-    opacity: var(--contentWrapperOpacity);
-    transform: var(--contentWrapperTransform);
+  > .layer.content > .container {
+    opacity: var(--containerOpacity);
+    transform: var(--containerTransform);
     transition:
       opacity var(--transitionDuration) var(--transitionFunction),
       transform var(--transitionDuration) var(--transitionFunction)
@@ -69,13 +71,33 @@
 // Styles
 
 .component {
-  width: 100%;
-  height: 100%;
+  --component-width: var(--app-width);
+  --component-height: var(--app-height);
+  --component-padding: calc(4 * var(--app-unit-size));
+
+  --content-width: calc(var(--component-width) - 2 * var(--component-padding));
+  --content-height: calc(var(--component-height) - 2 * var(--component-padding));
+
+  --container-width: min(var(--content-width), var(--content-height));
+  --container-height: var(--content-height);
+
+  @media screen and (aspect-ratio < 1) {
+    --component-padding: 0px;
+  }
+}
+
+/**********************************************************************************************************************/
+
+// Styles
+
+.component {
+  width: var(--component-width);
+  height: var(--component-height);
   position: relative;
 
   > .layer {
-    width: 100%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
     position: absolute;
 
     &.background {
@@ -85,15 +107,11 @@
     &.content {
       display: flex;
       justify-content: center;
-      padding: min(5%, 4rem);
-      @media screen and (max-width: 767px) {
-        padding: 0px;
-      }
+      padding: var(--component-padding);
 
-      > .wrapper {
-        width: 100%;
-        max-width: 50rem;
-        height: 100%;
+      > .container {
+        width: var(--container-width);
+        height: var(--container-height);
       }
     }
   }

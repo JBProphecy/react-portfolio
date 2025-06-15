@@ -43,7 +43,7 @@ export function ProjectModalOverlayComponent({
     <div className={joinClasses(styles.component, appContext.isProjectModalOpen ? styles.visible : styles.hidden)} style={style}>
       <div className={joinClasses(styles.layer, styles.background)}></div>
       <div className={joinClasses(styles.layer, styles.content)}>
-        <div className={styles.wrapper}>
+        <div className={styles.container}>
           <ProjectModal />
         </div>
       </div>

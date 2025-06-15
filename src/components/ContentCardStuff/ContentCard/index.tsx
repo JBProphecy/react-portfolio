@@ -13,7 +13,7 @@ export type ContentCardProps = {
 }
 
 /**
- * @param props - Component Props
+ * @param props
  * @see {@link ContentCardProps}
  * @returns JSX
  */
@@ -35,7 +35,7 @@ export function ContentCard({
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

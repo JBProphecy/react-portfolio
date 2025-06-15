@@ -1,27 +1,42 @@
 /**********************************************************************************************************************/
 
+div.component {
+  --component-width: var(--main-container-width);
+  --component-padding: calc(4 * var(--app-unit-size));
+
+  --content-width: calc(var(--component-width) - 2 * var(--component-padding));
+  --content-height: calc(var(--component-height) - 2 * var(--component-padding));
+
+  --primary-font-color: rgb(192, 192, 192);
+  --primary-font-size: calc(4 * var(--app-unit-size));
+
+  --secondary-font-color: rgb(144, 144, 144);
+  --secondary-font-size: calc(2 * var(--app-unit-size));
+}
+
+/**********************************************************************************************************************/
+
 .component {
-  width: 100%;
-  height: 100%;
-  position: relative;
+  width: var(--component-width);
+  height: max-content;
+  padding: var(--component-padding);
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: calc(3 * var(--app-unit-size));
 
-  > .titleContainer {
-    width: 100%;
+  .titleContainer {
+    width: var(--content-width);
     height: max-content;
     display: flex;
     justify-content: center;
 
-    > .title {
-      font-size: 3rem;
+    .title {
+      color: var(--primary-font-color);
+      font-size: var(--primary-font-size);
       line-height: 1.25;
       font-weight: bold;
       user-select: none;
-      text-align: center;
-      color: rgb(192, 192, 192);
-      text-shadow: 0 0 1.2rem rgb(192, 192, 192);
+      text-shadow: 0 0 calc(2/5 * var(--primary-font-size)) var(--primary-font-color);
     }
   }
 
@@ -31,7 +46,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2rem;
+    gap: var(--component-padding);
   }
 }
 

@@ -27,6 +27,7 @@ body {
   --app-height: 100dvh;
   --app-unit-width: unset;
   --app-unit-height: unset;
+  --app-unit-size: min(var(--app-unit-width), var(--app-unit-height));
   --app-unit-border-width: min(var(--app-unit-border-width-horizontal), var(--app-unit-border-width-vertical));
 }
 
@@ -47,17 +48,18 @@ body {
 }
 
 // BORDER WIDTH
-@for $i from 0 through 16 {
-  $step: 160px;
-  $value: $i * $step;
-  @media screen and (min-width: $value) {
+@for $i from -1 through 7 {
+  $first: 32px;
+  $break: if($i == -1, 0px, pow(2, $i) * $first);
+  $value: $i + 1;
+  @media screen and (min-width: $break) {
     #root {
-      --app-unit-border-width-horizontal: #{$i}px;
+      --app-unit-border-width-horizontal: #{$value}px;
     }
   }
-  @media screen and (min-height: $value) {
+  @media screen and (min-height: $break) {
     #root {
-      --app-unit-border-width-vertical: #{$i}px;
+      --app-unit-border-width-vertical: #{$value}px;
     }
   }
 }

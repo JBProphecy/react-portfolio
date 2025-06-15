@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 
 import { IconLabelTags } from "@/app/components/IconLabelTagStuff/IconLabelTags";
 import { LinkButton } from "@/components/LinkButton";
-import { SpaceBarPX } from "@/components/SpaceBarPX";
 
 import { ProjectKey } from "@/data/PROJECT_MAP";
 
@@ -38,7 +37,7 @@ export function ProjectModalContent({ projectKey }: ProjectModalContentProps): J
       <div className={styles.primaryHeaderContainer}>
         <span className={styles.primaryHeader}>{projectData.title}</span>
       </div>
-      <SpaceBarPX height={48} />
+      <div className={styles.spacebar01} />
       <div className={styles.videoContainer}>
         <div className={styles.videoWrapper}>
           {/* <video autoPlay loop controls>
@@ -53,26 +52,27 @@ export function ProjectModalContent({ projectKey }: ProjectModalContentProps): J
           />
         </div>
       </div>
-      <SpaceBarPX height={64} />
+      <div className={styles.spacebar02} />
       <div className={joinClasses(styles.secondaryHeaderContainer, styles.descriptionHeaderContainer)}>
         <span className={styles.secondaryHeader}>Description</span>
       </div>
-      <SpaceBarPX height={8} />
+      <div className={styles.spacebar03} />
       <p className={styles.paragraph}>{projectData.description}</p>
-      <SpaceBarPX height={48} />
+      <div className={styles.spacebar04} />
       <div className={joinClasses(styles.secondaryHeaderContainer, styles.linksHeaderContainer)}>
         <span className={styles.secondaryHeader}>Repository</span>
       </div>
-      <SpaceBarPX height={16} />
+      <div className={styles.spacebar05} />
       <div className={styles.linksContainer}>
-        <LinkButton fontSize={1.5} linkText={projectData.repositoryLinkText} href={projectData.repositoryLinkHref} target="_blank" />
+        <LinkButton
+          fontSize="var(--paragraph-font-size)" fontColor="var(--paragraph-font-color)"
+          linkText={projectData.repositoryLinkText} href={projectData.repositoryLinkHref} target="_blank" />
       </div>
-      <SpaceBarPX height={64} />
+      <div className={styles.spacebar06} />
       <div className={styles.tagsSection}>
         <IconLabelTags iconLabelKeys={projectData.iconLabelKeys} />
       </div>
-      <SpaceBarPX height={48} />
-      <SpaceBarPX height={48} />
+      <div className={styles.spacebar07} />
     </div>
   )
 }

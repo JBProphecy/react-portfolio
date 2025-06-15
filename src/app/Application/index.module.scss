@@ -3,6 +3,9 @@
 .component {
   --component-width: var(--app-width);
   --component-height: var(--app-height);
+
+  --provided-width: var(--component-width);
+  --provided-height: var(--component-height);
 }
 
 .component {

@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Application } from "./app/Application"
 import { InputProvider } from "./context/InputProvider"
 import { AppProvider } from "./context/AppProvider";
+import { TestPage } from "./pages/TestPage";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

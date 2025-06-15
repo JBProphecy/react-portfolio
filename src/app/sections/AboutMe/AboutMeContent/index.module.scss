@@ -1,37 +1,40 @@
 /**********************************************************************************************************************/
 
 .component {
-  --heroHeight: calc(var(--mainHeight) - var(--headerHeight));
+  --component-width: var(--main-container-width);
+  --component-height: var(--main-container-height);
+
+  --hero-height: calc(var(--main-container-height) - var(--header-height));
 }
 
 .component {
-  width: 100%;
-  height: max-content;
+  width: var(--component-width);
+  height: var(--main-container-height);
 	opacity: 0;
 	transition: opacity 300ms ease-out;
 	&.visible { opacity: 1; }
 
   > .space {
-    width: 100%;
-    height: calc(2 * var(--headerHeight));
+    width: inherit;
+    height: calc(2 * var(--app-unit-size));
   }
 
   > .hero {
-    width: 100%;
-    height: var(--heroHeight);
+    width: inherit;
+    height: var(--hero-height);
     position: relative;
 
     > .layer {
-      width: 100%;
-      height: 100%;
+      width: inherit;
+      height: inherit;
       position: absolute;
 
       &.background {
         z-index: 0;
 
         > video {
-          width: 100%;
-          height: 100%;
+          width: inherit;
+          height: inherit;
           object-fit: cover;
           opacity: 0.4;
           filter: blur(2.5rem);
@@ -45,15 +48,8 @@
   }
 
   > .section {
-    width: 100%;
+    width: inherit;
     height: max-content;
-    display: flex;
-    justify-content: center;
-
-    > .wrapper {
-      width: 85%;
-      height: max-content;
-    }
   }
 }
 

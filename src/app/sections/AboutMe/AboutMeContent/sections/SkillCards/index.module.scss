@@ -1,36 +1,42 @@
 /**********************************************************************************************************************/
 
+div.component {
+  --component-width: var(--main-container-width);
+  --component-padding: calc(4 * var(--app-unit-size));
+
+  --content-width: calc(var(--component-width) - 2 * var(--component-padding));
+  --content-height: calc(var(--component-height) - 2 * var(--component-padding));
+
+  --primary-font-color: rgb(192, 192, 192);
+  --primary-font-size: calc(4 * var(--app-unit-size));
+
+  --secondary-font-color: rgb(144, 144, 144);
+  --secondary-font-size: calc(2 * var(--app-unit-size));
+}
+
+/**********************************************************************************************************************/
+
 .component {
-  --contentFontSize: 1.5rem;
-  --contentLineHeight: 1.5;
-  --contentFontColor: rgb(144, 144, 144);
-
-  --titleFontSize: calc(2 * var(--contentFontSize));
-  --titleLineHeight: 1.25;
-  --titleFontColor: rgb(192, 192, 192);
-
-  --componentGap: calc(1/2 * var(--contentFontSize) + var(--contentFontSize));
-
-  width: 100%;
+  width: var(--component-width);
   height: max-content;
+  padding: var(--component-padding);
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: calc(3 * var(--app-unit-size));
 
   .titleContainer {
-    width: 100%;
+    width: var(--content-width);
     height: max-content;
     display: flex;
     justify-content: center;
 
     .title {
-      font-size: var(--titleFontSize);
-      line-height: var(--titleLineHeight);
+      color: var(--primary-font-color);
+      font-size: var(--primary-font-size);
+      line-height: 1.25;
       font-weight: bold;
-      text-align: center;
       user-select: none;
-      text-shadow: 0 0 calc(2/5 * var(--titleFontSize)) var(--titleFontColor);
-      color: var(--titleFontColor);
+      text-shadow: 0 0 calc(2/5 * var(--primary-font-size)) var(--primary-font-color);
     }
   }
 }

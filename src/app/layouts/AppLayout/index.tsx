@@ -8,15 +8,20 @@ import { SECTION_MAP, SectionKey } from "@/data/SECTION_MAP";
 import { joinClasses } from "@/utils/joinClasses";
 import { CustomProperties } from "@/types/css/CustomProperties";
 import { toStringMS } from "@/utils/strings/toStringMS";
+import { HeaderLinks } from "../../components/HeaderLinkStuff/HeaderLinks";
+import { AboutMeLinks } from "@/app/sections/AboutMe/AboutMeLinks";
+import { ProjectsLinks } from "@/app/sections/Projects/ProjectsLinks";
+import { AboutMeContent } from "@/app/sections/AboutMe/AboutMeContent";
+import { ProjectsContent } from "@/app/sections/Projects/ProjectsContent";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * @param props - Component Props
- * @see {@link MainLayoutProps}
+ * @see {@link AppLayoutProps}
  * @returns JSX
  */
-export function MainLayout(): JSX.Element {
+export function AppLayout(): JSX.Element {
 
   // App Context
   const appContext: AppContextType | undefined = useContext(AppContext);
@@ -27,21 +32,35 @@ export function MainLayout(): JSX.Element {
 
   // Component Style
   const style: CustomProperties = {
-    "--transitionDuration": toStringMS(250)
+    "--component-transition-duration": toStringMS(250)
   }
 
-  // Scroll Container
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  // Sidebar State + Toggle
+  // Sidebar State
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+
+  // Sidebar Toggle
   function toggleSidebar() { setIsSidebarOpen(isSidebarOpen ? false : true); }
 
-  // Click Header Link
+  // Header Link Order
+  const HEADER_LINK_SECTION_KEY_ARRAY: SectionKey[] = [
+    SectionKey.AboutMe,
+    SectionKey.Projects
+  ]
+
+  // Scroll Container Ref
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Header Link Click
   const handleClickHeaderLink = (sectionKey: SectionKey) => {
     appContext.setActiveSectionKey(sectionKey);
     if (scrollRef.current) { scrollRef.current.scrollTop = 0; }
   }
+
+  // About Me Section Refs
+  const heroRef = useRef<HTMLElement>(null);
+  const myStoryRef = useRef<HTMLElement>(null);
+  const businessLinksRef = useRef<HTMLElement>(null);
+  const skillCardsRef = useRef<HTMLElement>(null);
 
   // Click Sidebar Link (About Me Section)
   const handleClickAboutMeLink = (ref: React.RefObject<HTMLElement>) => {
@@ -50,12 +69,6 @@ export function MainLayout(): JSX.Element {
       ref.current?.scrollIntoView({ behavior: "smooth" });
     }, transitionDurationValueMS)
   }
-
-  // About Me Section Refs (for scrolling)
-  const heroRef = useRef<HTMLElement>(null);
-  const myStoryRef = useRef<HTMLElement>(null);
-  const businessLinksRef = useRef<HTMLElement>(null);
-  const skillCardsRef = useRef<HTMLElement>(null);
 
   // Return Content
   return (
@@ -70,17 +83,16 @@ export function MainLayout(): JSX.Element {
           />
         </div>
         <div className={styles.middle}>
-          <nav className={styles.headers}>
-            {Object.entries(SECTION_MAP).map(([key, { headerLabel }]) => (
-              <a
-                key={key}
-                className={joinClasses(styles.header, key === appContext.activeSectionKey ? styles.active : "")}
-                onClick={() => handleClickHeaderLink(key as SectionKey)}
-              >
-                {headerLabel}
-              </a>
-            ))}
-          </nav>
+          <HeaderLinks
+            headerLinkKeyAndPropsArray={HEADER_LINK_SECTION_KEY_ARRAY.map((sectionKey) => ({
+              headerLinkKey: sectionKey,
+              headerLinkProps: {
+                linkText: SECTION_MAP[sectionKey].headerLabel,
+                isActive: sectionKey === appContext.activeSectionKey,
+                handleClick: () => handleClickHeaderLink(sectionKey)
+              }
+            }))}
+          />
         </div>
         <div className={styles.right}></div>
       </header>
@@ -90,15 +102,15 @@ export function MainLayout(): JSX.Element {
             {(() => {
               switch (appContext.activeSectionKey) {
                 case SectionKey.AboutMe:
-                  return SECTION_MAP[SectionKey.AboutMe].sideContent({
-                    businessLinksRef: businessLinksRef,
-                    heroRef: heroRef,
-                    myStoryRef: myStoryRef,
-                    skillCardsRef: skillCardsRef,
-                    handleClick: handleClickAboutMeLink,
-                  });
+                  return <AboutMeLinks
+                    handleClick={handleClickAboutMeLink}
+                    heroRef={heroRef}
+                    myStoryRef={myStoryRef}
+                    businessLinksRef={businessLinksRef}
+                    skillCardsRef={skillCardsRef}
+                  />
                 case SectionKey.Projects:
-                  return SECTION_MAP[SectionKey.Projects].sideContent({});
+                  return <ProjectsLinks />
               }
             })()}
           </div>
@@ -109,14 +121,14 @@ export function MainLayout(): JSX.Element {
             {(() => {
               switch (appContext.activeSectionKey) {
                 case SectionKey.AboutMe:
-                  return SECTION_MAP[SectionKey.AboutMe].mainContent({
-                    businessLinksRef: businessLinksRef,
-                    heroRef: heroRef,
-                    myStoryRef: myStoryRef,
-                    skillCardsRef: skillCardsRef,
-                  });
+                  return <AboutMeContent
+                    heroRef={heroRef}
+                    myStoryRef={myStoryRef}
+                    businessLinksRef={businessLinksRef}
+                    skillCardsRef={skillCardsRef}
+                  />
                 case SectionKey.Projects:
-                  return SECTION_MAP[SectionKey.Projects].mainContent({})
+                  return <ProjectsContent />
               }
             })()}
           </div>

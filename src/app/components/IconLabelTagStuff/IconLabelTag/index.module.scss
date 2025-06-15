@@ -1,11 +1,11 @@
 /**********************************************************************************************************************/
 
 div.tag {
-  --tagHeight: 3rem;
-  --tagGap: calc(1/3 * var(--tagHeight));
+  --tag-height: calc(3 * var(--app-unit-size));
+  --tag-gap: calc(1 * var(--app-unit-size));
 
   > div.iconContainer {
-    --iconSize: var(--tagHeight);
+    --icon-size: var(--tag-height);
   }
 }
 
@@ -13,13 +13,13 @@ div.tag {
 
 div.tag {
   width: max-content;
-  height: var(--tagHeight);
+  height: var(--tag-height);
   display: flex;
-  gap: var(--tagGap);
+  gap: var(--tag-gap);
 
   > div.iconContainer {
-    width: var(--iconSize);
-    height: var(--iconSize);
+    width: var(--icon-size);
+    height: var(--icon-size);
     overflow: hidden;
 
     > img.icon {
@@ -32,13 +32,13 @@ div.tag {
 
   > div.textContainer {
       width: max-content;
-      height: var(--tagHeight);
+      height: var(--tag-height);
       display: flex;
       align-items: center;
 
     > span.text {
       color: rgb(144, 144, 144);
-      font-size: calc(7/10 * var(--tagHeight));
+      font-size: calc(7/10 * var(--tag-height));
       line-height: 1;
       font-weight: bold;
       user-select: none;

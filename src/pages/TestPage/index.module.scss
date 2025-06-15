@@ -1,20 +1,20 @@
 /**********************************************************************************************************************/
 
-ul.list {
-  --list-gap: calc(3 * var(--app-unit-size));
-}
-
-ul.list {
+.display {
   width: 100%;
-  height: max-content;
+  height: 100%;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: var(--list-gap);
+  align-items: center;
 
-  > li.item {
-    width: max-content;
-    height: max-content;
+  > .box {
+    --border-color: gray;
+    --border-width: var(--app-unit-border-width);
+    --size: 128px;
+    width: var(--size);
+    height: var(--size);
+    background-color: black;
+    border: var(--border-width) solid var(--border-color);
   }
 }
 

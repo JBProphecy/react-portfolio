@@ -20,14 +20,17 @@
 }
 
 .component {
+	--component-width: var(--main-container-width);
+	--component-height: var(--main-container-height);
+
   --titleFontSize: 3rem;
   --titleLineHeight: 1.25;
   --titleFontColor: rgb(192, 192, 192);
 }
 
 .component {
-  width: var(--mainWidth);
-  height: var(--mainHeight);
+  width: var(--component-width);
+  height: var(--component-height);
 	opacity: 0;
 	transition: opacity 300ms ease-out;
 	&.visible { opacity: 1; }
@@ -38,7 +41,7 @@
 	}
 
   > .section {
-    width: var(--mainWidth);
+    width: inherit;
     height: max-content;
     display: flex;
     flex-direction: column;

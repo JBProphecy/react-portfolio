@@ -51,21 +51,15 @@ export function AboutMeContent({
       </section>
       <div className={styles.space} />
       <section ref={myStoryRef} className={styles.section}>
-        <div className={styles.wrapper}>
-          <MyStory />
-        </div>
+        <MyStory />
       </section>
       <div className={styles.space} />
       <section ref={businessLinksRef} className={styles.section}>
-        <div className={styles.wrapper}>
-          <BusinessLinks />
-        </div>
+        <BusinessLinks />
       </section>
       <div className={styles.space} />
       <section ref={skillCardsRef} className={styles.section}>
-        <div className={styles.wrapper}>
-          <SkillCards />
-        </div>
+        <SkillCards />
       </section>
       <div className={styles.space} />
     </div>

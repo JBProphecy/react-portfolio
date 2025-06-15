@@ -1,78 +1,102 @@
 /**********************************************************************************************************************/
 
-.component {
-  --fontSizeKey: unset;
+div.component {
+  --component-width: var(--main-container-width);
+  --component-height: var(--hero-height);
+  --component-padding: calc(4 * var(--app-unit-size));
+  --component-font-family: "Oleo Script", serif;
 
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  font-family: "Oleo Script", serif;
-  padding: 5dvw;
-  overflow: hidden;
-}
+  --content-width: calc(var(--component-width) - 2 * var(--component-padding));
+  --content-height: calc(var(--component-height) - 2 * var(--component-padding));
 
-.grid {
-  display: grid;
-  width: 100%;
-  height: 100%;
-  grid-template-columns: repeat(25, 1fr);
-  grid-template-rows: repeat(24, 1fr);
-  position: relative;
-}
+  --left-width: calc(15/25 * var(--content-width));
+  --left-height: var(--content-height);
 
-.introduction {
-  grid-column: 1 / 13;
-  grid-row:  2/ 24;
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--fontSizeKey) * 1.5rem);
-  @media (max-aspect-ratio: 3/2) {
-    grid-column: 1/26;
+  --right-width: calc(9/25 * var(--content-width));
+  --right-height: var(--content-height);
+
+  --primary-font-color: rgb(192, 192, 192);
+  --primary-font-size: calc(6 * var(--app-unit-size));
+
+  --secondary-font-color: rgb(160, 160, 160);
+  --secondary-font-size: calc(3 * var(--app-unit-size));
+
+  @media screen and (aspect-ratio < 3/2) {
+    --left-width: var(--content-width);
+    --right-width: 0px;
   }
-}
-
-.titleRow {
-  width: 100%;
-  height: max-content;
-  display: flex;
-
-  .title {
-    --fontSize: min(18dvw, calc(var(--fontSizeKey) * 5rem));
-    font-size: var(--fontSize);
-    line-height: 1;
-    font-weight: bold;
-    user-select: none;
-    text-shadow: 0 0 calc(2/5 * var(--fontSize)) white;
-  }
-}
-
-.description, .tip {
-  --fontSize:  min(8dvw, calc(var(--fontSizeKey) * 2rem));
-  font-size: var(--fontSize);
-  line-height: 1.5;
-  user-select: none;
-  color: rgb(160, 160, 160);
-  text-shadow: 0 0 calc(2/5 * var(--fontSize)) gray;
-}
-
-.imageContainer {
-  grid-column: 14 / 26;
-  grid-row: 1 / 25;
-  display: flex;
-  justify-content: flex-end;
-  @media (max-aspect-ratio: 3/2) {
-    display: none;
-  }
-}
-
-.image {
-  width: 100%;
-  max-width: 500px;
-  height: 100%;
-  object-fit: cover;
-  border-radius: calc(var(--fontSizeKey) * 2rem);
-  box-shadow: 0px 0px calc(var(--fontSizeKey) * 4rem) calc(var(--fontSizeKey) * 2rem) black;
 }
 
 /**********************************************************************************************************************/
+
+div.component {
+  width: var(--component-width);
+  height: var(--component-height);
+  padding: var(--component-padding);
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+
+  > section.left {
+    width: var(--left-width);
+    height: var(--left-height);
+
+    > div.spacebar01 {
+      width: inherit;
+      height: calc(2 * var(--app-unit-height));
+    }
+
+    > div.spacebar02 {
+      width: inherit;
+      height: calc(6 * var(--app-unit-height));
+    }
+
+    > div.nameRow {
+      width: 100%;
+      height: max-content;
+
+      > span.name {
+        color: var(--component-color);
+        font-family: var(--component-font-family);
+        font-size: var(--primary-font-size);
+        line-height: 1.25;
+        font-weight: bold;
+        user-select: none;
+        text-shadow: 0 0 calc(2/5 * var(--primary-font-size)) var(--primary-font-color);
+      }
+    }
+
+    > p.motto, p.tip {
+      width: 100%;
+      height: max-content;
+      color: var(--secondary-font-color);
+      font-family: var(--component-font-family);
+      font-size: var(--secondary-font-size);
+      line-height: 1.5;
+      font-weight: normal;
+      user-select: none;
+      color: rgb(160, 160, 160);
+      text-shadow: 0 0 calc(2/5 * var(--secondary-font-size)) var(--secondary-font-color);
+    }
+  }
+
+  > section.right {
+    width: var(--right-width);
+    height: var(--right-height);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    > img.image {
+      aspect-ratio: 9/14;
+      max-width: calc(1 * var(--right-width));
+      max-height: calc(1 * var(--right-height));
+      object-fit: cover;
+      border-radius: calc(4 * var(--app-unit-border-width));
+      box-shadow: 0px 0px calc(3/5 * var(--component-padding)) calc(2/5 * var(--component-padding)) black;
+      @media screen and (aspect-ratio < 3/2) {
+        display: none;
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ export type IconLabelTagProps = {
 }
 
 /**
- * @param props - Component Props
+ * @param props
  * @see {@link IconLabelTagProps}
  * @returns JSX
  */
@@ -31,7 +31,7 @@ export function IconLabelTag({
         <span className={styles.text}>{text}</span>
       </div>
     </div>
-  )
+  );
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

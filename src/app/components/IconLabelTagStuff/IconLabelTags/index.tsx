@@ -12,7 +12,7 @@ export type IconLabelTagsProps = {
 }
 
 /**
- * @param props - Component Props
+ * @param props
  * @see {@link IconLabelTagsProps}
  * @returns JSX
  */
@@ -29,7 +29,7 @@ export function IconLabelTags({
         </li>
       ))}
     </ul>
-  )
+  );
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

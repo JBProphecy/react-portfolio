@@ -1,40 +1,77 @@
 /**********************************************************************************************************************/
 
 .component {
-  --primaryHeaderFontSize: 3rem;
-  --secondaryHeaderFontSize: 2.25rem;
-  --primaryHeaderFontColor: rgb(192, 192, 192);
-  --secondaryHeaderFontColor: rgb(192, 192, 192);
-  --paragraphHeaderFontSize: 2.25rem;
-  --paragraphFontSize: 1.5rem;
-  --paragraphFontColor: rgb(144, 144, 144);
+  --component-width: 100%;
+  --component-padding: 100%;
+
+  --content-width: calc(var(--component-width) - 2 * var(--component-padding));
+  --content-height: calc(var(--component-height) - 2 * var(--component-padding));
+
+  --primary-header-font-size: calc(5 * var(--app-unit-size));
+  --primary-header-font-color: rgb(192, 192, 192);
+
+  --secondary-header-font-size: calc(3 * var(--app-unit-size));
+  --secondary-header-font-color: rgb(192, 192, 192);
+
+  --paragraph-header-font-size: calc(3 * var(--app-unit-size));
+  --paragraph-font-size: calc(2 * var(--app-unit-size));
+  --paragraph-font-color: rgb(144, 144, 144);
 }
 
 .component {
-  width: 100%;
+  width: var(--component-width);
   height: max-content;
   opacity: 0;
   transition: opacity 300ms ease-out;
   &.visible { opacity: 1; }
 
-  @media screen and (max-width: 767px) {
+  > div.spacebar01 {
+    width: inherit;
+    height: calc(6 * var(--app-unit-size));
+  }
+  > div.spacebar02 {
+    width: inherit;
+    height: calc(6 * var(--app-unit-size));
+  }
+  > div.spacebar03 {
+    width: inherit;
+    height: calc(2 * var(--app-unit-size));
+  }
+  > div.spacebar04 {
+    width: inherit;
+    height: calc(6 * var(--app-unit-size));
+  }
+  > div.spacebar05 {
+    width: inherit;
+    height: calc(2 * var(--app-unit-size));
+  }
+  > div.spacebar06 {
+    width: inherit;
+    height: calc(6 * var(--app-unit-size));
+  }
+  > div.spacebar07 {
+    width: inherit;
+    height: calc(6 * var(--app-unit-size));
+  }
+
+  @media screen and (aspect-ratio < 1) {
     transition-delay: 100ms;
   }
 
   > .primaryHeaderContainer {
-    width: 100%;
+    width: inherit;
     height: max-content;
     padding: 0 20%;
     display: flex;
     justify-content: center;
 
     > .primaryHeader {
-      color: var(--primaryHeaderFontColor);
+      color: var(--primary-header-font-color);
       text-align: center;
-      font-size: var(--primaryHeaderFontSize);
+      font-size: var(--primary-header-font-size);
       line-height: 1.25;
       font-weight: bold;
-      text-shadow: 0 0 calc(3/5 * var(--primaryHeaderFontSize)) var(--primaryHeaderFontColor);
+      text-shadow: 0 0 calc(3/5 * var(--primary-header-font-size)) var(--primary-header-font-color);
     }
   }
 
@@ -50,12 +87,12 @@
     }
 
     > .secondaryHeader {
-      color: var(--secondaryHeaderFontColor);
+      color: var(--secondary-header-font-color);
       text-align: center;
-      font-size: var(--secondaryHeaderFontSize);
+      font-size: var(--secondary-header-font-size);
       line-height: 1.25;
       font-weight: bold;
-      text-shadow: 0 0 calc(3/5 * var(--secondaryHeaderFontSize)) var(--secondaryHeaderFontColor);
+      text-shadow: 0 0 calc(3/5 * var(--secondary-header-font-size)) var(--secondary-header-font-color);
     }
   }
 
@@ -83,11 +120,11 @@
   > .paragraph {
     width: 100%;
     padding: 0 10%;
-    color: var(--paragraphFontColor);
-    font-size: var(--paragraphFontSize);
+    color: var(--paragraph-font-color);
+    font-size: var(--paragraph-font-size);
     line-height: 1.5;
     font-weight: bold;
-    text-shadow: 0 0 calc(3/5 * var(--paragraphFontSize)) var(--paragraphFontColor);
+    text-shadow: 0 0 calc(3/5 * var(--paragraph-font-size)) var(--paragraph-font-color);
   }
 
   > .tagsSection {
@@ -101,7 +138,6 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 2.5rem;
   }
 }
 

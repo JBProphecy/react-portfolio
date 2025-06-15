@@ -2,46 +2,37 @@
 
 import styles from "./index.module.scss";
 
-import { CustomProperties } from "@/types/css/CustomProperties";
-import { SpaceBarPX } from "@/components/SpaceBarPX";
+import { HERO_DATA, HeroData } from "@/data/HERO_DATA";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/**
- * @property key - a multiplier for relative scale
- */
-export type HeroSectionProps = {
-  fontSizeKey?: number
-}
+export type HeroSectionProps = {}
 
 /**
- * @param props - Component Props
+ * @param props
  * @see {@link HeroSectionProps}
  * @returns JSX
  */
-export function HeroSection({ fontSizeKey = 1 }: HeroSectionProps): JSX.Element {
+export function HeroSection({}: HeroSectionProps): JSX.Element {
 
-  // Custom Properties
-  const style: CustomProperties = {
-    "--fontSizeKey": fontSizeKey
-  }
+  // Get Data
+  const heroData: HeroData = HERO_DATA;
 
-  // Return Content
+  // Component Content
   return (
-    <div className={styles.component} style={style}>
-      <div className={styles.grid}>
-        <section className={styles.introduction}>
-          <div className={styles.titleRow}>
-            <span className={styles.title}>Jack Piatt</span>
-          </div>
-          <p className={styles.description}>As an aspiring software developer, I strive to write clean code with a great purpose. Welcome to my portfolio!</p>
-          <SpaceBarPX height={72} />
-          <p className={styles.tip}>Click the icon in the top-left corner to open the side-menu!</p>
-        </section>
-        <section className={styles.imageContainer}>
-          <img className={styles.image} src="me.jpg" alt="a picture of Jack" />
-        </section>
-      </div>
+    <div className={styles.component}>
+      <section className={styles.left}>
+        <div className={styles.nameRow}>
+          <span className={styles.name}>{heroData.name}</span>
+        </div>
+        <div className={styles.spacebar01} />
+        <p className={styles.motto}>{heroData.motto}</p>
+        <div className={styles.spacebar02} />
+        <p className={styles.tip}>{heroData.tip}</p>
+      </section>
+      <section className={styles.right}>
+        <img className={styles.image} alt={heroData.imgAlt} src={heroData.imgSrc} />
+      </section>
     </div>
   )
 }

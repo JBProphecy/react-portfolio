@@ -20,19 +20,29 @@ export function BusinessLinks(): JSX.Element {
       </div>
       <div className={styles.contentContainer}>
         <LinkButton href="mailto:jackbpiatt@gmail.com"
-          linkText="Email Me" fontSize={1.5}
+          linkText="Email Me"
+          fontColor="var(--secondary-font-color)"
+          fontSize="var(--secondary-font-size)"
         />
         <LinkButton href="career-resume.pdf" download="Piatt_Jack_Resume.pdf"
-          linkText="Download Resume" fontSize={1.5}
+          linkText="Download Resume"
+          fontColor="var(--secondary-font-color)"
+          fontSize="var(--secondary-font-size)"
         />
         <LinkButton href="career-resume.pdf" target="_blank"
-          linkText="Open Resume" fontSize={1.5}
+          linkText="Open Resume"
+          fontColor="var(--secondary-font-color)"
+          fontSize="var(--secondary-font-size)"
         />
         <LinkButton href="https://github.com/JBProphecy" target="_blank"
-          linkText="Visit GitHub" fontSize={1.5}
+          linkText="Visit GitHub"
+          fontColor="var(--secondary-font-color)"
+          fontSize="var(--secondary-font-size)"
         />
         <LinkButton href="https://www.linkedin.com/in/jackpiatt" target="_blank"
-          linkText="Visit LinkedIn" fontSize={1.5}
+          linkText="Visit LinkedIn"
+          fontColor="var(--secondary-font-color)"
+          fontSize="var(--secondary-font-size)"
         />
       </div>
     </div>
