@@ -34,7 +34,7 @@
 
 	> .space {
 		width: 100%;
-		height: var(--headerHeight);
+		height: calc(2 * var(--app-unit-height));
 	}
 
   > .section {

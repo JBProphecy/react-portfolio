@@ -29,6 +29,7 @@
       font-weight: bold;
       text-align: center;
       user-select: none;
+      text-shadow: 0 0 calc(2/5 * var(--titleFontSize)) var(--titleFontColor);
       color: var(--titleFontColor);
     }
   }

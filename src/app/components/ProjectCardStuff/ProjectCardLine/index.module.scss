@@ -3,7 +3,7 @@
 div.component {
   width: 100%;
   height: max-content;
-  padding: 0 var(--app-header-height);
+  padding: 0 calc(2 * var(--app-unit-width));
   overflow: hidden;
   overflow-x: auto;
 

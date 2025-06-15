@@ -35,7 +35,6 @@ export function ProjectModalContent({ projectKey }: ProjectModalContentProps): J
   // Return Content
   return (
     <div className={joinClasses(styles.component, isVisible ? styles.visible : "")}>
-      <SpaceBarPX height={32} />
       <div className={styles.primaryHeaderContainer}>
         <span className={styles.primaryHeader}>{projectData.title}</span>
       </div>

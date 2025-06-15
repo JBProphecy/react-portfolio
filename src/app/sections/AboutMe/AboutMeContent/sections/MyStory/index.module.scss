@@ -29,6 +29,7 @@
       user-select: none;
       font-weight: bold;
       color: var(--titleFontColor);
+      text-shadow: 0 0 calc(2/5 * var(--titleFontSize)) var(--titleFontColor);
     }
   }
 
@@ -38,6 +39,7 @@
     user-select: none;
     font-weight: bold;
     color: rgb(144, 144, 144);
+    text-shadow: 0 0 calc(2/5 * var(--contentFontSize)) var(--contentFontColor);
   }
 }
 

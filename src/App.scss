@@ -25,18 +25,41 @@ body {
 #root {
   --app-width: 100dvw;
   --app-height: 100dvh;
+  --app-unit-width: unset;
   --app-unit-height: unset;
-  --app-header-height: calc(4 * var(--app-unit-height));
+  --app-unit-border-width: min(var(--app-unit-border-width-horizontal), var(--app-unit-border-width-vertical));
+}
 
-  @media screen and (min-height: 0px) { --app-unit-height: 0px; }
-  @media screen and (min-height: 128px) { --app-unit-height: 2px; }
-  @media screen and (min-height: 256px) { --app-unit-height: 4px; }
-  @media screen and (min-height: 384px) { --app-unit-height: 6px; }
-  @media screen and (min-height: 512px) { --app-unit-height: 8px; }
-  @media screen and (min-height: 640px) { --app-unit-height: 10px; }
-  @media screen and (min-height: 768px) { --app-unit-height: 12px; }
-  @media screen and (min-height: 896px) { --app-unit-height: 14px; }
-  @media screen and (min-height: 1024px) { --app-unit-height: 16px; }
+// WIDTH and HEIGHT
+@for $i from 0 through 32 {
+  $step: 64px;
+  $value: $i * $step;
+  @media screen and (min-width: $value) {
+    #root {
+      --app-unit-width: #{$i}px;
+    }
+  }
+  @media screen and (min-height: $value) {
+    #root {
+      --app-unit-height: #{$i}px;
+    }
+  }
+}
+
+// BORDER WIDTH
+@for $i from 0 through 16 {
+  $step: 160px;
+  $value: $i * $step;
+  @media screen and (min-width: $value) {
+    #root {
+      --app-unit-border-width-horizontal: #{$i}px;
+    }
+  }
+  @media screen and (min-height: $value) {
+    #root {
+      --app-unit-border-width-vertical: #{$i}px;
+    }
+  }
 }
 
 #root {
