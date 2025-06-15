@@ -42,7 +42,7 @@
         --side-container-width: var(--main-width);
         --side-container-padding: 0px;
       }
-      @media screen and (aspect-ratio > 2) {
+      @media screen and (aspect-ratio > 5/2) {
         --side-container-padding: 0px;
       }
 
@@ -56,7 +56,7 @@
         @media screen and (aspect-ratio < 1) {
           --sidebar-border-radius: 0px;
         }
-        @media screen and (aspect-ratio > 2) {
+        @media screen and (aspect-ratio > 5/2) {
           --sidebar-border-radius: 0px;
         }
 
