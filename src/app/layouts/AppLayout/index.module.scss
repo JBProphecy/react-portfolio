@@ -33,7 +33,7 @@
   > .main {
 
     > .sideContainer {
-      --side-container-width: calc(24 * var(--app-unit-width));
+      --side-container-width: 24rem;
       --side-container-height: var(--main-height);
       --side-container-left-position-open: 0px;
       --side-container-left-position-closed: calc(-1 * var(--side-container-width));
