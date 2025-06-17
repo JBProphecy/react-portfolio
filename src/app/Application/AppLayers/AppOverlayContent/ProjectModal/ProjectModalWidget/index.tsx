@@ -1,6 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import styles from "./index.module.scss";
+
 import { ProjectModalWidgetContent } from "./ProjectModalWidgetContent";
 
 import { ProjectKey } from "@/app/data/enums/ProjectKey";

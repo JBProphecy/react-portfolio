@@ -20,19 +20,19 @@ const router = createBrowserRouter([
     element: <Navigate to="/about-me" replace />
   },
   {
-    path: "/about-me",
+    path: "about-me",
     element: <AppLayers />
   },
   {
-    path: "/projects",
+    path: "projects",
     element: <AppLayers />
   },
   {
-    path: "/projects/:projectKey",
+    path: "projects/:projectKey",
     element: <AppLayers />
   },
   {
-    path: "/settings",
+    path: "settings",
     element: <AppLayers />
   },
   {

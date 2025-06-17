@@ -1,10 +1,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { ModalKey } from "@/app/data/enums/ModalKey";
-import { SectionKey } from "@/app/data/enums/SectionKey";
 import { ProjectKey } from "@/app/data/enums/ProjectKey";
+import { SectionKey } from "@/app/data/enums/SectionKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+type UnknownSectionState = {
+  sectionKey: null;
+}
 
 type AboutMeSectionState = {
   sectionKey: SectionKey.AboutMe;
@@ -12,17 +15,17 @@ type AboutMeSectionState = {
 
 type ProjectsSectionState = {
   sectionKey: SectionKey.Projects;
-  modalKey: ModalKey.Projects;
   projectKey: ProjectKey | null;
 }
 
 type SettingsSectionState = {
-  sectionKey: SectionKey.Settings
+  sectionKey: SectionKey.Settings;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export type AppState =
+| UnknownSectionState
 | AboutMeSectionState
 | ProjectsSectionState
 | SettingsSectionState;

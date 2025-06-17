@@ -9,7 +9,6 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { SectionKey } from "@/app/data/enums/SectionKey";
-import { ModalKey } from "@/app/data/enums/ModalKey";
 import { AppStateHook, useAppState } from "@/app/hooks/useAppState";
 
 import { joinClasses } from "@/utils/joinClasses";
@@ -25,36 +24,28 @@ type AppLayersProps = {}
  */
 export function AppLayers({}: AppLayersProps): JSX.Element {
 
-  // Navigate
+  // URL Functionality
   const location = useLocation();
   const navigate = useNavigate();
 
   // App State From URL
   const appStateHook: AppStateHook = useAppState();
+  const isOverlayActive: boolean = appStateHook.sectionKey === SectionKey.Projects && appStateHook.projectKey !== null;
 
-  const isOverlayActive: boolean =
-    appStateHook.sectionKey === SectionKey.Projects
-    && appStateHook.modalKey === ModalKey.Projects
-    && appStateHook.projectKey !== null;
-  
+  // Exit Modal Keys
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        navigate({
-          pathname: "/projects",
-          search: location.search
-        })
+        if (appStateHook.sectionKey === SectionKey.Projects) {
+          navigate({ pathname: "/projects", search: location.search })
+        }
       }
     }
-    if (appStateHook.sectionKey === SectionKey.Projects && appStateHook.projectKey) {
-      window.addEventListener("keydown", handleEscape);
-    }
-    return () => {
-      window.removeEventListener("keydown", handleEscape);
-    }
-  }, [appStateHook])
+    if (isOverlayActive) { window.addEventListener("keydown", handleEscape); }
+    return () => { window.removeEventListener("keydown", handleEscape); }
+  }, [appStateHook]);
   
-  // Return Content
+  // Return Component
   return (
     <>
       <div className={joinClasses(styles.layer, styles.primary)}>
