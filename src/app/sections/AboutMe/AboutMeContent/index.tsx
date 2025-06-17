@@ -34,7 +34,11 @@ export function AboutMeContent({
 
   // Visibility
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  useEffect(() => { setTimeout(() => setIsVisible(true), 0) }, [])
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      setTimeout(() => setIsVisible(true), 0)
+    })
+  }, []);
 
   // Return Content
   return (

@@ -2,9 +2,9 @@
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Application } from "./app/Application"
 import { InputProvider } from "./context/InputProvider"
-import { AppProvider } from "./context/AppProvider";
+import { AppLayers } from "./app/components/AppLayers";
+import { SectionKey } from "./app/data/enums/SectionKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -19,7 +19,25 @@ import { AppProvider } from "./context/AppProvider";
 const primaryRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Application />
+    element: <AppLayers />,
+    children: [
+      {
+        path: SectionKey.AboutMe,
+        element: <></>
+      },
+      {
+        path: SectionKey.Projects,
+        element: <></>
+      },
+      {
+        path: `${SectionKey.Projects}/:projectKey`,
+        element: <></>
+      },
+      {
+        path: SectionKey.Settings,
+        element: <></>
+      }
+    ]
   }
 ]);
 
@@ -29,9 +47,7 @@ export default function App() {
 
   return (
     <InputProvider>
-      <AppProvider>
-        <RouterProvider router={primaryRouter} />
-      </AppProvider>
+      <RouterProvider router={primaryRouter} />
     </InputProvider>
   )
 }

@@ -1,0 +1,29 @@
+/**********************************************************************************************************************/
+
+div.layer {
+  --layer-width: var(--provided-width);
+  --layer-height: var(--provided-height);
+  --overlay-transition-duration: 300ms;
+  --overlay-transition-function: ease-out;
+}
+
+/**********************************************************************************************************************/
+
+div.layer {
+  width: var(--layer-width);
+  height: var(--layer-height);
+  position: absolute; // root element has a position of relative
+  &.primary { z-index: 0; }
+  &.overlay {
+    transition: z-index var(--overlay-transition-duration) var(--overlay-transition-function);
+    &.back { z-index: -1; }
+    &.front { z-index: 999; }
+  }
+
+  > * {
+    --provided-width: var(--layer-width);
+    --provided-height: var(--layer-height);
+  }
+}
+
+/**********************************************************************************************************************/

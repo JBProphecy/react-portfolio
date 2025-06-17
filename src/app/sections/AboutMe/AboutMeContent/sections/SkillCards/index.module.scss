@@ -2,16 +2,16 @@
 
 div.component {
   --component-width: var(--main-container-width);
-  --component-padding: calc(4 * var(--app-unit-size));
+  --component-padding: calc(4 * var(--app-unit-size-linear-64-min));
 
   --content-width: calc(var(--component-width) - 2 * var(--component-padding));
   --content-height: calc(var(--component-height) - 2 * var(--component-padding));
 
   --primary-font-color: rgb(192, 192, 192);
-  --primary-font-size: calc(4 * var(--app-unit-size));
+  --primary-font-size: calc(4 * var(--app-font-size-scale-min));
 
   --secondary-font-color: rgb(144, 144, 144);
-  --secondary-font-size: calc(2 * var(--app-unit-size));
+  --secondary-font-size: calc(2 * var(--app-font-size-scale-min));
 }
 
 /**********************************************************************************************************************/
@@ -22,7 +22,7 @@ div.component {
   padding: var(--component-padding);
   display: flex;
   flex-direction: column;
-  gap: calc(3 * var(--app-unit-size));
+  gap: calc(3 * var(--app-unit-height-linear-64));
 
   .titleContainer {
     width: var(--content-width);

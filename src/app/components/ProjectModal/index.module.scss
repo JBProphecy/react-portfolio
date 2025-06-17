@@ -1,0 +1,121 @@
+/**********************************************************************************************************************/
+
+// Style Variables
+
+.projectModal {
+  --project-modal-width: var(--provided-width);
+  --project-modal-height: var(--provided-height);
+  --project-modal-transition-duration: var(--overlay-transition-duration);
+  --project-modal-transition-function: var(--overlay-transition-function);
+  
+  --primary-padding: calc(4 * var(--app-unit-size-linear-64-min));
+  --primary-content-width: calc(var(--project-modal-width) - 2 * var(--primary-padding));
+  --primary-content-height: calc(var(--project-modal-height) - 2 * var(--primary-padding));
+
+  --container-width: min(var(--primary-content-width), var(--primary-content-height));
+  --container-height: var(--primary-content-height);
+
+  @media screen and (aspect-ratio < 1) {
+    --primary-padding: 0px;
+  }
+  @media screen and (aspect-ratio > 5/2) {
+    --primary-padding: 0px;
+    --container-width: var(--primary-content-width);
+  }
+}
+
+/**********************************************************************************************************************/
+
+// Transition Variables
+
+.projectModal {
+  --background-opacity-hidden: 0;
+  --background-opacity-visible: 0.9;
+
+  --container-opacity-hidden: 0;
+  --container-opacity-visible: 1;
+
+  --container-transform-hidden: translateY(-3rem);
+  --container-transform-visible: translateY(0);
+
+  @media screen and (aspect-ratio < 1) {
+    --container-transform-hidden: scale(0.7);
+    --container-transform-visible: scale(1);
+  }
+  
+  @media screen and (aspect-ratio > 5/2) {
+    --container-transform-hidden: scale(0.7);
+    --container-transform-visible: scale(1);
+  }
+
+  &.hidden {
+
+    > .layer.background {
+      --background-opacity: var(--background-opacity-hidden);
+    }
+
+    > .layer.primary {
+      --container-opacity: var(--container-opacity-hidden);
+      --container-transform: var(--container-transform-hidden);
+    }
+  }
+
+  &.visible {
+
+    > .layer.background {
+      --background-opacity: var(--background-opacity-visible);
+    }
+
+    > .layer.primary {
+      --container-opacity: var(--container-opacity-visible);
+      --container-transform: var(--container-transform-visible);
+    }
+  }
+}
+
+/**********************************************************************************************************************/
+
+// Application
+
+.projectModal {
+  width: var(--project-modal-width);
+  height: var(--project-modal-height);
+  position: relative;
+
+  > .layer {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+
+    &.background {
+      background-color: black;
+      opacity: var(--background-opacity);
+      transition: opacity var(--project-modal-transition-duration) var(--project-modal-transition-function);
+    }
+
+    &.primary {
+      display: flex;
+      justify-content: center;
+      padding: var(--primary-padding);
+
+      > .container {
+        background-color: black;
+        width: var(--container-width);
+        height: var(--container-height);
+        opacity: var(--container-opacity);
+        transform: var(--container-transform);
+        transition:
+          opacity var(--project-modal-transition-duration) var(--project-modal-transition-function),
+          transform var(--project-modal-transition-duration) var(--project-modal-transition-function)
+        ;
+
+        > * {
+          --provided-width: var(--container-width);
+          --provided-height: var(--container-height);
+        }
+      }
+    }
+  }
+}
+
+/**********************************************************************************************************************/

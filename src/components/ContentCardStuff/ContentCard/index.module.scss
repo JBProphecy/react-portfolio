@@ -97,12 +97,8 @@ div.component {
   --transitionFunction: ease-out;
 
   @media screen and (min-width: 0px) {
-    --multiplierNormal: 1;
-    --multiplierHovered: 1.1;
-  }
-  @media screen and (min-width: 384px) {
     --multiplierNormal: 2;
-    --multiplierHovered: 2.2;
+    --multiplierHovered: 2.1;
   }
   @media screen and (min-width: 768px) {
     --multiplierNormal: 3;

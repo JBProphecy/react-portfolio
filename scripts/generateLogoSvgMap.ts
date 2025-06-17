@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const ICON_DIRECTORY: string = path.resolve(__dirname, "../src/assets/logos");
-const OUTPUT_FILE: string = path.resolve(__dirname, `../src/data/LOGO_SVG_MAP.ts`);
+const OUTPUT_FILE: string = path.resolve(__dirname, `../src/app/data/maps/LOGO_SVG_MAP.ts`);
 
 const files: string[] = fs.readdirSync(ICON_DIRECTORY).filter(file => file.endsWith('.svg'));
 
@@ -43,13 +43,13 @@ ${importLines.join("\n")}
 
 ${lineBreak}
 
-enum LogoKeys {
+enum LogoKey {
 ${enumEntries.join(",\n")}
 }
 
 ${lineBreak}
 
-export const LOGO_SVG_MAP: Record<LogoKeys, string> = {
+export const LOGO_SVG_MAP: Record<LogoKey, string> = {
 ${mapEntries.join(",\n")}
 };
 

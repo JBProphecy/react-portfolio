@@ -2,11 +2,8 @@
 
 import styles from "./index.module.scss";
 
-import { useContext } from "react";
-
-import { AppContext, AppContextType } from "@/context/AppContext";
-
-import { ProjectKey } from "@/data/PROJECT_MAP";
+import { ProjectKey } from "@/app/data/enums/ProjectKey";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -17,13 +14,14 @@ import { ProjectKey } from "@/data/PROJECT_MAP";
  */
 export function ProjectsLinks(): JSX.Element {
 
-  // App Context
-  const appContext: AppContextType | undefined = useContext(AppContext);
-  if (typeof appContext === "undefined") { throw new Error("Missing App Context Provider"); }
+  // Navigate
+  const navigate: NavigateFunction = useNavigate();
 
   const handleClickProjectLink = (projectKey: ProjectKey) => {
-    appContext.setCurrentProjectKey(projectKey);
-    appContext.toggleProjectModal();
+    navigate({
+      pathname: `/projects/${projectKey}`,
+      search: location.search
+    })
   }
 
   // Return Content
@@ -35,7 +33,7 @@ export function ProjectsLinks(): JSX.Element {
       <a className={styles.item} onClick={() => { handleClickProjectLink(ProjectKey.MusicVisualizer) }}>
         <span className={styles.label}>Music Visualizer</span>
       </a>
-      <a className={styles.item} onClick={() => { handleClickProjectLink(ProjectKey.UserAuthentication) }}>
+      <a className={styles.item} onClick={() => { handleClickProjectLink(ProjectKey.FormValidation) }}>
         <span className={styles.label}>User Authentication</span>
       </a>
     </nav>

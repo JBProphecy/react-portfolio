@@ -1,20 +1,13 @@
 /**********************************************************************************************************************/
 
-:root {
-  --app-font-size: 16px;
-  --app-font-family: calibri, sans-serif;
-  --app-background-color: rgb(12, 12, 12);
-  --app-font-color: rgb(192, 192, 192);
-}
-
 html {
-  font-size: var(--app-fon-size);
-  font-family: var(--app-font-family);
+  font-size: 16px;
+  font-family: calibri, sans-serif;
 }
 
 body {
-	background-color: var(--app-background-color);
-	color: var(--app-font-color);
+	background-color: rgb(12, 12, 12);
+	color: rgb(192, 192, 192);
 
 	&[data-input-mode="keyboard"] { cursor: none; }
 	&[data-input-mode="keyboard"] #root { pointer-events: none; }
@@ -22,51 +15,64 @@ body {
 
 /**********************************************************************************************************************/
 
-#root {
-  --app-width: 100dvw;
-  --app-height: 100dvh;
-  --app-unit-width: unset;
-  --app-unit-height: unset;
-  --app-unit-size: min(var(--app-unit-width), var(--app-unit-height));
-  --app-unit-border-width: min(var(--app-unit-border-width-horizontal), var(--app-unit-border-width-vertical));
-}
-
-// WIDTH and HEIGHT
 @for $i from 0 through 32 {
   $step: 64px;
   $value: $i * $step;
   @media screen and (min-width: $value) {
     #root {
-      --app-unit-width: #{$i}px;
+      --app-unit-width-linear-64: #{$i}px;
+      --app-font-size-scale-width: #{calc($i / 16)}rem;
     }
   }
   @media screen and (min-height: $value) {
     #root {
-      --app-unit-height: #{$i}px;
+      --app-unit-height-linear-64: #{$i}px;
+      --app-font-size-scale-height: #{calc($i / 16)}rem;
     }
   }
 }
 
-// BORDER WIDTH
 @for $i from -1 through 7 {
   $first: 32px;
   $break: if($i == -1, 0px, pow(2, $i) * $first);
   $value: $i + 1;
   @media screen and (min-width: $break) {
     #root {
-      --app-unit-border-width-horizontal: #{$value}px;
+      --app-unit-width-log-32: #{$value}px;
     }
   }
   @media screen and (min-height: $break) {
     #root {
-      --app-unit-border-width-vertical: #{$value}px;
+      --app-unit-height-log-32: #{$value}px;
     }
+  }
+}
+
+/**********************************************************************************************************************/
+
+#root {
+  --app-width: 100dvw;
+  --app-height: 100dvh;
+
+  --app-unit-size-linear-64-min: min(var(--app-unit-width-linear-64), var(--app-unit-height-linear-64));
+  --app-unit-size-linear-64-max: max(var(--app-unit-width-linear-64), var(--app-unit-height-linear-64));
+
+  --app-unit-size-log-32-min: min(var(--app-unit-width-log-32), var(--app-unit-height-log-32));
+  --app-unit-size-log-32-max: max(var(--app-unit-width-log-32), var(--app-unit-height-log-32));
+
+  --app-font-size-scale-min: min(var(--app-font-size-scale-width), var(--app-font-size-scale-height));
+  --app-font-size-scale-max: max(var(--app-font-size-scale-width), var(--app-font-size-scale-height));
+
+  > * {
+    --provided-width: var(--app-width);
+    --provided-height: var(--app-height);
   }
 }
 
 #root {
   width: var(--app-width);
   height: var(--app-height);
+  position: relative; // for app layers
   overflow: hidden; // prevents temporary scrollbar when resizing window
 }
 
