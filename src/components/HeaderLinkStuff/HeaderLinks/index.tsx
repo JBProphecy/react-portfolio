@@ -2,7 +2,7 @@
 
 import styles from "./index.module.scss";
 
-import { SectionKey } from "@/app/data/maps/SECTION_MAP";
+import { SectionKey } from "@/app/data/enums/SectionKey";
 import { HeaderLink, HeaderLinkProps } from "../HeaderLink";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

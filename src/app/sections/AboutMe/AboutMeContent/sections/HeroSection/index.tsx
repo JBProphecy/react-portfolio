@@ -2,7 +2,7 @@
 
 import styles from "./index.module.scss";
 
-import { HERO_DATA, HeroData } from "@/data/HERO_DATA";
+import { HERO_DATA, HeroData } from "@/app/data/HERO_DATA";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
