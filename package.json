@@ -9,7 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate:icons": "npx tsx scripts/generateLogoSvgMap.ts"
+    "generate:logo-map": "npx tsx scripts/generateLogoMap.ts"
   },
   "dependencies": {
     "react": "^18.3.1",

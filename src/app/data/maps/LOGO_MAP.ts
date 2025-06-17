@@ -4,6 +4,10 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+import { LogoKey } from "@/app/data/enums/LogoKey";
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 import css from "@/assets/logos/css.svg";
 import expressjs from "@/assets/logos/expressjs.svg";
 import git from "@/assets/logos/git.svg";
@@ -29,34 +33,7 @@ import vscode from "@/assets/logos/vscode.svg";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-enum LogoKey {
-	css = "css",
-	expressjs = "expressjs",
-	git = "git",
-	github = "github",
-	html = "html",
-	java = "java",
-	javascript = "javascript",
-	maven = "maven",
-	mysql = "mysql",
-	nodejs = "nodejs",
-	postgressql = "postgressql",
-	prisma = "prisma",
-	python = "python",
-	reactjs = "reactjs",
-	scss = "scss",
-	spring = "spring",
-	sql = "sql",
-	sqlite = "sqlite",
-	typescript = "typescript",
-	vercel = "vercel",
-	vite = "vite",
-	vscode = "vscode"
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-export const LOGO_SVG_MAP: Record<LogoKey, string> = {
+export const LOGO_MAP: Record<LogoKey, string> = {
 	css: css,
 	expressjs: expressjs,
 	git: git,

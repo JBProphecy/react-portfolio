@@ -9,10 +9,11 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const ICON_DIRECTORY: string = path.resolve(__dirname, "../src/assets/logos");
-const OUTPUT_FILE: string = path.resolve(__dirname, `../src/app/data/maps/LOGO_SVG_MAP.ts`);
+const LOGO_DIRECTORY: string = path.resolve(__dirname, "../src/assets/logos");
+const LOGO_KEY_OUTPUT_FILE: string = path.resolve(__dirname, "../src/app/data/enums/LogoKey.ts");
+const LOGO_MAP_OUTPUT_FILE: string = path.resolve(__dirname, `../src/app/data/maps/LOGO_MAP.ts`);
 
-const files: string[] = fs.readdirSync(ICON_DIRECTORY).filter(file => file.endsWith('.svg'));
+const files: string[] = fs.readdirSync(LOGO_DIRECTORY).filter(file => file.endsWith('.svg'));
 
 const importLines: string[] = files.map(file => {
   const variable: string = file.replace(".svg", "").replace(/[^a-zA-Z0-9]/g, '_');
@@ -33,9 +34,33 @@ const mapEntries: string[] = files.map(file => {
 
 const lineBreak: string = "/".repeat(120);
 
-const content: string = `${lineBreak}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const LOGO_KEY_FILE_CONTENT: string = `${lineBreak}
 
 // AUTO-GENERATED FILE
+
+${lineBreak}
+
+export enum LogoKey {
+${enumEntries.join(",\n")}
+}
+
+${lineBreak}
+`
+
+fs.writeFileSync(LOGO_KEY_OUTPUT_FILE, LOGO_KEY_FILE_CONTENT);
+console.log("File Generated at", LOGO_KEY_OUTPUT_FILE);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const LOGO_MAP_FILE_CONTENT: string = `${lineBreak}
+
+// AUTO-GENERATED FILE
+
+${lineBreak}
+
+import { LogoKey } from "@/app/data/enums/LogoKey";
 
 ${lineBreak}
 
@@ -43,20 +68,14 @@ ${importLines.join("\n")}
 
 ${lineBreak}
 
-enum LogoKey {
-${enumEntries.join(",\n")}
-}
-
-${lineBreak}
-
-export const LOGO_SVG_MAP: Record<LogoKey, string> = {
+export const LOGO_MAP: Record<LogoKey, string> = {
 ${mapEntries.join(",\n")}
 };
 
 ${lineBreak}
 `;
 
-fs.writeFileSync(OUTPUT_FILE, content);
-console.log("File Generated at", OUTPUT_FILE);
+fs.writeFileSync(LOGO_MAP_OUTPUT_FILE, LOGO_MAP_FILE_CONTENT);
+console.log("File Generated at", LOGO_MAP_OUTPUT_FILE);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
