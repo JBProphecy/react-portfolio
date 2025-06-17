@@ -5,7 +5,7 @@
   --component-height: var(--provided-height);
 
 	--header-width: var(--component-width);
-	--header-height: max(calc(6 * var(--app-unit-height-linear-64)), 4rem);
+	--header-height: max(calc(6 * var(--app-unit-height-linear-64)), 3rem);
 	--header-padding: calc(1/6 * var(--header-height));
 
   --main-width: var(--component-width);

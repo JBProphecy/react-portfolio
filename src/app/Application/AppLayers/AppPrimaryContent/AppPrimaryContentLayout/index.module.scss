@@ -2,13 +2,13 @@
 
 .appPrimaryContentLayout {
   --app-primary-content-layout-transition-duration: unset; // from code
-  --app-primary-content-layout-transition-function: ease-out;
+  --app-primary-content-layout-transition-function: ease;
 
   --app-primary-content-layout-width: var(--provided-width);
   --app-primary-content-layout-height: var(--provided-height);
 
   --header-width: var(--app-primary-content-layout-width);
-  --header-height: max(calc(4 * var(--app-unit-height-linear-64)), 4rem);
+  --header-height: max(calc(4 * var(--app-unit-height-linear-64)), 3rem);
 
   --main-width: var(--app-primary-content-layout-width);
   --main-height: calc(var(--app-primary-content-layout-height) - var(--header-height));

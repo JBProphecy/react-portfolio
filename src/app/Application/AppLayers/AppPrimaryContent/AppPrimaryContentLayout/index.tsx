@@ -45,11 +45,11 @@ export function AppPrimaryContentLayout({
   const sidebarHook: BooleanQueryParamHook = useBooleanQueryParam("sidebar", "open");
 
   // Component Constants
-  const transitionDurationValueMS: number = 250;
+  const transitionDurationValueMS: number = 300;
 
   // Component Style
   const style: CustomProperties = {
-    "--app-primary-content-layout-transition-duration": toStringMS(250)
+    "--app-primary-content-layout-transition-duration": toStringMS(transitionDurationValueMS)
   }
 
   // Header Link Order
