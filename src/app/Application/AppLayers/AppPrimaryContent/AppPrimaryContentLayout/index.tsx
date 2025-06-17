@@ -1,20 +1,27 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { joinClasses } from "@/utils/joinClasses";
 import styles from "./index.module.scss";
+
+import { AboutMeContent } from "./AboutMeContent";
+import { AboutMeLinks } from "./AboutMeLinks";
+import { ProjectsContent } from "./ProjectsContent";
+import { ProjectsLinks } from "./ProjectsLinks";
+
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { SectionKey } from "@/app/data/enums/SectionKey";
-import { NavigateFunction, useNavigate } from "react-router-dom";
-import { CustomProperties } from "@/types/css/CustomProperties";
-import { toStringMS } from "@/utils/strings/toStringMS";
-import { HeaderLinks } from "@/components/HeaderLinkStuff/HeaderLinks";
 import { SECTION_MAP } from "@/app/data/maps/SECTION_MAP";
 import { AppStateHook } from "@/app/hooks/useAppState";
-import { AboutMeLinks } from "@/app/sections/AboutMe/AboutMeLinks";
-import { ProjectsLinks } from "@/app/sections/Projects/ProjectsLinks";
-import { AboutMeContent } from "@/app/sections/AboutMe/AboutMeContent";
-import { ProjectsContent } from "@/app/sections/Projects/ProjectsContent";
+
+import { HeaderLinks } from "@/components/HeaderLinkStuff/HeaderLinks";
+
 import { BooleanQueryParamHook, useBooleanQueryParam } from "@/hooks/useBooleanQueryParam";
+
+import { CustomProperties } from "@/types/css/CustomProperties";
+
+import { joinClasses } from "@/utils/joinClasses";
+import { toStringMS } from "@/utils/strings/toStringMS";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -32,7 +39,7 @@ export function AppPrimaryContentLayout({
 }: AppPrimaryContentLayoutProps): JSX.Element {
 
   // Navigate
-  const navigate: NavigateFunction = useNavigate();
+  const navigate = useNavigate();
 
   // Sidebar Hook
   const sidebarHook: BooleanQueryParamHook = useBooleanQueryParam("sidebar", "open");

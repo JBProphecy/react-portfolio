@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import { AppLayers } from "./app/Application/AppLayers";
+import { InputProvider } from "./context/InputProvider";
 
-import { InputProvider } from "./context/InputProvider"
-import { AppLayers } from "./app/components/AppLayers";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

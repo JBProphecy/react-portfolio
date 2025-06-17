@@ -2,16 +2,17 @@
 
 import styles from "./index.module.scss";
 
-import { joinClasses } from "@/utils/joinClasses";
+import { AppOverlayContent } from "./AppOverlayContent";
+import { AppPrimaryContent } from "./AppPrimaryContent";
 
-import { AppOverlayContent } from "@/app/components/AppOverlayContent";
-import { AppPrimaryContent } from "@/app/components/AppPrimaryContent";
-
-import { AppStateHook, useAppState } from "@/app/hooks/useAppState";
-import { SectionKey } from "@/app/data/enums/SectionKey";
-import { ModalKey } from "@/app/data/enums/ModalKey";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import { SectionKey } from "@/app/data/enums/SectionKey";
+import { ModalKey } from "@/app/data/enums/ModalKey";
+import { AppStateHook, useAppState } from "@/app/hooks/useAppState";
+
+import { joinClasses } from "@/utils/joinClasses";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

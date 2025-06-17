@@ -1,24 +1,30 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import styles from "./index.module.scss";
+import { ProjectModalWidgetContent } from "./ProjectModalWidgetContent";
+
+import { ProjectKey } from "@/app/data/enums/ProjectKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export type TestPageProps = {}
+type ProjectModalWidgetProps = {
+  projectKey: ProjectKey | null
+}
 
 /**
  * @param props
- * @see {@link TestPageProps}
+ * @see {@link ProjectModalWidgetProps}
  * @returns JSX
  */
-export function TestPage({}: TestPageProps): JSX.Element {
+export function ProjectModalWidget({
+  projectKey
+}: ProjectModalWidgetProps): JSX.Element {
 
-  // Return Content
   return (
-    <div className={styles.display}>
-      <div className={styles.box}></div>
+    <div className={styles.projectModalWidget}>
+      <ProjectModalWidgetContent projectKey={projectKey} />
     </div>
-  )
+  );
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

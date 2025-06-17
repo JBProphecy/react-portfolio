@@ -2,14 +2,14 @@
 
 import styles from "./index.module.scss";
 
+import { BusinessLinks } from "./BusinessLinks";
+import { HeroSection } from "./HeroSection";
+import { MyStory } from "./MyStory";
+import { SkillCards } from "./SkillCards";
+
 import { useEffect, useState } from "react";
 
 import { joinClasses } from "@/utils/joinClasses";
-
-import { HeroSection } from "@/app/sections/AboutMe/AboutMeContent/sections/HeroSection";
-import { MyStory } from "@/app/sections/AboutMe/AboutMeContent/sections/MyStory";
-import { BusinessLinks } from "./sections/BusinessLinks";
-import { SkillCards } from "./sections/SkillCards";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

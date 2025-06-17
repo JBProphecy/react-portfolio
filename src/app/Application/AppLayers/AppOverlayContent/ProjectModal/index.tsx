@@ -1,10 +1,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import styles from "./index.module.scss";
+import { ProjectModalWidget } from "./ProjectModalWidget";
 
-import { joinClasses } from "@/utils/joinClasses";
-import { ProjectModalWidget } from "@/app/components/ProjectModalWidget";
 import { ProjectKey } from "@/app/data/enums/ProjectKey";
+import { joinClasses } from "@/utils/joinClasses";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

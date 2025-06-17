@@ -2,15 +2,17 @@
 
 import styles from "./index.module.scss";
 
+import { useEffect, useState } from "react";
 import { type NavigateFunction, useNavigate } from "react-router-dom";
 
 import { joinClasses } from "@/utils/joinClasses";
-import { ProjectKey } from "@/app/data/enums/ProjectKey";
-import { toProjectData } from "@/app/data/utils/fromProjectKey";
+
 import { LinkButton } from "@/components/LinkButton";
 import { IconLabelTags } from "@/components/IconLabelTagStuff/IconLabelTags";
+
+import { ProjectKey } from "@/app/data/enums/ProjectKey";
 import { ProjectData } from "@/app/data/types/ProjectData";
-import { useEffect, useState } from "react";
+import { toProjectData } from "@/app/data/utils/fromProjectKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
