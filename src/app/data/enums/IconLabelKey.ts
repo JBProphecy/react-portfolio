@@ -20,6 +20,7 @@ export enum IconLabelKey {
   SQL = "SQL",
   SQLite = "SQLite",
   TypeScript = "TypeScript",
+  Vercel = "Vercel",
   Vite = "Vite",
   VSCode = "VSCode"
 }

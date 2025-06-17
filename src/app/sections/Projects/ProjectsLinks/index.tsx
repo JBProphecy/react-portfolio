@@ -27,6 +27,9 @@ export function ProjectsLinks(): JSX.Element {
   // Return Content
   return (
     <nav className={styles.list}>
+      <a className={styles.item} onClick={() => { handleClickProjectLink(ProjectKey.MyPortfolio) }}>
+        <span className={styles.label}>This Portfolio</span>
+      </a>
       <a className={styles.item} onClick={() => { handleClickProjectLink(ProjectKey.MovieWebsite) }}>
         <span className={styles.label}>Movie Website</span>
       </a>

@@ -23,6 +23,7 @@ import spring from "@/assets/logos/spring.svg";
 import sql from "@/assets/logos/sql.svg";
 import sqlite from "@/assets/logos/sqlite.svg";
 import typescript from "@/assets/logos/typescript.svg";
+import vercel from "@/assets/logos/vercel.svg";
 import vite from "@/assets/logos/vite.svg";
 import vscode from "@/assets/logos/vscode.svg";
 
@@ -48,6 +49,7 @@ enum LogoKey {
 	sql = "sql",
 	sqlite = "sqlite",
 	typescript = "typescript",
+	vercel = "vercel",
 	vite = "vite",
 	vscode = "vscode"
 }
@@ -74,6 +76,7 @@ export const LOGO_SVG_MAP: Record<LogoKey, string> = {
 	sql: sql,
 	sqlite: sqlite,
 	typescript: typescript,
+	vercel: vercel,
 	vite: vite,
 	vscode: vscode
 };

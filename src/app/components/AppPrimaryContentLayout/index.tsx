@@ -49,7 +49,7 @@ export function AppPrimaryContentLayout({
   const HEADER_LINK_SECTION_KEY_ARRAY: SectionKey[] = [
     SectionKey.AboutMe,
     SectionKey.Projects,
-    SectionKey.Settings
+    // SectionKey.Settings
   ]
 
   // Scroll Container Ref

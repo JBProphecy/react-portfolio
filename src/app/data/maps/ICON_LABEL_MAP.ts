@@ -27,6 +27,7 @@ export const ICON_LABEL_MAP: Record<IconLabelKey, IconLabelData> = {
   [IconLabelKey.SQL]: { iconSrc: LOGO_SVG_MAP.sql, text: "SQL", iconAlt: "SQL icon" },
   [IconLabelKey.SQLite]: { iconSrc: LOGO_SVG_MAP.sqlite, text: "SQLite", iconAlt: "SQLite icon" },
   [IconLabelKey.TypeScript]: { iconSrc: LOGO_SVG_MAP.typescript, text: "TypeScript", iconAlt: "TypeScript icon" },
+  [IconLabelKey.Vercel]: { iconSrc: LOGO_SVG_MAP.vercel, text: "Vercel", iconAlt: "Vercel icon" },
   [IconLabelKey.Vite]: { iconSrc: LOGO_SVG_MAP.vite, text: "Vite", iconAlt: "Vite icon" },
   [IconLabelKey.VSCode]: { iconSrc: LOGO_SVG_MAP.vscode, text: "VS Code", iconAlt: "VS Code icon" },
 }

@@ -24,10 +24,11 @@ export function ProjectsContent(): JSX.Element {
     })
   }, []);
 
-  const ALL_PROJECTS_PROJECT_CARD_KEY_ARRAY: ProjectKey[] = [
+  const FEATURED_PROJECTS_PROJECT_CARD_KEY_ARRAY: ProjectKey[] = [
     ProjectKey.MovieWebsite,
     ProjectKey.MusicVisualizer,
-    ProjectKey.FormValidation
+    ProjectKey.FormValidation,
+    ProjectKey.MyPortfolio
   ]
 
   // Return Content
@@ -35,7 +36,10 @@ export function ProjectsContent(): JSX.Element {
     <div className={joinClasses(styles.component, isVisible ? styles.visible : "")}>
       <div className={styles.space} />
       <section className={styles.section}>
-        <ProjectCardLine projectKeyArray={ALL_PROJECTS_PROJECT_CARD_KEY_ARRAY} />
+        <div className={styles.titleContainer}>
+          <span className={styles.title}>Featured Projects</span>
+        </div>
+        <ProjectCardLine projectKeyArray={FEATURED_PROJECTS_PROJECT_CARD_KEY_ARRAY} />
       </section>
       <div className={styles.space} />
     </div>

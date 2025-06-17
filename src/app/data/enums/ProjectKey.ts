@@ -3,7 +3,8 @@
 export enum ProjectKey {
   MovieWebsite = "movie-website",
   MusicVisualizer = "music-visualizer",
-  FormValidation = "form-validation"
+  FormValidation = "form-validation",
+  MyPortfolio = "my-portfolio"
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

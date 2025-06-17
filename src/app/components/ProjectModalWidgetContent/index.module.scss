@@ -63,7 +63,7 @@
   > .main {
     width: var(--main-width);
     height: max-content;
-    transition: opacity 300ms ease-out 300ms;
+    transition: opacity 300ms ease-out 150ms;
     &.hidden { opacity: 0; }
     &.visible { opacity: 1; }
 
@@ -160,7 +160,6 @@
       font-size: var(--paragraph-font-size);
       line-height: 1.5;
       font-weight: bold;
-      text-shadow: 0 0 calc(3/5 * var(--paragraph-font-size)) var(--paragraph-font-color);
     }
 
     > .tagsSection {

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,18 @@ export function useBooleanQueryParam(
 ): BooleanQueryParamHook {
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const value: boolean = searchParams.get(paramName) === trueValue;
+  const currentValue: string | null = searchParams.get(paramName);
+  const value: boolean = currentValue === trueValue;
+
+  useEffect(() => {
+    if (currentValue !== null && currentValue !== trueValue) {
+      setSearchParams(prevParams => {
+        const newParams: URLSearchParams = new URLSearchParams(prevParams);
+        newParams.delete(paramName);
+        return newParams;
+      })
+    }
+  }, [paramName, currentValue, trueValue, setSearchParams])
 
   const setTrue = useCallback(() => {
     setSearchParams(prevParams => {

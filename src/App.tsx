@@ -1,10 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 
 import { InputProvider } from "./context/InputProvider"
 import { AppLayers } from "./app/components/AppLayers";
-import { SectionKey } from "./app/data/enums/SectionKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -16,28 +15,30 @@ import { SectionKey } from "./app/data/enums/SectionKey";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const primaryRouter = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayers />,
-    children: [
-      {
-        path: SectionKey.AboutMe,
-        element: <></>
-      },
-      {
-        path: SectionKey.Projects,
-        element: <></>
-      },
-      {
-        path: `${SectionKey.Projects}/:projectKey`,
-        element: <></>
-      },
-      {
-        path: SectionKey.Settings,
-        element: <></>
-      }
-    ]
+    element: <Navigate to="/about-me" replace />
+  },
+  {
+    path: "/about-me",
+    element: <AppLayers />
+  },
+  {
+    path: "/projects",
+    element: <AppLayers />
+  },
+  {
+    path: "/projects/:projectKey",
+    element: <AppLayers />
+  },
+  {
+    path: "/settings",
+    element: <AppLayers />
+  },
+  {
+    path: "*",
+    element: <Navigate to="/about-me" replace />
   }
 ]);
 
@@ -47,7 +48,7 @@ export default function App() {
 
   return (
     <InputProvider>
-      <RouterProvider router={primaryRouter} />
+      <RouterProvider router={router} />
     </InputProvider>
   )
 }

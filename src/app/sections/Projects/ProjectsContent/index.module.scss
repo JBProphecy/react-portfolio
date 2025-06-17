@@ -1,6 +1,6 @@
 /**********************************************************************************************************************/
 
-.component {--primary-color: black; --secondary-color: rgba(64, 64, 64, 0.1); background: linear-gradient(45deg, var(--primary-color), 
+.component {--primary-color: black; --secondary-color: rgba(64, 64, 64, 0.05); background: linear-gradient(45deg, var(--primary-color), 
 	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
 	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
 	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
@@ -23,9 +23,9 @@
 	--component-width: var(--main-container-width);
 	--component-height: var(--main-container-height);
 
-  --titleFontSize: 3rem;
-  --titleLineHeight: 1.25;
+  --titleFontSize: max(2rem, calc(5 * var(--app-font-size-scale-min)));
   --titleFontColor: rgb(192, 192, 192);
+	--titlePadding: max(1rem, calc(3 * var(--app-unit-width-linear-64)));
 }
 
 .component {
@@ -45,7 +45,21 @@
     height: max-content;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: calc(2 * var(--app-unit-size-linear-64-min));
+
+		> div.titleContainer {
+			width: inherit;
+			height: max-content;
+			display: flex;
+
+			> span.title {
+				padding: 0 var(--titlePadding);
+				font-size: var(--titleFontSize);
+				line-height: 1.25;
+				font-weight: bold;
+				text-shadow: 0 0 calc(2/5 * var(--titleFontSize)) var(--titleFontColor);
+			}
+		}
   }
 }
 
