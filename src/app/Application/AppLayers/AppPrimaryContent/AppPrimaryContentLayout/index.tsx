@@ -34,13 +34,6 @@ export enum AboutMeSectionKey {
 
 export type AboutMeSectionRefMap = Record<AboutMeSectionKey, React.RefObject<HTMLElement>>;
 
-export enum ProjectsSectionKey {
-  MyPortfolio = "my-portfolio",
-  MovieWebsite = "movie-website",
-  MusicVisualizer = "music-visualizer",
-  FormValidation = "form-validation"
-}
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 type AppPrimaryContentLayoutProps = {
