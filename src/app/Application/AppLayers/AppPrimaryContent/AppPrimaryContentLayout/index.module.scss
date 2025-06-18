@@ -148,7 +148,7 @@
         &::-webkit-scrollbar { display: none; }
 
         > * {
-          --provided-width: var(--sidebar-inner-width);
+          --provided-width: calc(var(--sidebar-inner-width) - 2 * var(--sidebar-padding) - 2 * var(--sidebar-border-width));
         }
       }
     }
