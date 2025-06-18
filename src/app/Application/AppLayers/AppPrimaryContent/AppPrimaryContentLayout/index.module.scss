@@ -146,6 +146,10 @@
         overflow: hidden;
         overflow-y: auto;
         &::-webkit-scrollbar { display: none; }
+
+        > * {
+          --provided-width: var(--sidebar-inner-width);
+        }
       }
     }
 

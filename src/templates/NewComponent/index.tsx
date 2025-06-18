@@ -13,7 +13,7 @@ type NewComponentProps = {}
  */
 export function NewComponent({}: NewComponentProps): JSX.Element {
 
-  // Return Content
+  // Return Component
   return (
     <div className={styles.component}>
     </div>

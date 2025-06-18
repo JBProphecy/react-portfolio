@@ -3,11 +3,9 @@
 import styles from "./index.module.scss";
 
 import { AboutMeContent } from "./AboutMeContent";
-import { AboutMeLinks } from "./AboutMeLinks";
 import { ProjectsContent } from "./ProjectsContent";
-import { ProjectsLinks } from "./ProjectsLinks";
 
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { SectionKey } from "@/app/data/enums/SectionKey";
@@ -22,6 +20,26 @@ import { CustomProperties } from "@/types/css/CustomProperties";
 
 import { joinClasses } from "@/utils/joinClasses";
 import { toStringMS } from "@/utils/strings/toStringMS";
+import { AboutMeSideContentLinks } from "@/app/components/SideContentLinks/AboutMeSideContentLinks";
+import { ProjectsSideContentLinks } from "@/app/components/SideContentLinks/ProjectsSideContentLinks";
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export enum AboutMeSectionKey {
+  Home = "home",
+  MyStory = "my-story",
+  BusinessLinks = "business-links",
+  SkillCards = "skill-cards"
+}
+
+export type AboutMeSectionRefMap = Record<AboutMeSectionKey, React.RefObject<HTMLElement>>;
+
+export enum ProjectsSectionKey {
+  MyPortfolio = "my-portfolio",
+  MovieWebsite = "movie-website",
+  MusicVisualizer = "music-visualizer",
+  FormValidation = "form-validation"
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -59,16 +77,17 @@ export function AppPrimaryContentLayout({
     // SectionKey.Settings
   ]
 
-  // Scroll Container Ref
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const sidebarContentScrollRef = useRef<HTMLDivElement>(null);
+  const mainContentScrollRef = useRef<HTMLDivElement>(null);
 
   // Header Link Click
   const handleClickHeaderLink = (sectionKey: SectionKey) => {
+    if (sidebarContentScrollRef.current) { sidebarContentScrollRef.current.scrollTop = 0; }
+    if (mainContentScrollRef.current) { mainContentScrollRef.current.scrollTop = 0; }
     navigate({
       pathname: `/${sectionKey}`,
       search: location.search
     });
-    if (scrollRef.current) { scrollRef.current.scrollTop = 0; }
   }
 
   // About Me Section Refs
@@ -77,13 +96,13 @@ export function AppPrimaryContentLayout({
   const businessLinksRef = useRef<HTMLElement>(null);
   const skillCardsRef = useRef<HTMLElement>(null);
 
-  // Click Sidebar Link (About Me Section)
-  const handleClickAboutMeLink = (ref: React.RefObject<HTMLElement>) => {
-    sidebarHook.toggle();
-    setTimeout(() => {
-      ref.current?.scrollIntoView({ behavior: "smooth" });
-    }, transitionDurationValueMS)
-  }
+  // About Me Section Ref Map
+  const ABOUT_ME_SECTION_REF_MAP = useMemo<AboutMeSectionRefMap>(() => ({
+    [AboutMeSectionKey.Home]: heroRef,
+    [AboutMeSectionKey.MyStory]: myStoryRef,
+    [AboutMeSectionKey.BusinessLinks]: businessLinksRef,
+    [AboutMeSectionKey.SkillCards]: skillCardsRef
+  }), []);
 
   // Return Content
   return (
@@ -113,19 +132,17 @@ export function AppPrimaryContentLayout({
       </header>
       <main className={styles.main}>
         <aside className={joinClasses(styles.sideContainer, sidebarHook.value ? styles.open : styles.closed)}>
-          <div className={styles.sidebar}>
+          <div ref={sidebarContentScrollRef} className={styles.sidebar}>
             {(() => {
               switch (appStateHook.sectionKey) {
                 case SectionKey.AboutMe:
-                  return <AboutMeLinks
-                    handleClick={handleClickAboutMeLink}
-                    heroRef={heroRef}
-                    myStoryRef={myStoryRef}
-                    businessLinksRef={businessLinksRef}
-                    skillCardsRef={skillCardsRef}
+                  return <AboutMeSideContentLinks
+                    sidebarHook={sidebarHook}
+                    sidebarTransitionDurationValueMS={transitionDurationValueMS}
+                    aboutMeSectionRefMap={ABOUT_ME_SECTION_REF_MAP}
                   />;
                 case SectionKey.Projects:
-                  return <ProjectsLinks />;
+                  return <ProjectsSideContentLinks />;
                 case SectionKey.Settings:
                   return <></>;
                 default: return <></>;
@@ -135,7 +152,7 @@ export function AppPrimaryContentLayout({
         </aside>
         <div className={styles.mainContainer}>
           <div className={joinClasses(styles.layer, styles.overlay, sidebarHook.value ? styles.front : styles.back)} />
-          <div ref={scrollRef} className={joinClasses(styles.layer, styles.content)}>
+          <div ref={mainContentScrollRef} className={joinClasses(styles.layer, styles.content)}>
             {(() => {
               switch (appStateHook.sectionKey) {
                 case SectionKey.AboutMe:
