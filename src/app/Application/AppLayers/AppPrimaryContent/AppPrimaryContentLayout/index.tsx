@@ -95,7 +95,7 @@ export function AppPrimaryContentLayout({
     [AboutMeSectionKey.MyStory]: myStoryRef,
     [AboutMeSectionKey.BusinessLinks]: businessLinksRef,
     [AboutMeSectionKey.SkillCards]: skillCardsRef
-  }), []);
+  }), [heroRef, myStoryRef, businessLinksRef, skillCardsRef]);
 
   // Return Content
   return (
@@ -149,12 +149,7 @@ export function AppPrimaryContentLayout({
             {(() => {
               switch (appStateHook.sectionKey) {
                 case SectionKey.AboutMe:
-                  return <AboutMeContent
-                    heroRef={heroRef}
-                    myStoryRef={myStoryRef}
-                    businessLinksRef={businessLinksRef}
-                    skillCardsRef={skillCardsRef}
-                  />
+                  return <AboutMeContent aboutMeSectionRefMap={ABOUT_ME_SECTION_REF_MAP} />
                 case SectionKey.Projects:
                   return <ProjectsContent />
               }

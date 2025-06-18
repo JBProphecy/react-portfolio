@@ -10,14 +10,12 @@ import { SkillCards } from "./SkillCards";
 import { useEffect, useState } from "react";
 
 import { joinClasses } from "@/utils/joinClasses";
+import { AboutMeSectionKey, AboutMeSectionRefMap } from "..";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export type AboutMeContentProps = {
-  heroRef: React.RefObject<HTMLElement>,
-  myStoryRef: React.RefObject<HTMLElement>,
-  businessLinksRef: React.RefObject<HTMLElement>,
-  skillCardsRef: React.RefObject<HTMLElement>
+  aboutMeSectionRefMap: AboutMeSectionRefMap;
 }
 
 /**
@@ -26,10 +24,7 @@ export type AboutMeContentProps = {
  * @returns JSX
  */
 export function AboutMeContent({
-  heroRef,
-  myStoryRef,
-  businessLinksRef,
-  skillCardsRef
+  aboutMeSectionRefMap
 }: AboutMeContentProps): JSX.Element {
 
   // Visibility
@@ -43,7 +38,7 @@ export function AboutMeContent({
   // Return Content
   return (
     <div className={joinClasses(styles.wrapper, isVisible ? styles.visible : "")}>
-      <section ref={heroRef} className={styles.hero}>
+      <section ref={aboutMeSectionRefMap[AboutMeSectionKey.Home]} className={styles.hero}>
         <div className={joinClasses(styles.layer, styles.background)}>
           <video autoPlay loop muted>
             <source src="smoke-saber.mp4" type="video/mp4" />
@@ -55,15 +50,15 @@ export function AboutMeContent({
       </section>
       <div className={styles.headerSpace} />
       <div className={styles.space} />
-      <section ref={myStoryRef} className={styles.section}>
+      <section ref={aboutMeSectionRefMap[AboutMeSectionKey.MyStory]} className={styles.section}>
         <MyStory />
       </section>
       <div className={styles.space} />
-      <section ref={businessLinksRef} className={styles.section}>
+      <section ref={aboutMeSectionRefMap[AboutMeSectionKey.BusinessLinks]} className={styles.section}>
         <BusinessLinks />
       </section>
       <div className={styles.space} />
-      <section ref={skillCardsRef} className={styles.section}>
+      <section ref={aboutMeSectionRefMap[AboutMeSectionKey.SkillCards]} className={styles.section}>
         <SkillCards />
       </section>
       <div className={styles.space} />
