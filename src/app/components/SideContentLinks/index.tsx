@@ -1,7 +1,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import React from "react";
 import styles from "./index.module.scss";
+
+import React, { useEffect, useState } from "react";
+
+import { joinClasses } from "@/utils/joinClasses";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -26,9 +29,13 @@ export const SideContentLinks = React.memo(function SideContentLinks({
   sideContentLinkDataArray
 }: SideContentLinksProps): JSX.Element {
 
+  // Visibility
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  useEffect(() => { requestAnimationFrame(() => { setIsVisible(true); }) }, []);
+
   // Return Content
   return (
-    <ul className={styles.links}>
+    <ul className={joinClasses(styles.links, isVisible ? styles.visible : styles.hidden)}>
       {sideContentLinkDataArray.map(({ label, handleClick }, index) => (
         <li key={index} className={styles.link} onClick={handleClick}>
           <span className={styles.label}>{label}</span>

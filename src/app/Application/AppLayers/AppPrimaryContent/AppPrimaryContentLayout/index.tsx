@@ -75,8 +75,8 @@ export function AppPrimaryContentLayout({
 
   // Header Link Click
   const handleClickHeaderLink = (sectionKey: SectionKey) => {
-    if (sidebarContentScrollRef.current) { sidebarContentScrollRef.current.scrollTop = 0; }
-    if (mainContentScrollRef.current) { mainContentScrollRef.current.scrollTop = 0; }
+    if (sidebarContentScrollRef.current) { sidebarContentScrollRef.current.scrollTo({ top: 0, behavior: "smooth" }); }
+    if (mainContentScrollRef.current) { mainContentScrollRef.current.scrollTo({ top: 0, behavior: "smooth" }); }
     navigate({
       pathname: `/${sectionKey}`,
       search: location.search
