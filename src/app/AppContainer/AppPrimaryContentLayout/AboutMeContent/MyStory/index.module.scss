@@ -1,0 +1,53 @@
+/**********************************************************************************************************************/
+
+div.component {
+  --component-width: var(--provided-width);
+  --component-padding: max(1rem, calc(4 * var(--app-unit-size-linear-64-min)));
+
+  --content-width: calc(var(--component-width) - 2 * var(--component-padding));
+  --content-height: calc(var(--component-height) - 2 * var(--component-padding));
+
+  --primary-font-color: rgb(192, 192, 192);
+  --primary-font-size: max(2rem, calc(4 * var(--app-font-size-scale-min)));
+
+  --secondary-font-color: rgb(144, 144, 144);
+  --secondary-font-size: max(1rem, calc(2 * var(--app-font-size-scale-min)));
+}
+
+/**********************************************************************************************************************/
+
+.component {
+  width: var(--component-width);
+  height: max-content;
+  padding: var(--component-padding);
+  display: flex;
+  flex-direction: column;
+  gap: calc(3 * var(--app-unit-height-linear-64));
+
+  .titleContainer {
+    width: var(--content-width);
+    height: max-content;
+
+    .title {
+      color: var(--primary-font-color);
+      font-size: var(--primary-font-size);
+      line-height: 1.25;
+      font-weight: bold;
+      user-select: none;
+      text-shadow: 0 0 calc(2/5 * var(--primary-font-size)) var(--primary-font-color);
+    }
+  }
+
+  .paragraph {
+    width: var(--content-width);
+    height: max-content;
+    color: var(--secondary-font-color);
+    font-size: var(--secondary-font-size);
+    line-height: 1.5;
+    font-weight: bold;
+    user-select: none;
+    text-shadow: 0 0 calc(2/5 * var(--secondary-font-size)) var(--contentFontColor);
+  }
+}
+
+/**********************************************************************************************************************/

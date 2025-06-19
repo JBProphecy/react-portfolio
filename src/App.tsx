@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { AppLayers } from "./app/Application/AppLayers";
-import { InputProvider } from "./context/InputProvider";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import { routes } from "./routes";
+import { InputProvider } from "./common/context/InputProvider";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -14,40 +14,11 @@ import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Navigate to="/about-me" replace />
-  },
-  {
-    path: "about-me",
-    element: <AppLayers />
-  },
-  {
-    path: "projects",
-    element: <AppLayers />
-  },
-  {
-    path: "projects/:projectKey",
-    element: <AppLayers />
-  },
-  {
-    path: "settings",
-    element: <AppLayers />
-  },
-  {
-    path: "*",
-    element: <Navigate to="/about-me" replace />
-  }
-]);
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 export default function App() {
 
   return (
     <InputProvider>
-      <RouterProvider router={router} />
+      <RouterProvider router={createBrowserRouter(routes)} />
     </InputProvider>
   )
 }

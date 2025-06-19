@@ -1,0 +1,44 @@
+/**********************************************************************************************************************/
+
+ul.links {
+  --links-width: var(--provided-width, 100%);
+
+  --link-padding: 1rem;
+  --link-font-color: rgb(192, 192, 192);
+  --link-font-size: 2rem;
+}
+
+/**********************************************************************************************************************/
+
+ul.links {
+  width: var(--links-width);
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 150ms ease-in-out;
+
+  &.hidden { opacity: 0; }
+  &.visible { opacity: 1; }
+
+  li.link {
+    width: inherit;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    opacity: 0.7;
+    &:hover { opacity: 1; cursor: pointer; }
+    &:active { opacity: 0.4; }
+
+    > span.label {
+      padding: var(--link-padding);
+      color: var(--link-font-color);
+      font-size: var(--link-font-size);
+      font-weight: bold;
+      line-height: 1.25;
+      text-align: center;
+      user-select: none;
+    }
+  }
+}
+
+/**********************************************************************************************************************/

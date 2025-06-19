@@ -1,0 +1,47 @@
+/**********************************************************************************************************************/
+
+ul.links {
+  --links-height: var(--provided-height);
+
+  --links-horizontal-padding: calc(1/8 * var(--links-height));
+  --links-gap: calc(3/8 * var(--links-height));
+
+  --link-font-color: rgb(192, 192, 192);
+  --link-font-size: calc(2/5 * var(--links-height));
+}
+
+/**********************************************************************************************************************/
+
+ul.links {
+  width: max-content;
+  height: var(--links-height);
+  padding: 0 var(--links-horizontal-padding);
+  display: flex;
+  align-items: center;
+  gap: var(--links-gap);
+
+  li.link {
+    width: max-content;
+    height: max-content;
+    display: flex; // probably for the center thing
+    transition: opacity 150ms ease-out;
+    &.normal { opacity: 0.7; }
+    &:hover { cursor: pointer; opacity: 1; }
+    &:active { opacity: 0.4; }
+    &.active { cursor: default; opacity: 0.4; }
+
+    > span.label {
+      width: max-content;
+      height: max-content;
+      color: var(--link-font-color);
+      font-size: var(--link-font-size);
+      line-height: 1;
+      font-weight: bold;
+      white-space: nowrap;
+      user-select: none;
+      text-shadow: 0 0 calc(2/5 * var(--link-font-size)) var(--link-font-color);
+    }
+  }
+}
+
+/**********************************************************************************************************************/

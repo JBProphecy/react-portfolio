@@ -1,0 +1,67 @@
+/**********************************************************************************************************************/
+
+.component {--primary-color: black; --secondary-color: rgba(64, 64, 64, 0.05); background: linear-gradient(45deg, var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), 
+	var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color), var(--secondary-color), var(--primary-color));
+}
+
+.component {
+	--component-width: var(--provided-width);
+	--component-height: var(--provided-height);
+
+  --title-font-size: max(2rem, calc(4 * var(--app-font-size-scale-width)));
+  --title-font-color: rgb(192, 192, 192);
+	--title-padding: max(1rem, calc(3 * var(--app-unit-width-linear-64)));
+}
+
+.component {
+  width: var(--component-width);
+  height: var(--component-height);
+	opacity: 0;
+	transition: opacity 300ms ease-out;
+	&.visible { opacity: 1; }
+
+	> .space {
+		width: 100%;
+		height: calc(2 * var(--app-unit-height-linear-64));
+	}
+
+  > .section {
+    width: inherit;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: calc(1 * var(--app-unit-height-linear-64));
+
+		> div.titleContainer {
+			width: inherit;
+			height: max-content;
+			display: flex;
+
+			> span.title {
+				padding: 0 var(--title-padding);
+				font-size: var(--title-font-size);
+				line-height: 1.25;
+				font-weight: bold;
+				user-select: none;
+				text-shadow: 0 0 calc(2/5 * var(--title-font-size)) var(--title-font-color);
+			}
+		}
+  }
+}
+
+/**********************************************************************************************************************/

@@ -1,0 +1,40 @@
+/**********************************************************************************************************************/
+
+a.anchor {
+  --component-color: rgb(192, 192, 192);
+
+  --text-font-size: max(1.25rem, calc(2.5 * var(--app-font-size-scale-min)));
+  --text-line-height: 1.25;
+  --text-padding-horizontal-addition: calc(0.125 * var(--text-font-size));
+  --text-padding-vertical: calc(0.25 * var(--text-font-size));
+  --text-padding-horizontal: calc(var(--text-padding-vertical) + var(--text-padding-horizontal-addition));
+
+  --anchor-border-width: calc(0.125 * var(--text-font-size));
+  --anchor-border-radius: calc(0.25 * (var(--text-font-size)));
+}
+
+/**********************************************************************************************************************/
+
+a.anchor {
+  width: max-content;
+  height: max-content;
+  display: flex;
+  border: var(--anchor-border-width) solid var(--component-color);
+  border-radius: var(--anchor-border-radius);
+  opacity: 0.7;
+  background-color: black;
+  &:hover { opacity: 1; cursor: pointer }
+  &:focus-visible { opacity: 1; }
+  &:active { opacity: 0.4; }
+
+  > span.text {
+    padding: var(--text-padding-vertical) var(--text-padding-horizontal);
+    color: var(--component-color);
+    font-size: var(--text-font-size);
+    line-height: var(--text-line-height);
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+/**********************************************************************************************************************/
