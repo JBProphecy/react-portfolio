@@ -22,7 +22,7 @@ export const routes: RouteObject[] = [
   },
   {
     path: RouteKey.Project,
-    element: <AppContainer />
+    element: <AppContainer />,
   },
   {
     path: RouteKey.Settings,

@@ -24,17 +24,23 @@ import { APP_SECTION_KEY_ARRAY } from "@/data/arrays/AppHeaderLinkArray";
 import { AboutMeSectionKey } from "@/data/keys/AboutMeSectionKey";
 import { AppSectionKey } from "@/data/keys/AppSectionKey";
 import { AppSectionData } from "@/data/types/AppSectionData";
+import { SearchParamKey } from "@/data/keys/SearchParamKey";
 import { toAppSectionData } from "@/data/utils/fromAppSectionMap";
 
 import { useAppNavigation } from "@/hooks/useAppNavigation";
+import { useFilteredSearchParams } from "@/hooks/useFilteredSearchParams";
+import { useProcessedRoute } from "@/hooks/useProcessedRoute";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export function AppPrimaryContentLayout(): JSX.Element {
 
   const { navigateToAppSection } = useAppNavigation();
+
+  useProcessedRoute();
+  useFilteredSearchParams();
   const appStateHook: AppStateHook = useAppState();
-  const sidebarHook: BooleanQueryParamHook = useBooleanQueryParam("sidebar", "open");
+  const sidebarHook: BooleanQueryParamHook = useBooleanQueryParam(SearchParamKey.Sidebar, "open");
 
   const transitionDurationValueMS: number = 300;
   const componentCustomProperties: CustomProperties = {
