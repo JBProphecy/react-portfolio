@@ -16,10 +16,10 @@ div.component {
   --right-height: var(--content-height);
 
   --primary-font-color: rgb(192, 192, 192);
-  --primary-font-size: max(4rem, calc(8 * var(--app-font-size-scale-min)));
+  --primary-font-size: max(2rem, calc(8 * var(--app-font-size-scale-min)));
 
   --secondary-font-color: rgb(160, 160, 160);
-  --secondary-font-size: max(2rem, calc(4 * var(--app-font-size-scale-min)));
+  --secondary-font-size: max(1rem, calc(4 * var(--app-font-size-scale-min)));
 
   @media screen and (aspect-ratio < 3/2) {
     --left-width: var(--content-width);
@@ -36,6 +36,8 @@ div.component {
   display: flex;
   justify-content: space-between;
   overflow: hidden;
+  mask-image: linear-gradient(to bottom, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent);
 
   > section.left {
     width: var(--left-width);
