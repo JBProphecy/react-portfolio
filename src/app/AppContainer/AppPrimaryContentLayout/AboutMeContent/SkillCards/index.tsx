@@ -19,10 +19,8 @@ export const SkillCards = () => {
     LogoKey.CSS, LogoKey.SCSS,
     LogoKey.JavaScript, LogoKey.TypeScript,
     LogoKey.Vite, LogoKey.ReactJS, LogoKey.NodeJS, LogoKey.ExpressJS,
-    LogoKey.Python,
     LogoKey.Java, LogoKey.Maven, LogoKey.Spring,
-    LogoKey.SQL, LogoKey.PostgresSQL, LogoKey.MySQL, LogoKey.SQLite,
-    LogoKey.Prisma,
+    LogoKey.SQL,
     LogoKey.Git, LogoKey.GitHub
   ]
 
