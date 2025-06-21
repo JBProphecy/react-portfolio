@@ -23,7 +23,7 @@
 	--component-width: var(--provided-width);
 	--component-height: var(--provided-height);
 
-  --title-font-size: max(2rem, calc(4 * var(--app-font-size-scale-width)));
+  --title-font-size: clamp(2rem, calc(4 * var(--app-font-size-scale-width)), 4rem);
   --title-font-color: rgb(192, 192, 192);
 	--title-padding: max(1rem, calc(3 * var(--app-unit-width-linear-64)));
 }
