@@ -4,7 +4,8 @@ export enum ProjectKey {
   MyPortfolio = "my-portfolio",
   MovieWebsite = "movie-website",
   MusicVisualizer = "music-visualizer",
-  FormValidation = "form-validation"
+  FormValidation = "form-validation",
+  SpringBootDemo = "spring-boot-demo"
 }
 
 export function isProjectKeyCheckString(value: string): value is ProjectKey {

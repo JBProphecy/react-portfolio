@@ -45,6 +45,10 @@ export function ProjectsSideContentLinks(): JSX.Element {
       label: "Form Validation",
       handleClick: () => { handleClick(ProjectKey.FormValidation); }
     },
+    {
+      label: "Spring Boot Demo",
+      handleClick: () => { handleClick(ProjectKey.SpringBootDemo); }
+    }
   ], [handleClick]);
 
   // Return Component

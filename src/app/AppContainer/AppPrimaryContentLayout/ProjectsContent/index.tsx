@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { joinClasses } from "@/common/utils/joinClasses";
 
 import { ProjectCardLine } from "@/__archives/components/ProjectCardStuff/ProjectCardLine";
-import { FEATURED_PROJECTS_PROJECT_CARD_KEY_ARRAY } from "@/data/arrays/ProjectKeyArray";
+import { DEVELOPING_PROJECTS_PROJECT_CARD_KEY_ARRAY, FEATURED_PROJECTS_PROJECT_CARD_KEY_ARRAY } from "@/data/arrays/ProjectKeyArray";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -31,6 +31,13 @@ export function ProjectsContent(): JSX.Element {
           <span className={styles.title}>Featured Projects</span>
         </div>
         <ProjectCardLine projectKeyArray={FEATURED_PROJECTS_PROJECT_CARD_KEY_ARRAY} />
+      </section>
+      <div className={styles.space} />
+      <section className={styles.section}>
+        <div className={styles.titleContainer}>
+          <span className={styles.title}>Developing Projects</span>
+        </div>
+        <ProjectCardLine projectKeyArray={DEVELOPING_PROJECTS_PROJECT_CARD_KEY_ARRAY} />
       </section>
       <div className={styles.space} />
     </div>

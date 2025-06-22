@@ -33,4 +33,10 @@ export const MY_PORTFOLIO_LOGO_KEY_ARRAY: LogoKey[] = [
   LogoKey.Vercel
 ]
 
+export const SPRING_BOOT_DEMO_LOGO_KEY_ARRAY: LogoKey[] = [
+  LogoKey.Java, LogoKey.Maven, LogoKey.Spring,
+  LogoKey.SQL, LogoKey.PostgresSQL,
+  LogoKey.Git, LogoKey.GitHub
+]
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

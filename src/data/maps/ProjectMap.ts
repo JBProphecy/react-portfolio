@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { FORM_VALIDATION_LOGO_KEY_ARRAY, MOVIE_WEBSITE_LOGO_KEY_ARRAY, MUSIC_VISUALIZER_LOGO_KEY_ARRAY, MY_PORTFOLIO_LOGO_KEY_ARRAY } from "../arrays/LogoKeyArrays";
+import { FORM_VALIDATION_LOGO_KEY_ARRAY, MOVIE_WEBSITE_LOGO_KEY_ARRAY, MUSIC_VISUALIZER_LOGO_KEY_ARRAY, MY_PORTFOLIO_LOGO_KEY_ARRAY, SPRING_BOOT_DEMO_LOGO_KEY_ARRAY } from "../arrays/LogoKeyArrays";
 import { ProjectKey } from "../keys/ProjectKey";
 import { ProjectData } from "../types/ProjectData";
 
@@ -54,12 +54,23 @@ export const PROJECT_MAP: Record<ProjectKey, ProjectData> = {
     title: "This Portfolio",
     summary: "my very own portfolio website... click and scroll for the repository link",
     description: "This project is my portfolio. It's a purely front-end, single-page application built with React. I've designed it to be responsive and transition seamlessly between various screen sizes using custom scaling units and media queries. I've also made every interaction interact with the URL so that way the section, modal, and sidebar can all be navigated back and forth with the browser controls. There are several sections with information about me, my resume, my skills, and my projects, all with links to their repositories, so feel free to check them out.",
-    imageAlt: "thumbnail for my portfolio",
+    imageAlt: "",
     imageSrc: "",
     videoSrc: "",
     repositoryLinkText: "Open Repository in a New Tab",
     repositoryLinkHref: "https://github.com/JBProphecy/react-portfolio",
     logoKeyArray: MY_PORTFOLIO_LOGO_KEY_ARRAY
+  },
+  [ProjectKey.SpringBootDemo]: {
+    title: "Spring Boot Demo",
+    summary: "a project to experiment with Java and Spring Boot",
+    description: "This project is a place for me to experiment primarily with Java and Spring Boot. The goal is to write code and become familiar with the Spring ecosystem.",
+    imageAlt: "",
+    imageSrc: "",
+    videoSrc: "",
+    repositoryLinkText: "Open Repository in a New Tab",
+    repositoryLinkHref: "https://github.com/JBProphecy/SpringBootDemo",
+    logoKeyArray: SPRING_BOOT_DEMO_LOGO_KEY_ARRAY
   }
 }
 

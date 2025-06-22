@@ -34,6 +34,13 @@
 	opacity: 0;
 	transition: opacity 300ms ease-out;
 	&.visible { opacity: 1; }
+	overflow: hidden;
+	overflow-y: auto;
+	&::-webkit-scrollbar { background: transparent; }
+	&::-webkit-scrollbar-track { background: linear-gradient(rgb(24, 24, 24), rgb(8, 8, 8)); }
+	&::-webkit-scrollbar-thumb { background: linear-gradient(rgb(24, 24, 24), gray, rgb(8, 8, 8)); }
+	&::-webkit-scrollbar-thumb:hover { cursor: grab; }
+	&::-webkit-scrollbar-thumb:active { cursor: grabbing; }
 
 	> .space {
 		width: 100%;

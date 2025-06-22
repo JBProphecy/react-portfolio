@@ -11,4 +11,8 @@ export const FEATURED_PROJECTS_PROJECT_CARD_KEY_ARRAY: ProjectKey[] = [
   ProjectKey.MyPortfolio
 ]
 
+export const DEVELOPING_PROJECTS_PROJECT_CARD_KEY_ARRAY: ProjectKey[] = [
+  ProjectKey.SpringBootDemo
+]
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
