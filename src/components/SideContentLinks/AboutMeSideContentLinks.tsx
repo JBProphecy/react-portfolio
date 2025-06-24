@@ -41,7 +41,7 @@ export function AboutMeSideContentLinks({
       handleClick: () => { handleClick(aboutMeSectionRefMap[AboutMeSectionKey.Home]); }
     },
     {
-      label: "My Story",
+      label: "About Me",
       handleClick: () => { handleClick(aboutMeSectionRefMap[AboutMeSectionKey.MyStory]); }
     },
     {

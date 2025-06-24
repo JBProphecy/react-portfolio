@@ -17,13 +17,9 @@ export const MyStory = forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <div ref={ref} className={styles.component}>
       <div className={styles.titleContainer}>
-        <span className={styles.title}>My Story</span>
+        <span className={styles.title}>About Me</span>
       </div>
-      <p className={styles.paragraph}>I'll start from the beginning; I was born on... too far. All jokes aside, I didn't choose computer science until I was a sophomore in college. Growing up, I wanted to be a veterinarian, but once I realized how long I would be in school for, I changed my mind. Eventually, I decided to pursue a degree in marine biology, which is one of the main reasons why I went to UNCW. As it turns out, I graduated in December of 2024 with a bachelor's degree in computer science.</p>
-      <p className={styles.paragraph}>The idea of working out on the ocean was appealing, but the more I thought about it, the less potential I saw. I wanted to do something more creative and I wanted it to be something that I could get really good at. With that in mind, I switched my major from marine biology to computer science.</p>
-      <p className={styles.paragraph}>In relation to programming and creating software... I say if you can think of it, you can make it. In addition, most of the tools you can use to facilitate that process are free, but what makes that process difficult is choosing between them, which requires a vast understanding of the selection pool in order to make the best decision. There's a lot that goes into it, so I've put a lot into it... I want to become a master of my craft.</p>
-      <p className={styles.paragraph}>I'm eager to start my career. My goal is to learn as much as possible and become an amazing full-stack developer. This line of work requires a lot of time, effort, and collaboration. It's not feasible for me to try to do everything on my own, so I would love to work with a team who shares my vision of what we can accomplish.</p>
-      <p className={styles.paragraph}>Feel free to explore the rest of my portfolio, and if you're interested in working with me, feel free to reach out.</p>
+      <p className={styles.paragraph}>Hello, my name is Jack. I am a graduate from the University of North Carolina at Wilmington with a bachelor's degree in computer science. I have a strong foundation of skills and practical experience working on projects. My goal is to become an amazing full stack developer, so I continue to learn and improve my skills by coding every day. I want to make software that brings real value to the people who use it and I want to work with a team who shares that vision. I encourage you to reach out to me; I could be a valuable member the team and yield great results towards our work.</p>
     </div>
   )
 })
